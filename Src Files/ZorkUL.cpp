@@ -17,11 +17,11 @@ void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("a");
-        a->addItem(new Item("x", 1, 11));
-        a->addItem(new Item("y", 2, 2));
+        a->addItem(new Item("x", 1, 11,0,0));
+        a->addItem(new Item("y", 2, 2,0,0));
     b = new Room("b");
         b->addItems(4);
-        b->addItem(new Item("KEY ITEM", 2, 2));
+        b->addItem(new Item("KEYITEM", 2, 2,0,1));
     c = new Room("c");
     d = new Room("d");
     e = new Room("e");

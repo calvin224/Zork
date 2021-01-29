@@ -13,9 +13,10 @@ private:
 	int weightGrams;
 	float value;
 	bool weaponCheck;
+    int iskeyitem;
 
 public:
-    Item (string description, int inWeight, float inValue);
+    Item (string description, int inWeight, float inValue, int weaponCheck, int inkeyitem);
     Item (string description);
 	string getShortDescription();
     string getLongDescription();
@@ -24,7 +25,8 @@ public:
 	float getValue();
 	void setValue(float value);
 	int getWeaponCheck();
-	void setWeaponCheck(int weaponCheck);
+    void setWeaponCheck(int inweaponCheck);
+    int IskeyItem();
 };
 
 #endif /*ITEM_H_*/

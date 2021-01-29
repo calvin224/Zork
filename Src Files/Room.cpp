@@ -4,11 +4,11 @@
 
 Room::Room(string description) {
 	this->description = description;; 
-    Item *one(new Item("1",2,2));
-    Item *two(new Item("2",2,2));
-    Item *three(new Item("3",2,2));
-    Item *four(new Item("4",2,2));
-    Item *five(new Item("5",2,2));
+    Item *one(new Item("1",2,2,0,0));
+    Item *two(new Item("2",2,2,0,0));
+    Item *three(new Item("3",2,2,0,0));
+    Item *four(new Item("4",2,2,0,0));
+    Item *five(new Item("5",2,2,0,0));
     Items.push_back(*one);
     Items.push_back(*two);
     Items.push_back(*three);

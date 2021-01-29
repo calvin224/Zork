@@ -1,10 +1,11 @@
 #include "item.h"
 
-Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
+Item::Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem) {
 	description = inDescription;
 	setWeight(inWeightGrams);
 	value = inValue;
-	/**weaponCheck(isWeapon);*/
+    setWeaponCheck(inweaponCheck);
+    iskeyitem = inkeyitem;
 }
 
 Item::Item(string inDescription) {
@@ -27,13 +28,13 @@ void Item::setValue(float inValue)
 	   value = inValue;
 }
 
-/**void Item::setWeaponCheck(int isWeapon)
-{
-    if(isWeapon > 0 || isWeapon < 0)
-        cout << "Item not a weapon" ;
-    else
-        cout << "Item is a weapon" ;
-}*/
+void Item::setWeaponCheck(int inweaponCheck){
+    weaponCheck = inweaponCheck;
+}
+
+int Item::getWeaponCheck(){
+    return weaponCheck;
+}
 
 string Item::getShortDescription()
 {
@@ -45,3 +46,7 @@ string Item::getLongDescription()
 	return " item(s), " + description + ".\n";
 }
 
+// 0 = not key item plan is 1-etc indicate a certain key item and when  used on something checks if the required int for key item = int it wants (if iskeyitem = 2 open door etc);
+int Item::IskeyItem(){
+    return iskeyitem;
+}
