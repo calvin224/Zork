@@ -11,7 +11,6 @@ int main(int argc, char argv[]) {
 
 ZorkUL::ZorkUL() {
 	createRooms();
-    mainchar = new Character("MainChar",10);
 }
 
 void ZorkUL::createRooms()  {
@@ -22,6 +21,7 @@ void ZorkUL::createRooms()  {
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
+        b->addenemy("goblin",10);
     c = new Room("c");
     d = new Room("d");
     e = new Room("e");
@@ -61,9 +61,7 @@ void ZorkUL::play() {
 		// Free the memory allocated by "parser.getCommand()"
 		//   with ("return new Command(...)")
 		delete command;
-        if ( mainchar->getHealthPoint() == 0){
-            finished = true; }
-	}
+       }
 	cout << endl;
 	cout << "end" << endl;
 }
@@ -85,8 +83,7 @@ bool ZorkUL::processCommand(Command command) {
 		cout << "invalid input"<< endl;
 		return false;
 	}
-
-	string commandWord = command.getCommandWord();
+    string commandWord = command.getCommandWord();
 	if (commandWord.compare("info") == 0)
 		printHelp();
 

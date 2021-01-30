@@ -10,6 +10,7 @@ SOURCES += \
     Parser.cpp \
     Room.cpp \
     ZorkUL.cpp \
+    enemy.cpp \
     item.cpp
 
 HEADERS += \
@@ -19,4 +20,5 @@ HEADERS += \
     Parser.h \
     Room.h \
     ZorkUL.h \
+    enemy.h \
     item.h

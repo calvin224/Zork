@@ -32,7 +32,7 @@ string Room::shortDescription() {
 }
 
 string Room::longDescription() {
-	return "room = " + description + ".\n" + displayItem() + exitString();
+    return "room = " + description + ".\n" + displayItem() + ".\n" + displayenemy() + ".\n" + exitString();
 }
 
 string Room::exitString() {
@@ -81,6 +81,23 @@ string Room::displayItem() {
     return tempString;
     }
 
+string Room::displayenemy() {
+    string tempString = "monsters in room = ";
+    int sizemonsters = (EnemyinRoom.size());
+    if (EnemyinRoom.size() < 1) {
+        tempString = "no monsters in room";
+        }
+    else if (EnemyinRoom.size() > 0) {
+       int x = (0);
+        for (int n = sizemonsters; n > 0; n--) {
+            tempString = tempString + EnemyinRoom[x].getShortDescription() + "  " ;
+            x++;
+            }
+        }
+    return tempString;
+    }
+
+
 int Room::numberOfItems() {
     return itemsInRoom.size();
 }
@@ -106,3 +123,7 @@ int Room::isItemInRoom(string inString)
     return -1;
 }
 
+void Room::addenemy(string name, int hp){
+   Enemy monster = Enemy(name,hp);
+    EnemyinRoom.push_back(monster);
+}
