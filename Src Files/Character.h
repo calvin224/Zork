@@ -11,18 +11,17 @@ using std::vector;
 class Character {
 private:
 	string description;
-	 vector < string > itemsInCharacter;
+    vector < Item > itemsInCharacter;
+    int hp;
 public:
-	void addItems(string Item);
-
-
-
-
+    void addItem(Item item);
 public:
-	Character(string description);
+    Character(string description,int HP);
 	string shortDescription();
 	string longDescription();
-
+    void setHealthPoint(int HP);
+    int getHealthPoint();
+    void death();
 };
 
 #endif /*CHARACTER_H_*/

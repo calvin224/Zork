@@ -11,11 +11,11 @@ int main(int argc, char argv[]) {
 
 ZorkUL::ZorkUL() {
 	createRooms();
+    mainchar = new Character("MainChar",10);
 }
 
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
-
     a = new Room("a");
         a->addItem(new Item("x", 1, 11,0,0));
         a->addItem(new Item("y", 2, 2,0,0));
@@ -49,7 +49,6 @@ void ZorkUL::createRooms()  {
  */
 void ZorkUL::play() {
 	printWelcome();
-
 	// Enter the main command loop.  Here we repeatedly read commands and
 	// execute them until the ZorkUL game is over.
 
@@ -62,6 +61,8 @@ void ZorkUL::play() {
 		// Free the memory allocated by "parser.getCommand()"
 		//   with ("return new Command(...)")
 		delete command;
+        if ( mainchar->getHealthPoint() == 0){
+            finished = true; }
 	}
 	cout << endl;
 	cout << "end" << endl;

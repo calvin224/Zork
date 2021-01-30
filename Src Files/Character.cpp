@@ -1,15 +1,20 @@
-/*#include "Character.h"
+#include "Character.h"
 
-Character::Character(string description) {
+Character::Character(string description, int HP) {
 	this->description = description;
+    this->hp = HP;
 }
-void Character::addItem(Item &item) {
+void Character::setHealthPoint(int HP){
+   this->hp = HP;
+}
+int Character::getHealthPoint(){
+    return hp;
+}
+
+void Character::addItem(Item item) {
     itemsInCharacter.push_back(item);
 }
-void Character::addItem(Item *item) {
-    itemsInCharacter.push_back(*item);
-    delete item;
-}
+
 string Character::longDescription()
 {
   string ret = this->description;
@@ -18,6 +23,5 @@ string Character::longDescription()
     ret += "\t"+ (*i).getLongDescription() + "\n";
   return ret;
 }
-*/
 
 

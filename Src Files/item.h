@@ -27,6 +27,7 @@ public:
 	int getWeaponCheck();
     void setWeaponCheck(int inweaponCheck);
     int IskeyItem();
+    string Attack(Item item);
 };
 
 #endif /*ITEM_H_*/
