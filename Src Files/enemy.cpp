@@ -8,3 +8,10 @@ string Enemy::getShortDescription() {
     return name;
 }
 
+int Enemy::gethp(){
+    return hp;
+}
+
+void Enemy::sethp(){
+   this-> hp = hp - 1;
+}

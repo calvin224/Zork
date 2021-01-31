@@ -11,6 +11,8 @@ private:
 public:
     Enemy(string name,int hp);
     string getShortDescription();
+    int gethp();
+    void sethp();
 };
 
 #endif // ENEMY_H

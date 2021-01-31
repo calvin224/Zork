@@ -15,13 +15,13 @@ ZorkUL::ZorkUL() {
 
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
-    a = new Room("a");
+    a = new Room("castle");
         a->addItem(new Item("x", 1, 11,0,0));
         a->addItem(new Item("y", 2, 2,0,0));
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
-        b->addenemy("goblin",10);
+        b->addenemy("goblin",2);
     c = new Room("c");
     d = new Room("d");
     e = new Room("e");
@@ -122,7 +122,19 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("put") == 0)
     {
-
+       cout << "you put a item down" << endl;
+    }
+    else if (commandWord.compare("attack") == 0){
+        currentRoom->enemytakedmg();
+        if ((currentRoom->getenemyhp()) != 0){
+            cout << "Monster not dead!" << endl;
+            cout << "monster hp="<< + currentRoom->getenemyhp() << endl;
+        }
+        else {
+         currentRoom->deadenemy();
+         cout << "Monster dead!" << endl;
+         cout << endl;
+         cout << currentRoom->longDescription() << endl; }
     }
     /*
     {

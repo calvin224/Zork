@@ -36,6 +36,9 @@ public:
     void removeItemFromRoom(int location);
     void addenemy(string name, int hp);
     string displayenemy();
+    void deadenemy();
+    int getenemyhp();
+    void enemytakedmg();
 };
 
 #endif

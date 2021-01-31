@@ -127,3 +127,17 @@ void Room::addenemy(string name, int hp){
    Enemy monster = Enemy(name,hp);
     EnemyinRoom.push_back(monster);
 }
+int Room::getenemyhp(){
+    Enemy monster = EnemyinRoom[0];
+    return monster.gethp();
+}
+void Room::enemytakedmg(){
+    Enemy monster = EnemyinRoom[0];
+    int hp = monster.gethp() -1;
+    string name = monster.getShortDescription();
+    EnemyinRoom.erase(EnemyinRoom.begin()+0);
+    addenemy(name,hp);
+}
+void Room::deadenemy(){
+  EnemyinRoom.erase(EnemyinRoom.begin()+0);
+}
