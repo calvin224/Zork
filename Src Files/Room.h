@@ -6,7 +6,6 @@
 #include <vector>
 #include "item.h"
 #include "enemy.h"
-#include "Character.h"
 using namespace std;
 using std::vector;
 
@@ -20,7 +19,6 @@ private:
     vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
-	Character MainCharacter;
 
 
 
