@@ -19,9 +19,6 @@ private:
     vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
-
-
-
 public:
     int numberOfItems();
 	Room(string description);

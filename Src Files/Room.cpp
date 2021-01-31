@@ -122,7 +122,6 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
-
 void Room::addenemy(string name, int hp){
    Enemy monster = Enemy(name,hp);
     EnemyinRoom.push_back(monster);
@@ -132,11 +131,7 @@ int Room::getenemyhp(){
     return monster.gethp();
 }
 void Room::enemytakedmg(){
-    Enemy monster = EnemyinRoom[0];
-    int hp = monster.gethp() -1;
-    string name = monster.getShortDescription();
-    EnemyinRoom.erase(EnemyinRoom.begin()+0);
-    addenemy(name,hp);
+    EnemyinRoom[0].sethp();
 }
 void Room::deadenemy(){
   EnemyinRoom.erase(EnemyinRoom.begin()+0);

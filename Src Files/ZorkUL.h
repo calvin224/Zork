@@ -13,7 +13,7 @@ using namespace std;
 class ZorkUL {
 private:
 	Parser parser;
-	Room *currentRoom;
+    Room *currentRoom;
 	void createRooms();
 	void printWelcome();
 	bool processCommand(Command command);
