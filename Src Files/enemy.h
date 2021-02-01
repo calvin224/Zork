@@ -6,6 +6,7 @@ using namespace std;
 class Enemy
 {
 private:
+protected:
     string name;
     int hp;
 public:

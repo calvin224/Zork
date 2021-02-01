@@ -1,5 +1,9 @@
 #include "Character.h"
 
+Character::Character() {
+    this->description = "Main Character";
+    this->hp = 10;
+}
 void Character::setHealthPoint(int HP){
    this->hp = HP;
 }
@@ -9,6 +13,15 @@ int Character::getHealthPoint(){
 
 void Character::addItem(Item item) {
     itemsInCharacter.push_back(item);
+}
+
+string Character::inventoryList()
+{
+    string inv = "Item List:";
+    for (int i=0; i > itemsInCharacter.size(); i++){
+        inv = inv + " " + itemsInCharacter[i].getShortDescription();
+    }
+    return inv;
 }
 
 string Character::longDescription()
