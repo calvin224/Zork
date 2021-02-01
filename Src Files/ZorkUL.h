@@ -6,6 +6,7 @@
 #include "Room.h"
 #include "item.h"
 #include "enemy.h"
+#include "Character.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -21,6 +22,7 @@ private:
     void goRoom(Command command);
     void createItems();
     void displayItems();
+
 
 
 public:

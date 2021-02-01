@@ -145,3 +145,6 @@ void Room::deadenemy(){
 int Room::getammoutofenemy(){
     return EnemyinRoom.size();
 }
+Item Room::getItem(int x){
+    return itemsInRoom[x];
+}

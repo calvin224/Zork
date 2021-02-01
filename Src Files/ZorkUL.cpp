@@ -2,11 +2,13 @@
 
 using namespace std;
 #include "ZorkUL.h"
+Character *mainchar;
 
 int main(int argc, char argv[]) {
     ZorkUL temp;
     temp.play();
     return 0;
+
 }
 //starter functions;
 ZorkUL::ZorkUL() {
@@ -14,10 +16,12 @@ ZorkUL::ZorkUL() {
 }
 
 void ZorkUL::createRooms()  {
+    mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
     a = new Room("castl");
         a->addItem(new Item("x", 1, 11,0,0));
         a->addItem(new Item("y", 2, 2,0,0));
+        b->addenemy("goblin",4);
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
@@ -103,22 +107,25 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("take") == 0)
     {
-        if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        }
-        else
-         if (command.hasSecondWord()) {
-        cout << "you're trying to take " + command.getSecondWord() << endl;
-        int location = currentRoom->isItemInRoom(command.getSecondWord());
-        if (location  < 0 )
-            cout << "item is not in room" << endl;
-        else
-            cout << "item is in room" << endl;
-            cout << "index number " << + location << endl;
-            cout << endl;
-            cout << currentRoom->longDescription() << endl;
-        }
-    }
+           if (!command.hasSecondWord()) {
+           cout << "incomplete input"<< endl;
+           }
+           else
+            if (command.hasSecondWord()) {
+           cout << "you're trying to take " + command.getSecondWord() << endl;
+           int location = currentRoom->isItemInRoom(command.getSecondWord());
+           if (location  < 0 )
+               cout << "item is not in room" << endl;
+           else
+               cout << "item is in room" << endl;
+               cout << "index number " << + location << endl;
+               cout << endl;
+               cout << currentRoom->longDescription() << endl;
+               Item newItem = currentRoom -> getItem(location);
+               mainchar->addItem(newItem);
+           }
+       }
+
     else if (commandWord.compare("put") == 0)
     {
        cout << "you put a item down" << endl;

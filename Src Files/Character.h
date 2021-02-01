@@ -12,7 +12,7 @@ class Character {
 private:	
 public:
     void addItem(Item item);
-    Character(string description,int HP);
+    Character();
 	string shortDescription();
 	string longDescription();
     void setHealthPoint(int HP);

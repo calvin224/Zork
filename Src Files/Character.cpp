@@ -1,8 +1,8 @@
 #include "Character.h"
 
-Character::Character(string description, int HP) {
-	this->description = description;
-    this->hp = HP;
+Character::Character() {
+    this->description = "Main Character";
+    this->hp = 10;
 }
 void Character::setHealthPoint(int HP){
    this->hp = HP;

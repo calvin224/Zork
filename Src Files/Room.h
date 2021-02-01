@@ -6,7 +6,6 @@
 #include <vector>
 #include "item.h"
 #include "enemy.h"
-#include "weaponlist.h"
 
 using namespace std;
 using std::vector;
@@ -21,7 +20,6 @@ private:
     vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
-    vector <Weaponlist> wep;
 public:
     int numberOfItems();
 	Room(string description);
@@ -42,6 +40,7 @@ public:
     void addweapon();
     void playertakedmg();
     int getammoutofenemy();
+    Item getItem(int);
 
 };
 
