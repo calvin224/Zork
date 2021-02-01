@@ -2,8 +2,6 @@
 #include "Command.h"
 #include <vector>
 
-using namespace std;
-
 Room::Room(string description) {
 	this->description = description;; 
     Item *one(new Item("1",2,2,0,0));
@@ -98,9 +96,12 @@ string Room::displayenemy() {
         }
     return tempString;
     }
+
+
 int Room::numberOfItems() {
     return itemsInRoom.size();
 }
+
 int Room::isItemInRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
@@ -125,23 +126,18 @@ void Room::addenemy(string name, int hp){
    Enemy monster = Enemy(name,hp);
     EnemyinRoom.push_back(monster);
 }
-
 int Room::getenemyhp(){
     Enemy monster = EnemyinRoom[0];
     return monster.gethp();
 }
 void Room::enemytakedmg(){
- if (EnemyinRoom[0].gethp() != 0 && getammoutofenemy() != 0 ){
     EnemyinRoom[0].sethp();
- }
 }
-void Room::playertakedmg(){
-   //
+
+Item Room::getItem(int x){
+    return itemsInRoom[x];
 }
 
 void Room::deadenemy(){
   EnemyinRoom.erase(EnemyinRoom.begin()+0);
-}
-int Room::getammoutofenemy(){
-    return EnemyinRoom.size();
 }

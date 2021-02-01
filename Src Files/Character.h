@@ -7,20 +7,25 @@ using namespace std;
 #include <vector>
 using std::vector;
 
+class Item ;
 
 class Character {
-private:	
+private:
+    vector < Item > itemsInCharacter;
 public:
+    string description;
+    int hp;
+    Character(){
+        description = "blah blah";
+        hp = 5;
+    }
     void addItem(Item item);
-    Character(string description,int HP);
+public:
 	string shortDescription();
 	string longDescription();
     void setHealthPoint(int HP);
     int getHealthPoint();
     void death();
-    string description;
-    vector < Item > itemsInCharacter;
-    int hp;
 };
 
 #endif /*CHARACTER_H_*/

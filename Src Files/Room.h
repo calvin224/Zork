@@ -6,8 +6,6 @@
 #include <vector>
 #include "item.h"
 #include "enemy.h"
-#include "weaponlist.h"
-
 using namespace std;
 using std::vector;
 
@@ -15,13 +13,12 @@ class Room {
 
 private:
     Enemy *enemy;
-    string description;
+	string description;
 	map<string, Room*> exits;
 	string exitString();
     vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
-    vector <Weaponlist> wep;
 public:
     int numberOfItems();
 	Room(string description);
@@ -39,10 +36,7 @@ public:
     void deadenemy();
     int getenemyhp();
     void enemytakedmg();
-    void addweapon();
-    void playertakedmg();
-    int getammoutofenemy();
-
+    Item getItem(int);
 };
 
 #endif

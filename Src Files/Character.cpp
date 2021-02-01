@@ -1,9 +1,5 @@
 #include "Character.h"
 
-Character::Character(string description, int HP) {
-	this->description = description;
-    this->hp = HP;
-}
 void Character::setHealthPoint(int HP){
    this->hp = HP;
 }
