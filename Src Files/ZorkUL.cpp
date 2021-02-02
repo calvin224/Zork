@@ -113,6 +113,8 @@ bool ZorkUL::processCommand(Command command) {
            else
             if (command.hasSecondWord()) {
            cout << "you're trying to take " + command.getSecondWord() << endl;
+           Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
+           mainchar->addItem(newItem);
            int location = currentRoom->isItemInRoom(command.getSecondWord());
            if (location  < 0 )
                cout << "item is not in room" << endl;
@@ -121,8 +123,7 @@ bool ZorkUL::processCommand(Command command) {
                cout << "index number " << + location << endl;
                cout << endl;
                cout << currentRoom->longDescription() << endl;
-               Item newItem = currentRoom -> getItem(location);
-               mainchar->addItem(newItem);
+
            }
        }
 
@@ -132,7 +133,7 @@ bool ZorkUL::processCommand(Command command) {
     }
     else if (commandWord.compare("inventory") == 0)
     {
-        cout << mainchar->inventoryList() << endl;
+        cout << mainchar->longDescription() << endl;
     }
     else if (commandWord.compare("attack") == 0)
 

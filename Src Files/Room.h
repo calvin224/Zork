@@ -31,6 +31,7 @@ public:
     void addItems(int N0OfItems);
     string displayItem();
     int isItemInRoom(string inString);
+    int addItemFromRoom(string inString);
     void removeItemFromRoom(int location);
     void addenemy(string name, int hp);
     string displayenemy();

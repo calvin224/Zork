@@ -18,7 +18,7 @@ void Character::addItem(Item item) {
 string Character::inventoryList()
 {
     string inv = "Item List:";
-    for (int i=0; i > itemsInCharacter.size(); i++){
+    for (int i=0; i > (int)itemsInCharacter.size(); i++){
         inv = inv + " " + itemsInCharacter[i].getShortDescription();
     }
     return inv;
@@ -28,8 +28,8 @@ string Character::longDescription()
 {
   string ret = this->description;
   ret += "\n Item list:\n";
-  for (vector<Item>::iterator i = itemsInCharacter.begin(); i != itemsInCharacter.end(); i++)
-    ret += "\t"+ (*i).getLongDescription() + "\n";
+  for (vector<Item>::iterator i = itemsInCharacter.begin(); i < itemsInCharacter.end(); i++)
+    ret += "\t"+ (*i).getShortDescription() + "\n";
   return ret;
 }
 

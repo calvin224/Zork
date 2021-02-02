@@ -121,6 +121,25 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+int Room::addItemFromRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (itemsInRoom.size() > 0) {
+       int x = (0);
+        for (int n = sizeItems; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            if (tempFlag == 0) {
+                return x;
+            }
+            x++;
+            }
+        }
+    return -1;
+}
 void Room::addenemy(string name, int hp){
    Enemy monster = Enemy(name,hp);
     EnemyinRoom.push_back(monster);
