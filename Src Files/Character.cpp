@@ -3,7 +3,7 @@
 Character::Character() {
     this->description = "Main Character";
     this->hp = 10;
-   this->dmgout = 2;
+   this->dmgout = 1;
 }
 void Character::setHealthPoint(int HP){
    this->hp = HP;

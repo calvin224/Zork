@@ -36,7 +36,7 @@ public:
     string displayenemy();
     void deadenemy();
     int getenemyhp();
-    void enemytakedmg();
+    void enemytakedmg(int dmg);
     void addweapon();
     void playertakedmg();
     int getammoutofenemy();

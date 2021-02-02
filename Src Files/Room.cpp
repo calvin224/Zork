@@ -133,9 +133,9 @@ int Room::getenemyhp(){
     Enemy monster = EnemyinRoom[0];
     return monster.gethp();
 }
-void Room::enemytakedmg(){
+void Room::enemytakedmg(int dmg){
  if (EnemyinRoom[0].gethp() != 0 && getammoutofenemy() != 0 ){
-    EnemyinRoom[0].sethp();
+    EnemyinRoom[0].sethp(dmg);
  }
 }
 void Room::deadenemy(){

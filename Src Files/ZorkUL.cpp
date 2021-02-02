@@ -147,21 +147,27 @@ bool ZorkUL::processCommand(Command command) {
         }
 
         else if (currentRoom->getammoutofenemy() != 0) {
-            currentRoom->enemytakedmg();
+            currentRoom->enemytakedmg(mainchar->dmgout);
 
         if ((currentRoom->getenemyhp()) != 0){
             cout << "Monster not dead!" << endl;
             cout << "monster hp="<< + currentRoom->getenemyhp() << endl;
+            cout << "Damage given"<< + mainchar->dmgout << endl;
             cout << "Damage taken"<< + currentRoom->getdmgout() << endl;
             mainchar->setHealthPoint(mainchar->hp - currentRoom->getdmgout());
             cout << "Your hp="<< + mainchar->hp << endl;
+            cout << endl;
             if(mainchar->hp <= 0 ){
                end();
             }
         }
         else if  ( currentRoom->getenemyhp() == 0) {
          currentRoom->deadenemy();
-         cout << "Monster dead!" << endl; } }
+         cout << "Monster dead!" << endl;
+         cout << endl;
+         cout << currentRoom->longDescription() << endl;
+        } }
+
     /*
     {
     if (!command.hasSecondWord()) {
