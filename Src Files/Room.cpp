@@ -121,6 +121,25 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+int Room::addItemFromRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (itemsInRoom.size() > 0) {
+       int x = (0);
+        for (int n = sizeItems; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            if (tempFlag == 0) {
+                return x;
+            }
+            x++;
+            }
+        }
+    return -1;
+}
 void Room::addenemy(string name, int hp,int dmgout){
    Enemy monster = Enemy(name,hp,dmgout);
     EnemyinRoom.push_back(monster);
@@ -133,9 +152,9 @@ int Room::getenemyhp(){
     Enemy monster = EnemyinRoom[0];
     return monster.gethp();
 }
-void Room::enemytakedmg(int dmg){
+void Room::enemytakedmg(){
  if (EnemyinRoom[0].gethp() != 0 && getammoutofenemy() != 0 ){
-    EnemyinRoom[0].sethp(dmg);
+    EnemyinRoom[0].sethp();
  }
 }
 void Room::deadenemy(){

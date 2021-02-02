@@ -31,12 +31,13 @@ public:
     void addItems(int N0OfItems);
     string displayItem();
     int isItemInRoom(string inString);
+    int addItemFromRoom(string inString);
     void removeItemFromRoom(int location);
     void addenemy(string name, int hp,int dmgout);
     string displayenemy();
     void deadenemy();
     int getenemyhp();
-    void enemytakedmg(int dmg);
+    void enemytakedmg();
     void addweapon();
     void playertakedmg();
     int getammoutofenemy();

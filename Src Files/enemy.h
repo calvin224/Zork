@@ -14,9 +14,8 @@ public:
     Enemy(string name,int hp,int dmgout);
     string getShortDescription();
     int gethp();
-    void sethp(int dmg);
+    void sethp();
     int getdmgout();
-
 };
 
 #endif // ENEMY_H
