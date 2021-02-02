@@ -3,6 +3,7 @@
 Character::Character() {
     this->description = "Main Character";
     this->hp = 10;
+   this->dmgout = 2;
 }
 void Character::setHealthPoint(int HP){
    this->hp = HP;
@@ -15,13 +16,8 @@ void Character::addItem(Item item) {
     itemsInCharacter.push_back(item);
 }
 
-string Character::inventoryList()
-{
-    string inv = "Item List:";
-    for (int i=0; i > (int)itemsInCharacter.size(); i++){
-        inv = inv + " " + itemsInCharacter[i].getShortDescription();
-    }
-    return inv;
+void Character::setcharacterdmgout(int dmg){
+     dmgout = dmg;
 }
 
 string Character::longDescription()

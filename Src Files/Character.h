@@ -13,7 +13,6 @@ private:
 public:
     void addItem(Item item);
     Character();
-    string inventoryList();
 	string shortDescription();
 	string longDescription();
     void setHealthPoint(int HP);
@@ -22,6 +21,9 @@ public:
     string description;
     vector < Item > itemsInCharacter;
     int hp;
+    string inventoryList();
+    void setcharacterdmgout(int dmg);
+    int dmgout;
 };
 
 #endif /*CHARACTER_H_*/

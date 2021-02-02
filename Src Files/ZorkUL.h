@@ -25,10 +25,13 @@ private:
 
 
 
+
 public:
     ZorkUL();
     void play();
     string go(string direction);
+    void end();
+    bool death = false;
 };
 
 #endif /*ZORKUL_H_*/

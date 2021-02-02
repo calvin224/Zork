@@ -4,7 +4,7 @@ using namespace std;
 #include "ZorkUL.h"
 Character *mainchar;
 
-int main(int argc, char argv[]) {
+int main() {
     ZorkUL temp;
     temp.play();
     return 0;
@@ -18,14 +18,14 @@ ZorkUL::ZorkUL() {
 void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
-    a = new Room("castl");
+    a = new Room("castle");
         a->addItem(new Item("x", 1, 11,0,0));
         a->addItem(new Item("y", 2, 2,0,0));
-        b->addenemy("goblin",4);
+        a->addenemy("goblin",4,2);
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
-        b->addenemy("goblin",2);
+        b->addenemy("goblin",2,4);
     c = new Room("c");
     d = new Room("d");
     e = new Room("e");
@@ -56,7 +56,7 @@ void ZorkUL::play() {
     // Enter the main command loop.  Here we repeatedly read commands and
     // execute them until the ZorkUL game is over.
 
-    bool finished = false;
+   bool finished = false;
     while (!finished) {
         // Create pointer to command and give it a command.
         Command* command = parser.getCommand();
@@ -64,11 +64,14 @@ void ZorkUL::play() {
         finished = processCommand(*command);
         // Free the memory allocated by "parser.getCommand()"
         //   with ("return new Command(...)")
-        delete command;
-       }
-    cout << endl;
-    cout << "end" << endl;
+        delete command; }
 }
+
+void ZorkUL::end(){
+    cout <<"you died please restart" << endl;
+    death = true;
+}
+
 
 void ZorkUL::printWelcome() {
     cout << "start"<< endl;
@@ -82,7 +85,9 @@ void ZorkUL::printWelcome() {
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
  */
+
 bool ZorkUL::processCommand(Command command) {
+  if (!death){
     if (command.isUnknown()) {
         cout << "invalid input"<< endl;
         return false;
@@ -120,7 +125,7 @@ bool ZorkUL::processCommand(Command command) {
                cout << "item is not in room" << endl;
            else
                cout << "item is in room" << endl;
-               cout << "index number " << + location << endl;
+             cout << "index number " << + location << endl;
                cout << endl;
                cout << currentRoom->longDescription() << endl;
 
@@ -132,21 +137,28 @@ bool ZorkUL::processCommand(Command command) {
        cout << "you put a item down" << endl;
     }
     else if (commandWord.compare("inventory") == 0)
-    {
-        cout << mainchar->longDescription() << endl;
-    }
+        {
+            cout << mainchar->longDescription() << endl;
+        }
+
     else if (commandWord.compare("attack") == 0)
 
         if (currentRoom->getammoutofenemy() == 0){
             cout << "No monsters!" << endl;
         }
 
-        else if (currentRoom->getammoutofenemy() != 0){
+        else if (currentRoom->getammoutofenemy() != 0) {
             currentRoom->enemytakedmg();
 
         if ((currentRoom->getenemyhp()) != 0){
             cout << "Monster not dead!" << endl;
             cout << "monster hp="<< + currentRoom->getenemyhp() << endl;
+            cout << "Damage taken"<< + currentRoom->getdmgout() << endl;
+            mainchar->setHealthPoint(mainchar->hp - currentRoom->getdmgout());
+            cout << "Your hp="<< + mainchar->hp << endl;
+            if(mainchar->hp <= 0 ){
+               end();
+            }
         }
         else if  ( currentRoom->getenemyhp() == 0) {
          currentRoom->deadenemy();
@@ -167,10 +179,16 @@ bool ZorkUL::processCommand(Command command) {
         if (command.hasSecondWord())
             cout << "overdefined input"<< endl;
         else
-            return true; /**signal to quit*/
+            return true;
     }
     return false;
 }
+else {
+      end();
+  }
+}
+
+
 /** COMMANDS **/
 void ZorkUL::printHelp() {
     cout << "valid inputs are; " << endl;

@@ -33,7 +33,7 @@ public:
     int isItemInRoom(string inString);
     int addItemFromRoom(string inString);
     void removeItemFromRoom(int location);
-    void addenemy(string name, int hp);
+    void addenemy(string name, int hp,int dmgout);
     string displayenemy();
     void deadenemy();
     int getenemyhp();
@@ -42,6 +42,7 @@ public:
     void playertakedmg();
     int getammoutofenemy();
     Item getItem(int);
+    int getdmgout();
 
 };
 
