@@ -153,9 +153,11 @@ bool ZorkUL::processCommand(Command command) {
         if ((currentRoom->getenemyhp()) != 0){
             cout << "Monster not dead!" << endl;
             cout << "monster hp="<< + currentRoom->getenemyhp() << endl;
+            cout << "Damage given"<< + mainchar->dmgout << endl;
             cout << "Damage taken"<< + currentRoom->getdmgout() << endl;
             mainchar->setHealthPoint(mainchar->hp - currentRoom->getdmgout());
             cout << "Your hp="<< + mainchar->hp << endl;
+            cout << endl;
             if(mainchar->hp <= 0 ){
                end();
             }
