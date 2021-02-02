@@ -121,9 +121,12 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
-void Room::addenemy(string name, int hp){
-   Enemy monster = Enemy(name,hp);
+void Room::addenemy(string name, int hp,int dmgout){
+   Enemy monster = Enemy(name,hp,dmgout);
     EnemyinRoom.push_back(monster);
+}
+int Room::getdmgout(){
+    return  EnemyinRoom[0].getdmgout();
 }
 
 int Room::getenemyhp(){
@@ -135,10 +138,6 @@ void Room::enemytakedmg(){
     EnemyinRoom[0].sethp();
  }
 }
-void Room::playertakedmg(){
-   //
-}
-
 void Room::deadenemy(){
   EnemyinRoom.erase(EnemyinRoom.begin()+0);
 }

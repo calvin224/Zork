@@ -21,6 +21,9 @@ public:
     string description;
     vector < Item > itemsInCharacter;
     int hp;
+    string inventoryList();
+    void setcharacterdmgout(int dmg);
+    int dmgout;
 };
 
 #endif /*CHARACTER_H_*/

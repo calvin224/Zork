@@ -9,11 +9,13 @@ private:
 protected:
     string name;
     int hp;
+    int dmgout;
 public:
-    Enemy(string name,int hp);
+    Enemy(string name,int hp,int dmgout);
     string getShortDescription();
     int gethp();
     void sethp();
+    int getdmgout();
 };
 
 #endif // ENEMY_H
