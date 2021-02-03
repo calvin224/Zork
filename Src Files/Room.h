@@ -7,6 +7,7 @@
 #include "item.h"
 #include "enemy.h"
 #include "monsterlist.h"
+#include "itemlist.h"
 
 using namespace std;
 using std::vector;

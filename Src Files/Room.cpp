@@ -7,18 +7,10 @@ using namespace std;
 Room::Room(string description) {
     srand((unsigned) time(0));
 	this->description = description;; 
-    Item *one(new Item("1",2,2,0,0));
-    Item *two(new Item("2",2,2,0,0));
-    Item *three(new Item("3",2,2,0,0));
-    Item *four(new Item("4",2,2,0,0));
-    Item *five(new Item("5",2,2,0,0));
-    Items.push_back(*one);
-    Items.push_back(*two);
-    Items.push_back(*three);
-    Items.push_back(*four);
-    Items.push_back(*five);
     MonsterList *list = new MonsterList();
     level1mons = list->getlevel1mon();
+    itemlist *itemli = new itemlist();
+    Items = itemli->getitems();
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {

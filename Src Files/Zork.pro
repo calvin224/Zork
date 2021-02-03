@@ -12,6 +12,7 @@ SOURCES += \
     ZorkUL.cpp \
     enemy.cpp \
     item.cpp \
+    itemlist.cpp \
     monsterlist.cpp
 
 HEADERS += \
@@ -23,4 +24,5 @@ HEADERS += \
     ZorkUL.h \
     enemy.h \
     item.h \
+    itemlist.h \
     monsterlist.h

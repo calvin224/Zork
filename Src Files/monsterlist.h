@@ -13,8 +13,6 @@ protected:
 public:
     MonsterList();
     vector <Enemy> getlevel1mon();
-
-
 };
 
 #endif // MONSTERLIST_H
