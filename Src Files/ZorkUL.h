@@ -32,6 +32,8 @@ public:
     string go(string direction);
     void end();
     bool death = false;
+    bool win = false;
+    int index;
 };
 
 #endif /*ZORKUL_H_*/

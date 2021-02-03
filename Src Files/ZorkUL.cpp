@@ -19,13 +19,13 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
     a = new Room("castle");
-        a->addItem(new Item("x", 1, 11,0,0));
-        a->addItem(new Item("y", 2, 2,0,0));
-        a->addenemy("goblin",4,2);
+        a->addItem(new Item("potion", 1, 11,0,0,1));
+        a->addItem(new Item("sword", 5, 15,3,0,2));
+        a->addenemys(1,2);
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
-        b->addenemy("goblin",2,4);
+        b->addenemys(1,1);
     c = new Room("c");
     d = new Room("d");
     e = new Room("e");
@@ -87,7 +87,10 @@ void ZorkUL::printWelcome() {
  */
 
 bool ZorkUL::processCommand(Command command) {
-  if (!death){
+    if (win){
+        cout << "You win the kingdom has been saved!" << endl;
+    }
+  else if (!death){
     if (command.isUnknown()) {
         cout << "invalid input"<< endl;
         return false;
@@ -112,11 +115,19 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("take") == 0)
     {
+        if (currentRoom->getammoutofenemy() != 0){
+
+            cout << "Can't take, there are monsters in the way!" << endl;
+            cout << endl;
+            cout << currentRoom->longDescription() << endl;
+
+        } else if  (currentRoom->getammoutofenemy() == 0){
+
            if (!command.hasSecondWord()) {
            cout << "incomplete input"<< endl;
            }
-           else
-            if (command.hasSecondWord()) {
+           else if (command.hasSecondWord()) {
+
            cout << "you're trying to take " + command.getSecondWord() << endl;
            Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
            mainchar->addItem(newItem);
@@ -128,55 +139,81 @@ bool ZorkUL::processCommand(Command command) {
              cout << "index number " << + location << endl;
                cout << endl;
                cout << currentRoom->longDescription() << endl;
-
-           }
+             }
+            }
        }
 
     else if (commandWord.compare("put") == 0)
     {
        cout << "you put a item down" << endl;
     }
+
+    else if (commandWord.compare("use") == 0)
+    {
+        int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
+
+           switch(itemid) {
+              case 1 :
+                 cout << "You drink the potion." << endl;
+                    mainchar->potionDrank();
+                 cout << "Your new health points are: " << mainchar->getHealthPoint() << endl;
+                 break;
+              case 2 :
+                 cout << "You equip the flimsy sword." << endl;
+                    mainchar->equipWeapon(itemid);
+                 cout << "Your new attack points are: " << mainchar->getDamageOut() << endl;
+                 break;
+              case 3 :
+                 cout << "test" << endl;
+                 break;
+              case 4 :
+                 cout << "test" << endl;
+                 break;
+              case 5 :
+                 cout << "test" << endl;
+                 break;
+              default :
+                 cout << "Invalid item!" << endl;
+           }
+    }
+
     else if (commandWord.compare("inventory") == 0)
         {
             cout << mainchar->longDescription() << endl;
         }
 
     else if (commandWord.compare("attack") == 0)
-
         if (currentRoom->getammoutofenemy() == 0){
             cout << "No monsters!" << endl;
         }
-
-        else if (currentRoom->getammoutofenemy() != 0) {
-            currentRoom->enemytakedmg();
-
-        if ((currentRoom->getenemyhp()) != 0){
+       else if (!command.hasSecondWord()) {
+             cout << "Please enter a monster to attack!" << endl;
+         }
+       else if (currentRoom->getammoutofenemy() != 0) {
+            index = std::stoi(command.getSecondWord());
+             currentRoom->enemytakedmg(mainchar->getDamageOut(), index);
+          if ((currentRoom->getenemyhp(index)) > 0){
+            index = std::stoi(command.getSecondWord());
             cout << "Monster not dead!" << endl;
-            cout << "monster hp="<< + currentRoom->getenemyhp() << endl;
-            cout << "Damage given"<< + mainchar->dmgout << endl;
-            cout << "Damage taken"<< + currentRoom->getdmgout() << endl;
-            mainchar->setHealthPoint(mainchar->hp - currentRoom->getdmgout());
-            cout << "Your hp="<< + mainchar->hp << endl;
+            cout << "Monster hp = "<< + currentRoom->getenemyhp(index) << endl;
+            cout << "Damage given: "<< + mainchar->dmgout << endl;
+            cout << "Damage taken: "<< + currentRoom->getdmgout(index) << endl;
+            mainchar->setHealthPoint(mainchar->hp - currentRoom->getdmgout(index));
+            cout << "Your hp = "<< + mainchar->hp << endl;
             cout << endl;
+            cout << currentRoom->longDescription() << endl;
             if(mainchar->hp <= 0 ){
                end();
             }
         }
-        else if  ( currentRoom->getenemyhp() == 0) {
-         currentRoom->deadenemy();
-         cout << "Monster dead!" << endl; } }
-    /*
-    {
-    if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        }
-        else
-            if (command.hasSecondWord()) {
-            cout << "you're adding " + command.getSecondWord() << endl;
-            itemsInRoom.push_Back;
-        }
-    }
-*/
+        else if  ( currentRoom->getenemyhp(index) <= 0) {
+         index = std::stoi(command.getSecondWord());
+         currentRoom->deadenemy(index);
+         cout << "Monster dead!" << endl;
+         cout << "Your hp = "<< + mainchar->hp << endl;
+         cout << endl;
+         cout << currentRoom->longDescription() << endl; } }  
+
     else if (commandWord.compare("quit") == 0) {
         if (command.hasSecondWord())
             cout << "overdefined input"<< endl;
@@ -199,6 +236,14 @@ void ZorkUL::printHelp() {
 }
 
 void ZorkUL::goRoom(Command command) {
+    if (currentRoom->getammoutofenemy() != 0){
+
+        cout << "Can't go, there are monsters in the way!" << endl;
+        cout << endl;
+        cout << currentRoom->longDescription() << endl;
+
+    } else if  (currentRoom->getammoutofenemy() == 0){
+
     if (!command.hasSecondWord()) {
         cout << "incomplete input"<< endl;
         return;
@@ -215,6 +260,7 @@ void ZorkUL::goRoom(Command command) {
         currentRoom = nextRoom;
         cout << currentRoom->longDescription() << endl;
     }
+}
 }
 
 string ZorkUL::go(string direction) {

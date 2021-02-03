@@ -11,7 +11,9 @@ SOURCES += \
     Room.cpp \
     ZorkUL.cpp \
     enemy.cpp \
-    item.cpp
+    item.cpp \
+    itemlist.cpp \
+    monsterlist.cpp
 
 HEADERS += \
     Character.h \
@@ -21,4 +23,6 @@ HEADERS += \
     Room.h \
     ZorkUL.h \
     enemy.h \
-    item.h
+    item.h \
+    itemlist.h \
+    monsterlist.h

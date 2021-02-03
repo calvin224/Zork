@@ -1,21 +1,16 @@
 #include "Room.h"
 #include "Command.h"
 #include <vector>
-
+#include <ctime>
 using namespace std;
 
 Room::Room(string description) {
+    srand((unsigned) time(0));
 	this->description = description;; 
-    Item *one(new Item("1",2,2,0,0));
-    Item *two(new Item("2",2,2,0,0));
-    Item *three(new Item("3",2,2,0,0));
-    Item *four(new Item("4",2,2,0,0));
-    Item *five(new Item("5",2,2,0,0));
-    Items.push_back(*one);
-    Items.push_back(*two);
-    Items.push_back(*three);
-    Items.push_back(*four);
-    Items.push_back(*five);
+    MonsterList *list = new MonsterList();
+    level1mons = list->getlevel1mon();
+    itemlist *itemli = new itemlist();
+    Items = itemli->getitems();
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
@@ -68,26 +63,30 @@ void Room::addItems(int N0OfItems){
 }
 
 string Room::displayItem() {
-    string tempString = "items in room = ";
+    string tempString = "In the room you see ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        tempString = "no items in room";
+        tempString = "There are no items in the room.";
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            if (x == sizeItems-1 && sizeItems > 1){
+            tempString = tempString + "and " + "a " + itemsInRoom[x].getShortDescription() ;
+            } else{
+            tempString = tempString + + "a " + itemsInRoom[x].getShortDescription() + ", " ;
             x++;
             }
         }
+    }
     return tempString;
     }
 
 string Room::displayenemy() {
-    string tempString = "monsters in room = ";
+    string tempString = "Monsters in room = ";
     int sizemonsters = (EnemyinRoom.size());
     if (EnemyinRoom.size() < 1) {
-        tempString = "no monsters in room";
+        tempString = "There are no monsters in the room.";
         }
     else if (EnemyinRoom.size() > 0) {
        int x = (0);
@@ -140,25 +139,33 @@ int Room::addItemFromRoom(string inString)
         }
     return -1;
 }
-void Room::addenemy(string name, int hp,int dmgout){
-   Enemy monster = Enemy(name,hp,dmgout);
-    EnemyinRoom.push_back(monster);
-}
-int Room::getdmgout(){
-    return  EnemyinRoom[0].getdmgout();
+void Room::addenemys(int inlevel,int inammount){
+   if( inlevel == 1){
+        for ( int i = 0; i < inammount; i ++){
+            int x = (rand() % 2);
+            Enemy monster =level1mons.at(x);
+            addenemy(monster);
+        }  } }
+void Room::addenemy(Enemy inmonster){
+      Enemy monster = inmonster;
+       EnemyinRoom.push_back(monster);
+   }
+int Room::getdmgout(int index){
+    return  EnemyinRoom[index -1].getdmgout();
 }
 
-int Room::getenemyhp(){
-    Enemy monster = EnemyinRoom[0];
+int Room::getenemyhp(int index){
+    Enemy monster = EnemyinRoom[index-1];
     return monster.gethp();
 }
-void Room::enemytakedmg(){
- if (EnemyinRoom[0].gethp() != 0 && getammoutofenemy() != 0 ){
-    EnemyinRoom[0].sethp();
+void Room::enemytakedmg(int damagein , int index){
+    cout << index << endl;
+ if (EnemyinRoom[index-1].gethp() != 0 && getammoutofenemy() != 0 ){
+    EnemyinRoom[index-1].sethp(damagein);
  }
 }
-void Room::deadenemy(){
-  EnemyinRoom.erase(EnemyinRoom.begin()+0);
+void Room::deadenemy(int index){
+  EnemyinRoom.erase(EnemyinRoom.begin()+index-1);
 }
 int Room::getammoutofenemy(){
     return EnemyinRoom.size();
