@@ -68,26 +68,30 @@ void Room::addItems(int N0OfItems){
 }
 
 string Room::displayItem() {
-    string tempString = "items in room = ";
+    string tempString = "In the room you see ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        tempString = "no items in room";
+        tempString = "There are no items in the room.";
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            if (x == sizeItems-1 && sizeItems > 1){
+            tempString = tempString + "and " + "a " + itemsInRoom[x].getShortDescription() ;
+            } else{
+            tempString = tempString + + "a " + itemsInRoom[x].getShortDescription() + ", " ;
             x++;
             }
         }
+    }
     return tempString;
     }
 
 string Room::displayenemy() {
-    string tempString = "monsters in room = ";
+    string tempString = "Monsters in room = ";
     int sizemonsters = (EnemyinRoom.size());
     if (EnemyinRoom.size() < 1) {
-        tempString = "no monsters in room";
+        tempString = "There are no monsters in the room.";
         }
     else if (EnemyinRoom.size() > 0) {
        int x = (0);
@@ -152,9 +156,9 @@ int Room::getenemyhp(){
     Enemy monster = EnemyinRoom[0];
     return monster.gethp();
 }
-void Room::enemytakedmg(){
+void Room::enemytakedmg(int damagein){
  if (EnemyinRoom[0].gethp() != 0 && getammoutofenemy() != 0 ){
-    EnemyinRoom[0].sethp();
+    EnemyinRoom[0].sethp(damagein);
  }
 }
 void Room::deadenemy(){

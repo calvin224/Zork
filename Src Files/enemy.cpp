@@ -12,8 +12,8 @@ string Enemy::getShortDescription() {
 int Enemy::gethp(){
     return hp;
 }
-void Enemy::sethp(){
-   hp = hp -1;
+void Enemy::sethp(int damage){
+   hp = hp - damage;
 }
 int Enemy::getdmgout(){
     return dmgout;

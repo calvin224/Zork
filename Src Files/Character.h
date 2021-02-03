@@ -15,8 +15,13 @@ public:
     Character();
 	string shortDescription();
 	string longDescription();
+    int findItemInInv(string itemname);
     void setHealthPoint(int HP);
     int getHealthPoint();
+    int getDamageOut();
+    void potionDrank();
+    int getItemID(int x);
+    void equipWeapon(int initemid);
     void death();
     string description;
     vector < Item > itemsInCharacter;

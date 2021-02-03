@@ -14,13 +14,16 @@ private:
 	float value;
 	bool weaponCheck;
     int iskeyitem;
+    int itemid;
 
 public:
     Item (string description, int inWeight, float inValue, int weaponCheck, int inkeyitem);
+    Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem, int initemid);
     Item (string description);
 	string getShortDescription();
     string getLongDescription();
 	int getWeight();
+    int getItemID();
 	void setWeight(int weightGrams);
 	float getValue();
 	void setValue(float value);
