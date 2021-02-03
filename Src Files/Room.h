@@ -6,6 +6,7 @@
 #include <vector>
 #include "item.h"
 #include "enemy.h"
+#include "monsterlist.h"
 
 using namespace std;
 using std::vector;
@@ -20,6 +21,7 @@ private:
     vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
+    vector <Enemy> level1mons;
 public:
     int numberOfItems();
 	Room(string description);
@@ -33,16 +35,16 @@ public:
     int isItemInRoom(string inString);
     int addItemFromRoom(string inString);
     void removeItemFromRoom(int location);
-    void addenemy(string name, int hp,int dmgout);
+    void addenemys(int inlevel,int inammount);
+    void addenemy(Enemy inmonster);
     string displayenemy();
-    void deadenemy();
-    int getenemyhp();
-    void enemytakedmg(int damagein);
+    void deadenemy(int index);
+    int getenemyhp(int index);
+    void enemytakedmg(int damagein , int index);
     void addweapon();
-    void playertakedmg();
     int getammoutofenemy();
     Item getItem(int);
-    int getdmgout();
+    int getdmgout(int index);
 
 };
 
