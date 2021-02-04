@@ -6,6 +6,7 @@
 #include <vector>
 #include "item.h"
 #include "enemy.h"
+#include "Door.h"
 #include "monsterlist.h"
 #include "itemlist.h"
 
@@ -16,6 +17,7 @@ class Room {
 
 private:
     Enemy *enemy;
+    Door *door;
     string description;
 	map<string, Room*> exits;
 	string exitString();
@@ -23,6 +25,7 @@ private:
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
     vector <Enemy> level1mons;
+    vector <Door> roomDoors;
 public:
     int numberOfItems();
 	Room(string description);
@@ -42,6 +45,11 @@ public:
     void deadenemy(int index);
     int getenemyhp(int index);
     void enemytakedmg(int damagein , int index);
+    void addDoor(Door *inDoor);
+    int useKey(int keyid);
+    void doorUnlock(int door);
+    string getDoorDirection(int door);
+    int doorCheck(string inDirection);
     void addweapon();
     int getammoutofenemy();
     Item getItem(int);

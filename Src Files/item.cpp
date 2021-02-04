@@ -38,8 +38,14 @@ void Item::setWeaponCheck(int inweaponCheck){
 int Item::getWeaponCheck(){
     return weaponCheck;
 }
+int Item::getWeight(){
+    return weightGrams;
+}
 int Item::getItemID(){
     return itemid;
+}
+int Item::getKeyID(){
+    return iskeyitem;
 }
 string Item::getShortDescription()
 {

@@ -12,7 +12,7 @@ private:
 	string longDescription;
 	int weightGrams;
 	float value;
-	bool weaponCheck;
+    int weaponCheck;
     int iskeyitem;
     int itemid;
 
@@ -24,6 +24,7 @@ public:
     string getLongDescription();
 	int getWeight();
     int getItemID();
+    int getKeyID();
 	void setWeight(int weightGrams);
 	float getValue();
 	void setValue(float value);

@@ -22,12 +22,24 @@ int Character::getItemID(int x){
     return itemsInCharacter[x].getItemID();
 }
 
+string Character::getItemName(int x){
+    return itemsInCharacter[x].getShortDescription();
+}
+
+int Character::getItemDmg(int x){
+    return itemsInCharacter[x].getWeaponCheck();
+}
+
+int Character::getKeyID(int x){
+    return itemsInCharacter[x].getKeyID();
+}
+
 void Character::setcharacterdmgout(int dmg){
      dmgout = dmg;
 }
-void Character::equipWeapon(int initemid) {
-    int itemid = initemid;
-    switch(itemid) {
+void Character::equipWeapon(int weapondmg) {
+    int dmg = weapondmg;
+    switch(dmg) {
     case 2:
     {
       dmgout = 4;
@@ -53,15 +65,13 @@ int Character::findItemInInv(string itemname)
         return false;
         }
     else if (itemsInCharacter.size() > 0) {
-       int x = (0);
-        for (int n = sizeItems; n > 0; n--) {
+        for (int n = 0; n <= sizeItems; n++) {
             // compare inString with short description
-            int tempFlag = itemname.compare( itemsInCharacter[x].getShortDescription());
+            int tempFlag = itemname.compare(itemsInCharacter[n].getShortDescription());
             if (tempFlag == 0) {
-                itemsInCharacter.erase(itemsInCharacter.begin()+x);
-                return x;
+                return n;
+                break;
             }
-            x++;
             }
         }
     return -1;

@@ -19,8 +19,11 @@ public:
     void setHealthPoint(int HP);
     int getHealthPoint();
     int getDamageOut();
+    int getKeyID(int x);
     void potionDrank();
     int getItemID(int x);
+    string getItemName (int x);
+    int getItemDmg (int x);
     void equipWeapon(int initemid);
     void death();
     string description;

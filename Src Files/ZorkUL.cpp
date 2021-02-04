@@ -20,8 +20,10 @@ void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
     a = new Room("castle");
         a->addItem(new Item("potion", 1, 11,0,0,1));
-        a->addItem(new Item("sword", 5, 15,3,0,2));
+        a->addItem(new Item("sword", 5, 15,2,0,2));
         a->addenemys(1,2);
+        a->addDoor(new Door(1, 1, "east"));
+        a->addItem(new Item("key", 2, 2,0,1,3));
     b = new Room("b");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1));
@@ -148,34 +150,44 @@ bool ZorkUL::processCommand(Command command) {
        cout << "you put a item down" << endl;
     }
 
-    else if (commandWord.compare("use") == 0)
+else if (commandWord.compare("use") == 0)
     {
+        string tempdirection;
         int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
+          switch(itemid) {
+          case 1 :
+            cout << "You drink the potion." << endl;
+                mainchar->potionDrank();
+            cout << "Your new health points are: " << mainchar->getHealthPoint() << endl;
+            break;
+          case 2 :
+            cout << "You equip the " << mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) << "." << endl;
+                mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
+            cout << "Your new attack points are: " << mainchar->getDamageOut() << endl;
+            break;
+          case 3 :
+            cout << "You use the key." << endl;
+                if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
+                    currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                    tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                    cout << "You unlocked the door to the " << tempdirection << endl;
+                    break;
+                } else {
+                    cout << "This key cannot be used here!" << endl;
+                    break;
+                }
+            break;
+           case 4 :
+            cout << "test" << endl;
+            break;
+           case 5 :
+            cout << "test" << endl;
+            break;
+           default :
+            cout << "Invalid item!" << endl;
+               }
 
-           switch(itemid) {
-              case 1 :
-                 cout << "You drink the potion." << endl;
-                    mainchar->potionDrank();
-                 cout << "Your new health points are: " << mainchar->getHealthPoint() << endl;
-                 break;
-              case 2 :
-                 cout << "You equip the flimsy sword." << endl;
-                    mainchar->equipWeapon(itemid);
-                 cout << "Your new attack points are: " << mainchar->getDamageOut() << endl;
-                 break;
-              case 3 :
-                 cout << "test" << endl;
-                 break;
-              case 4 :
-                 cout << "test" << endl;
-                 break;
-              case 5 :
-                 cout << "test" << endl;
-                 break;
-              default :
-                 cout << "Invalid item!" << endl;
-           }
-    }
+        }
 
     else if (commandWord.compare("inventory") == 0)
         {
@@ -236,6 +248,16 @@ void ZorkUL::printHelp() {
 }
 
 void ZorkUL::goRoom(Command command) {
+    if (!command.hasSecondWord()) {
+        cout << "incomplete input"<< endl;
+        return;
+    }
+
+    if (currentRoom->doorCheck(command.getSecondWord()) >= 0) {
+        cout << currentRoom->doorCheck(command.getSecondWord()) << endl;
+        cout << "This door is locked!" << endl;
+    } else if (currentRoom->doorCheck(command.getSecondWord()) < 0) {
+
     if (currentRoom->getammoutofenemy() != 0){
 
         cout << "Can't go, there are monsters in the way!" << endl;
@@ -243,11 +265,6 @@ void ZorkUL::goRoom(Command command) {
         cout << currentRoom->longDescription() << endl;
 
     } else if  (currentRoom->getammoutofenemy() == 0){
-
-    if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        return;
-    }
 
     string direction = command.getSecondWord();
 
@@ -260,6 +277,7 @@ void ZorkUL::goRoom(Command command) {
         currentRoom = nextRoom;
         cout << currentRoom->longDescription() << endl;
     }
+      }
 }
 }
 

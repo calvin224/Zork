@@ -170,6 +170,49 @@ void Room::deadenemy(int index){
 int Room::getammoutofenemy(){
     return EnemyinRoom.size();
 }
+
+void Room::addDoor(Door *inDoor) {
+    roomDoors.push_back(*inDoor);
+}
+
+int Room::useKey (int keyid){
+    int numDoors = (roomDoors.size());
+    for (int x = 0; x <= numDoors; x++){
+        if (keyid == roomDoors[x].getId()){
+            return x;
+            break;
+        }
+    }
+   return -1;
+}
+
+void Room::doorUnlock(int door){
+    roomDoors[door].setUnlocked();
+}
+
+int Room::doorCheck(string inDirection){
+    int numDoors = (roomDoors.size());
+    if (roomDoors.size() < 1) {
+        return -1;
+        }
+    else if (roomDoors.size() > 0) {
+       int x = (0);
+        for (int n = numDoors; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inDirection.compare(roomDoors[x].getDirection());
+            if (tempFlag == 0 && roomDoors[x].lockedCheck() == 1) {
+                    return x;
+            }
+            x++;
+            }
+        }
+    return -1;
+}
+
+string Room::getDoorDirection(int door){
+    return roomDoors[door].getDirection();
+}
+
 Item Room::getItem(int x){
     return itemsInRoom[x];
 }
