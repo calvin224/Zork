@@ -3,6 +3,7 @@
 using namespace std;
 #include "ZorkUL.h"
 Character *mainchar;
+string wincon;
 
 int main() {
     ZorkUL temp;
@@ -88,9 +89,22 @@ void ZorkUL::printWelcome() {
  * returned.
  */
 
+void wincondition(int inwinindex){
+    switch (inwinindex) {
+    case 1:
+        wincon = "You saved the kingdom while keeping your sanity and life!";
+    case 2:
+       wincon = "You failed the save the kingdom as it fell to evil";
+    case 3:
+        wincon = "You saved the kingdom at the cost of your own life";
+      default:
+        wincon= "error";
+    }
+}
+
 bool ZorkUL::processCommand(Command command) {
     if (win){
-        cout << "You win the kingdom has been saved!" << endl;
+        cout << ""  + wincon << endl;
     }
   else if (!death){
     if (command.isUnknown()) {
@@ -177,7 +191,7 @@ else if (commandWord.compare("use") == 0)
                     break;
                 }
             break;
-           case 4 :
+          case 4 :
             cout << "test" << endl;
             break;
            case 5 :

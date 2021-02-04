@@ -7,22 +7,26 @@ SOURCES += \
     Character.cpp \
     Command.cpp \
     CommandWords.cpp \
+    Door.cpp \
     Parser.cpp \
     Room.cpp \
     ZorkUL.cpp \
     enemy.cpp \
     item.cpp \
     itemlist.cpp \
-    monsterlist.cpp
+    monsterlist.cpp \
+    weaponlist.cpp
 
 HEADERS += \
     Character.h \
     Command.h \
     CommandWords.h \
+    Door.h \
     Parser.h \
     Room.h \
     ZorkUL.h \
     enemy.h \
     item.h \
     itemlist.h \
-    monsterlist.h
+    monsterlist.h \
+    weaponlist.h

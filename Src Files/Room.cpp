@@ -159,7 +159,6 @@ int Room::getenemyhp(int index){
     return monster.gethp();
 }
 void Room::enemytakedmg(int damagein , int index){
-    cout << index << endl;
  if (EnemyinRoom[index-1].gethp() != 0 && getammoutofenemy() != 0 ){
     EnemyinRoom[index-1].sethp(damagein);
  }
