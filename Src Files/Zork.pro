@@ -14,8 +14,7 @@ SOURCES += \
     enemy.cpp \
     item.cpp \
     itemlist.cpp \
-    monsterlist.cpp \
-    weaponlist.cpp
+    monsterlist.cpp
 
 HEADERS += \
     Character.h \
@@ -28,5 +27,4 @@ HEADERS += \
     enemy.h \
     item.h \
     itemlist.h \
-    monsterlist.h \
-    weaponlist.h
+    monsterlist.h

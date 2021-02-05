@@ -4,7 +4,7 @@
 #include <ctime>
 using namespace std;
 
-Room::Room(string description) {
+Room::Room(string description ) {
     srand((unsigned) time(0));
 	this->description = description;; 
     MonsterList *list = new MonsterList();
@@ -22,6 +22,10 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["south"] = south;
 	if (west != NULL)
 		exits["west"] = west;
+}
+
+int Room::getwin(){
+    return win;
 }
 
 string Room::shortDescription() {

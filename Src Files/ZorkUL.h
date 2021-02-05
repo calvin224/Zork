@@ -23,7 +23,6 @@ private:
     void goRoom(Command command);
     void createItems();
     void displayItems();
-    void wincondition(int inwinindex);
 
 
 
@@ -34,9 +33,8 @@ public:
     string go(string direction);
     void end();
     bool death = false;
-    bool win = false;
+    int win;
     int index;
-    string windcon;
 };
 
 #endif /*ZORKUL_H_*/

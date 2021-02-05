@@ -18,16 +18,16 @@ ZorkUL::ZorkUL() {
 
 void ZorkUL::createRooms()  {
     mainchar = new Character();
-    Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
+    Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
         a->addItem(new Item("potion", 1, 11,0,0,1));
         a->addItem(new Item("sword", 5, 15,2,0,2));
         a->addenemys(1,2);
         a->addDoor(new Door(1, 1, "east"));
         a->addItem(new Item("key", 2, 2,0,1,3));
-    b = new Room("b");
+    b = new Room("Creepy Woods");
         b->addItems(4);
-        b->addItem(new Item("KEYITEM", 2, 2,0,1));
+        b->addItem(new Item("KEYITEM", 2, 2,0,1,0));
         b->addenemys(1,1);
     c = new Room("c");
     d = new Room("d");
@@ -36,6 +36,8 @@ void ZorkUL::createRooms()  {
     g = new Room("g");
     h = new Room("h");
     i = new Room("i");
+    m = new Room("end zone");
+
 
 //             (N, E, S, W)
     a->setExits(f, b, d, c);
@@ -43,7 +45,7 @@ void ZorkUL::createRooms()  {
     c->setExits(NULL, a, NULL, NULL);
     d->setExits(a, e, NULL, i);
     e->setExits(NULL, NULL, NULL, d);
-    f->setExits(NULL, g, a, h);
+    f->setExits(m, g, a, h);
     g->setExits(NULL, NULL, NULL, f);
     h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
@@ -88,25 +90,17 @@ void ZorkUL::printWelcome() {
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
  */
-
-void wincondition(int inwinindex){
-    switch (inwinindex) {
-    case 1:
-        wincon = "You saved the kingdom while keeping your sanity and life!";
-    case 2:
-       wincon = "You failed the save the kingdom as it fell to evil";
-    case 3:
-        wincon = "You saved the kingdom at the cost of your own life";
-      default:
-        wincon= "error";
+bool ZorkUL::processCommand(Command command){
+    if(win > 0){
+       if(win == 1){
+           cout << "You saved the kingdom while keeping your sanity and life!" << endl;
+           return false;
+       }
     }
-}
-
-bool ZorkUL::processCommand(Command command) {
-    if (win){
-        cout << ""  + wincon << endl;
+    if (death){
+        end();
+        return false;
     }
-  else if (!death){
     if (command.isUnknown()) {
         cout << "invalid input"<< endl;
         return false;
@@ -248,10 +242,8 @@ else if (commandWord.compare("use") == 0)
     }
     return false;
 }
-else {
-      end();
-  }
-}
+
+
 
 
 /** COMMANDS **/
@@ -289,22 +281,13 @@ void ZorkUL::goRoom(Command command) {
         cout << "underdefined input"<< endl;
     else {
         currentRoom = nextRoom;
+        if(currentRoom->shortDescription().compare("end zone")==0){
+            win = 1;
+            cout << "You saved the kingdom while keeping your sanity and life!" << endl;
+        }
+        else
         cout << currentRoom->longDescription() << endl;
     }
       }
 }
-}
-
-string ZorkUL::go(string direction) {
-    //Make the direction lowercase
-    //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    //Move to the next room
-    Room* nextRoom = currentRoom->nextRoom(direction);
-    if (nextRoom == NULL)
-        return("direction null");
-    else
-    {
-        currentRoom = nextRoom;
-        return currentRoom->longDescription();
-    }
 }

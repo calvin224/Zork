@@ -16,6 +16,7 @@ using std::vector;
 class Room {
 
 private:
+    int win;
     Enemy *enemy;
     Door *door;
     string description;
@@ -28,7 +29,7 @@ private:
     vector <Door> roomDoors;
 public:
     int numberOfItems();
-	Room(string description);
+    Room(string description);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
 	string longDescription();
@@ -54,6 +55,7 @@ public:
     int getammoutofenemy();
     Item getItem(int);
     int getdmgout(int index);
+    int getwin();
 
 };
 
