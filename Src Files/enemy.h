@@ -10,12 +10,14 @@ protected:
     string name;
     int hp;
     int dmgout;
+    int accuracy;
 public:
-    Enemy(string name,int hp,int dmgout);
+    Enemy(string name,int hp,int dmgout,int accuracy);
     string getShortDescription();
     int gethp();
     void sethp(int damage);
     int getdmgout();
+    int getaccuracy();
 };
 
 #endif // ENEMY_H

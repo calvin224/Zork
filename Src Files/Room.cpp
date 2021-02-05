@@ -108,13 +108,13 @@ int Room::isItemInRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        return -1;
+        return false;
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inString with short description
-            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
             if (tempFlag == 0) {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;
@@ -124,26 +124,11 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
-
-void Room::deleteItem(string inString)
-{
-    int sizeItems = (itemsInRoom.size());
-       int x = (0);
-        for (int n = sizeItems; n > 0; n--) {
-            // compare inString with short description
-            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
-            if (tempFlag == 0) {
-                itemsInRoom.erase(itemsInRoom.begin()+x);
-            }
-            x++;
-            }
-}
-
 int Room::addItemFromRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        return -1;
+        return false;
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
@@ -157,6 +142,9 @@ int Room::addItemFromRoom(string inString)
             }
         }
     return -1;
+}
+Enemy Room::getmoninroom(int ind){
+    return EnemyinRoom[ind];
 }
 void Room::addenemys(int inlevel,int inammount){
    if( inlevel == 1){
@@ -179,9 +167,9 @@ int Room::getenemyhp(int index){
 }
 void Room::enemytakedmg(int damagein , int index){
  if (EnemyinRoom[index-1].gethp() != 0 && getammoutofenemy() != 0 ){
-    EnemyinRoom[index-1].sethp(damagein);
+    EnemyinRoom[index-1].sethp(damagein);}
  }
-}
+
 void Room::deadenemy(int index){
   EnemyinRoom.erase(EnemyinRoom.begin()+index-1);
 }
@@ -229,10 +217,6 @@ int Room::doorCheck(string inDirection){
 
 string Room::getDoorDirection(int door){
     return roomDoors[door].getDirection();
-}
-
-int Room::getNumberofDoors(){
-    return roomDoors.size();
 }
 
 Item Room::getItem(int x){

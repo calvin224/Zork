@@ -1,9 +1,10 @@
 #include "enemy.h"
 
-Enemy::Enemy(string name,int hp , int dmgout ){
+Enemy::Enemy(string name,int hp , int dmgout, int accuracy ){
     this->name = name;
     this->hp = hp;
     this->dmgout = dmgout;
+    this->accuracy = accuracy;
 }
 string Enemy::getShortDescription() {
     return name;
@@ -17,4 +18,8 @@ void Enemy::sethp(int damage){
 }
 int Enemy::getdmgout(){
     return dmgout;
+}
+
+int Enemy::getaccuracy(){
+    return accuracy;
 }

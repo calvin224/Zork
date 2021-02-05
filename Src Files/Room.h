@@ -39,7 +39,6 @@ public:
     string displayItem();
     int isItemInRoom(string inString);
     int addItemFromRoom(string inString);
-    void deleteItem(string inString);
     void removeItemFromRoom(int location);
     void addenemys(int inlevel,int inammount);
     void addenemy(Enemy inmonster);
@@ -51,13 +50,13 @@ public:
     int useKey(int keyid);
     void doorUnlock(int door);
     string getDoorDirection(int door);
-    int getNumberofDoors();
     int doorCheck(string inDirection);
     void addweapon();
     int getammoutofenemy();
     Item getItem(int);
     int getdmgout(int index);
     int getwin();
+    Enemy getmoninroom(int ind);
 
 };
 

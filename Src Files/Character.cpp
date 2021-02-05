@@ -62,7 +62,7 @@ int Character::findItemInInv(string itemname)
 {
     int sizeItems = (itemsInCharacter.size());
     if (itemsInCharacter.size() < 1) {
-        return -1;
+        return false;
         }
     else if (itemsInCharacter.size() > 0) {
         for (int n = 0; n <= sizeItems; n++) {
