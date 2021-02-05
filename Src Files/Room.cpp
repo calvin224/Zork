@@ -108,13 +108,13 @@ int Room::isItemInRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        return false;
+        return -1;
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
             if (tempFlag == 0) {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;
@@ -124,11 +124,26 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+
+void Room::deleteItem(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+       int x = (0);
+        for (int n = sizeItems; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
+            if (tempFlag == 0) {
+                itemsInRoom.erase(itemsInRoom.begin()+x);
+            }
+            x++;
+            }
+}
+
 int Room::addItemFromRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        return false;
+        return -1;
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
@@ -214,6 +229,10 @@ int Room::doorCheck(string inDirection){
 
 string Room::getDoorDirection(int door){
     return roomDoors[door].getDirection();
+}
+
+int Room::getNumberofDoors(){
+    return roomDoors.size();
 }
 
 Item Room::getItem(int x){

@@ -139,18 +139,20 @@ bool ZorkUL::processCommand(Command command){
            else if (command.hasSecondWord()) {
 
            cout << "you're trying to take " + command.getSecondWord() << endl;
-           Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
-           mainchar->addItem(newItem);
-           int location = currentRoom->isItemInRoom(command.getSecondWord());
+           int location = currentRoom->addItemFromRoom(command.getSecondWord());
            if (location  < 0 )
                cout << "item is not in room" << endl;
-           else
+           else {
+               Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
+               mainchar->addItem(newItem);
                cout << "item is in room" << endl;
              cout << "index number " << + location << endl;
                cout << endl;
                cout << currentRoom->longDescription() << endl;
+               currentRoom->deleteItem(command.getSecondWord());
              }
             }
+        }
        }
 
     else if (commandWord.compare("put") == 0)
@@ -158,44 +160,54 @@ bool ZorkUL::processCommand(Command command){
        cout << "you put a item down" << endl;
     }
 
-else if (commandWord.compare("use") == 0)
-    {
-        string tempdirection;
-        int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
-          switch(itemid) {
-          case 1 :
-            cout << "You drink the potion." << endl;
-                mainchar->potionDrank();
-            cout << "Your new health points are: " << mainchar->getHealthPoint() << endl;
-            break;
-          case 2 :
-            cout << "You equip the " << mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) << "." << endl;
-                mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
-            cout << "Your new attack points are: " << mainchar->getDamageOut() << endl;
-            break;
-          case 3 :
-            cout << "You use the key." << endl;
-                if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
-                    currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
-                    tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
-                    cout << "You unlocked the door to the " << tempdirection << endl;
-                    break;
+    else if (commandWord.compare("use") == 0)
+        {
+            if (mainchar->findItemInInv(command.getSecondWord()) >= 0) {
+            string tempdirection;
+            int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
+              switch(itemid) {
+              case 1 :
+                cout << "You drink the potion." << endl;
+                    mainchar->potionDrank();
+                cout << "Your new health points are: " << mainchar->getHealthPoint() << endl;
+                break;
+              case 2 :
+                cout << "You equip the " << mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) << "." << endl;
+                    mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
+                cout << "Your new attack points are: " << mainchar->getDamageOut() << endl;
+                break;
+              case 3 :
+                cout << "You use the key." << endl;
+                if (currentRoom->getNumberofDoors() > 0){
+                    if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
+                        currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                        tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                        cout << "You unlocked the door to the " << tempdirection << endl;
+                        break;
+                    } else {
+                        cout << "This key cannot be used here!" << endl;
+                        break;
+                    }
                 } else {
                     cout << "This key cannot be used here!" << endl;
                     break;
                 }
-            break;
-          case 4 :
-            cout << "test" << endl;
-            break;
-           case 5 :
-            cout << "test" << endl;
-            break;
-           default :
-            cout << "Invalid item!" << endl;
-               }
 
-        }
+                break;
+               case 4 :
+                cout << "test" << endl;
+                break;
+               case 5 :
+                cout << "test" << endl;
+                break;
+               default :
+                cout << "Invalid item!" << endl;
+                   }
+                } else if (mainchar->findItemInInv(command.getSecondWord()) < 0) {
+                cout << "Invalid item!" << endl;
+            }
+
+            }
 
     else if (commandWord.compare("inventory") == 0)
         {
