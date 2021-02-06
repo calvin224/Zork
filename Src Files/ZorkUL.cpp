@@ -258,7 +258,7 @@ bool ZorkUL::processCommand(Command command){
         if (currentRoom->getammoutofenemy() == 0){
             cout << "No monsters!" << endl;
         }
-       else if (!command.hasSecondWord()) {
+       else if (!command.hasSecondWord() || std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy()) {
              cout << "Please enter a monster to attack!" << endl;
          }
        else if (currentRoom->getammoutofenemy() != 0) {
