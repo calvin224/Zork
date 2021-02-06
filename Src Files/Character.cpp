@@ -85,6 +85,7 @@ void Character::potionDrank () {
     if (hp > 10){
         hp = 10;
     }
+    itemsInCharacter.erase(itemsInCharacter.begin()+findItemInInv("potion"));
 }
 string Character::longDescription()
 {

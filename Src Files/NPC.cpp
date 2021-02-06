@@ -1,11 +1,12 @@
 #include "NPC.h"
 
-NPC::NPC(string name, int hp, int dmgout, bool essential, int id){
+NPC::NPC(string name, int hp, int dmgout, bool essential, int id, int spokento){
     this->name = name;
     this->hp = hp;
     this->dmgout = dmgout;
     this->essential = essential;
     this->id = id;
+    this->spokento = spokento;
 }
 
 string NPC::getShortDescription(){
@@ -25,4 +26,10 @@ int NPC::getdmgout(){
 }
 bool NPC::essentialCheck(){
     return essential;
+}
+int NPC::spokenCheck(){
+    return spokento;
+}
+void NPC::setSpoken(){
+   spokento = spokento + 1;
 }

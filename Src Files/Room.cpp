@@ -273,6 +273,14 @@ int Room::getNPCID(int x){
     return npcList[x].getID();
 }
 
+int Room::getNPCSpoken(int x){
+    return npcList[x].spokenCheck();
+}
+
+void Room::setNPCSpoken(int x){
+    npcList[x].setSpoken();
+}
+
 string Room::getDoorDirection(int door){
     return roomDoors[door].getDirection();
 }

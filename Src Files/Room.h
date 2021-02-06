@@ -59,6 +59,8 @@ public:
     string displayNPC();
     int npcCheck(string npcName);
     int getNPCID(int x);
+    int getNPCSpoken(int x);
+    void setNPCSpoken(int x);
     void addweapon();
     int getammoutofenemy();
     Item getItem(int);

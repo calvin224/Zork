@@ -25,7 +25,7 @@ void ZorkUL::createRooms()  {
         a->addenemys(1,2);
         a->addDoor(new Door(1, 1, "east"));
         a->addItem(new Item("key", 2, 2,0,1,3));
-        a->addNPC(new NPC("TestNPC", 5, 1, 1, 1));
+        a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1,0));
@@ -228,9 +228,21 @@ bool ZorkUL::processCommand(Command command){
             int npcID = currentRoom -> getNPCID(currentRoom -> npcCheck(command.getSecondWord()));
               switch(npcID) {
               case 1 :
+                  if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
                 cout << "\"Test phrase\"" << endl;
                     mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3));
-                cout << "The man gives you a testitem" << endl;
+                cout << "The man gives you a testkey" << endl;
+                currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+                  } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
+                cout << "\"Go away\"" << endl;
+                currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+                  } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
+                      cout << "\"Fine, take this. But leave me alone now!\"" << endl;
+                      mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2));
+                      cout << "The man gives you a sword, engraved with runes" << endl;
+                        } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
+                            cout << "\"Go away\"" << endl;
+                        }
                 break;
               case 2 :
                 cout << "test" << endl;
@@ -268,7 +280,6 @@ bool ZorkUL::processCommand(Command command){
             else {cout << "Damage taken from:" + temp.getShortDescription() + ":" << + "Missed!" << endl; } }
             cout << "Your hp = "<< + mainchar->hp << endl;
             cout << endl;
-            cout << currentRoom->longDescription() << endl;
             if(mainchar->hp <= 0 ){
                end();
             }
@@ -279,7 +290,10 @@ bool ZorkUL::processCommand(Command command){
          cout << "Monster dead!" << endl;
          cout << "Your hp = "<< + mainchar->hp << endl;
          cout << endl;
-         cout << currentRoom->longDescription() << endl; } }  
+         if (currentRoom->getammoutofenemy() == 0) {
+             cout << currentRoom->longDescription() << endl;
+         }
+          } }
 
     else if (commandWord.compare("quit") == 0) {
         if (command.hasSecondWord())
