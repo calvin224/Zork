@@ -7,6 +7,7 @@
 #include "item.h"
 #include "enemy.h"
 #include "Door.h"
+#include "NPC.h"
 #include "monsterlist.h"
 #include "itemlist.h"
 
@@ -26,6 +27,7 @@ private:
     vector <Item> Items;
     vector <Enemy> EnemyinRoom;
     vector <Enemy> level1mons;
+    vector <NPC> npcList;
     vector <Door> roomDoors;
 public:
     int numberOfItems();
@@ -38,6 +40,7 @@ public:
     void addItems(int N0OfItems);
     string displayItem();
     int isItemInRoom(string inString);
+    void deleteItem (string inString);
     int addItemFromRoom(string inString);
     void removeItemFromRoom(int location);
     void addenemys(int inlevel,int inammount);
@@ -50,7 +53,12 @@ public:
     int useKey(int keyid);
     void doorUnlock(int door);
     string getDoorDirection(int door);
+    int getNumberofDoors();
     int doorCheck(string inDirection);
+    void addNPC(NPC *inNPC);
+    string displayNPC();
+    int npcCheck(string npcName);
+    int getNPCID(int x);
     void addweapon();
     int getammoutofenemy();
     Item getItem(int);

@@ -18,6 +18,10 @@ void Character::addItem(Item item) {
     itemsInCharacter.push_back(item);
 }
 
+void Character::addNPCItem(Item *inItem) {
+    itemsInCharacter.push_back(*inItem);
+}
+
 int Character::getItemID(int x){
     return itemsInCharacter[x].getItemID();
 }
@@ -62,7 +66,7 @@ int Character::findItemInInv(string itemname)
 {
     int sizeItems = (itemsInCharacter.size());
     if (itemsInCharacter.size() < 1) {
-        return false;
+        return -1;
         }
     else if (itemsInCharacter.size() > 0) {
         for (int n = 0; n <= sizeItems; n++) {
@@ -78,6 +82,9 @@ int Character::findItemInInv(string itemname)
 }
 void Character::potionDrank () {
     this->hp = hp + 5;
+    if (hp > 10){
+        hp = 10;
+    }
 }
 string Character::longDescription()
 {

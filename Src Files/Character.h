@@ -1,7 +1,6 @@
 #ifndef CHARACTER_H_
 #define CHARACTER_H_
 #include "ZorkUL.h"
-
 #include <string>
 using namespace std;
 #include <vector>
@@ -12,6 +11,7 @@ class Character {
 private:	
 public:
     void addItem(Item item);
+    void addNPCItem(Item *item);
     Character();
 	string shortDescription();
 	string longDescription();

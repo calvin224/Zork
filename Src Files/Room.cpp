@@ -33,7 +33,7 @@ string Room::shortDescription() {
 }
 
 string Room::longDescription() {
-    return "room = " + description + ".\n" + displayItem() + ".\n" + displayenemy() + ".\n" + exitString();
+    return "room = " + description + ".\n" + displayItem() + ".\n" + displayenemy() + ".\n" + displayNPC() + ".\n" + exitString();
 }
 
 string Room::exitString() {
@@ -124,11 +124,26 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+
+void Room::deleteItem(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+       int x = (0);
+        for (int n = sizeItems; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
+            if (tempFlag == 0) {
+                itemsInRoom.erase(itemsInRoom.begin()+x);
+            }
+            x++;
+            }
+}
+
 int Room::addItemFromRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        return false;
+        return -1;
         }
     else if (itemsInRoom.size() > 0) {
        int x = (0);
@@ -215,8 +230,55 @@ int Room::doorCheck(string inDirection){
     return -1;
 }
 
+void Room::addNPC(NPC *inNPC) {
+    npcList.push_back(*inNPC);
+}
+
+string Room::displayNPC() {
+    string tempString = "People in room = ";
+    int numNPC = (npcList.size());
+    if (npcList.size() < 1) {
+        tempString = "There is nobody in the room.";
+        }
+    else if (npcList.size() > 0) {
+       int x = (0);
+        for (int n = numNPC; n > 0; n--) {
+            tempString = tempString + npcList[x].getShortDescription() + "  " ;
+            x++;
+            }
+        }
+    return tempString;
+    }
+
+int Room::npcCheck(string npcName){
+    int numNPC = (npcList.size());
+    if (npcList.size() < 1) {
+        return -1;
+        }
+    else if (npcList.size() > 0) {
+       int x = (0);
+        for (int n = numNPC; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = npcName.compare(npcList[x].getShortDescription());
+            if (tempFlag == 0 && roomDoors[x].lockedCheck() == 1) {
+                    return x;
+            }
+            x++;
+            }
+        }
+    return -1;
+}
+
+int Room::getNPCID(int x){
+    return npcList[x].getID();
+}
+
 string Room::getDoorDirection(int door){
     return roomDoors[door].getDirection();
+}
+
+int Room::getNumberofDoors(){
+    return roomDoors.size();
 }
 
 Item Room::getItem(int x){

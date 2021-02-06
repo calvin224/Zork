@@ -6,6 +6,7 @@
 #include "Room.h"
 #include "item.h"
 #include "enemy.h"
+#include "NPC.h"
 #include "Door.h"
 #include "Character.h"
 #include <iostream>
