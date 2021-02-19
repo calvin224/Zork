@@ -8,6 +8,7 @@ SOURCES += \
     Command.cpp \
     CommandWords.cpp \
     Door.cpp \
+    NPC.cpp \
     Parser.cpp \
     Room.cpp \
     ZorkUL.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     Command.h \
     CommandWords.h \
     Door.h \
+    NPC.h \
     Parser.h \
     Room.h \
     ZorkUL.h \

@@ -59,10 +59,11 @@ void ZorkUL::createRooms()  {
  *  Main play routine.  Loops until end of play.
  */
 void ZorkUL::play() {
-    printWelcome();
     // Enter the main command loop.  Here we repeatedly read commands and
     // execute them until the ZorkUL game is over.
-
+    cout << "type start to begin your journey!"<< endl;
+    cout << "start"<< endl;
+    cout << "info for help"<< endl;
    bool finished = false;
     while (!finished) {
         // Create pointer to command and give it a command.
@@ -81,9 +82,8 @@ void ZorkUL::end(){
 
 
 void ZorkUL::printWelcome() {
-    cout << "start"<< endl;
-    cout << "info for help"<< endl;
     cout << endl;
+    cout << "You start your journey" << endl;
     cout << currentRoom->longDescription() << endl;
 }
 
@@ -254,11 +254,11 @@ bool ZorkUL::processCommand(Command command){
     }
 
 
-    else if (commandWord.compare("attack") == 0)
+    else if (commandWord.compare("attack") == 0){
         if (currentRoom->getammoutofenemy() == 0){
             cout << "No monsters!" << endl;
         }
-       else if (!command.hasSecondWord() || std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy()) {
+       else if (!command.hasSecondWord() ||  std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy()) {
              cout << "Please enter a monster to attack!" << endl;
          }
        else if (currentRoom->getammoutofenemy() != 0) {
@@ -293,7 +293,10 @@ bool ZorkUL::processCommand(Command command){
          if (currentRoom->getammoutofenemy() == 0) {
              cout << currentRoom->longDescription() << endl;
          }
-          } }
+          } }}
+        else if(commandWord.compare("start")==0){
+            printWelcome();
+        }
 
     else if (commandWord.compare("quit") == 0) {
         if (command.hasSecondWord())
