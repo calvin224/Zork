@@ -9,6 +9,7 @@ Room::Room(string description ) {
 	this->description = description;; 
     MonsterList *list = new MonsterList();
     level1mons = list->getlevel1mon();
+    level2mons = list->getlevel2mon();
     itemlist *itemli = new itemlist();
     Items = itemli->getitems();
 }
@@ -158,16 +159,21 @@ int Room::addItemFromRoom(string inString)
         }
     return -1;
 }
-Enemy Room::getmoninroom(int ind){
-    return EnemyinRoom[ind];
+Enemy Room::getmoninroom(int index){
+    return EnemyinRoom[index];
 }
 void Room::addenemys(int inlevel,int inammount){
-   if( inlevel == 1){
-        for ( int i = 0; i < inammount; i ++){
-            int x = (rand() % 2);
+    if(inlevel == 1){ for ( int i = 0; i < inammount; i ++){
+            int x = (rand() % level1mons.size());
             Enemy monster =level1mons.at(x);
             addenemy(monster);
-        }  } }
+        } }
+    if(inlevel == 2){ for ( int i = 0; i < inammount; i ++){
+           int x = (rand() % level2mons.size());
+           Enemy monster =level2mons.at(x);
+           addenemy(monster);
+       } }
+   }
 void Room::addenemy(Enemy inmonster){
       Enemy monster = inmonster;
        EnemyinRoom.push_back(monster);

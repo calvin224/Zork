@@ -22,14 +22,13 @@ void ZorkUL::createRooms()  {
     a = new Room("castle");
         a->addItem(new Item("potion", 1, 11,0,0,1));
         a->addItem(new Item("sword", 5, 15,2,0,2));
-        a->addenemys(1,2);
         a->addDoor(new Door(1, 1, "east"));
+        a->addenemys(1,2);
         a->addItem(new Item("key", 2, 2,0,1,3));
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
         b->addItems(4);
         b->addItem(new Item("KEYITEM", 2, 2,0,1,0));
-        b->addenemys(1,1);
     c = new Room("c");
     d = new Room("d");
         d->addDoor(new Door(1, 4, "west"));
