@@ -22,5 +22,10 @@ private:
 private slots:
     void on_Start_clicked();
     void on_input_clicked();
+    void on_north_clicked();
+    void on_east_clicked();
+    void on_south_clicked();
+    void on_west_clicked();
 };
+
 #endif // MAINWINDOW_H

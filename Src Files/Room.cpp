@@ -38,19 +38,19 @@ string Room::longDescription() {
 }
 
 string Room::exitString() {
-	string returnString = "\nexits =";
-	for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
+    string returnString = "\nexits =";
+    for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
 		// Loop through map
-		returnString += "  " + i->first;	// access the "first" element of the pair (direction as a string)
-	return returnString;
+        returnString += "  " + i->first;	// access the "first" element of the pair (direction as a string)
+    return returnString;
 }
 
 Room* Room::nextRoom(string direction) {
-	map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
+    map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
 	if (next == exits.end())
 		return NULL; // if exits.end() was returned, there's no room in that direction.
 	return next->second; // If there is a room, remove the "second" (Room*)
-				// part of the "pair" (<string, Room*>) and return it.
+                // part of the "pair" (<string, Room*>) and return it.
 }
 
 void Room::addItem(Item *inItem) {
