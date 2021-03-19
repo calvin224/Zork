@@ -11,6 +11,8 @@
 #include "Character.h"
 #include <iostream>
 #include <string>
+#include "mainwindow.h"
+#include <QApplication>
 using namespace std;
 
 class ZorkUL {
@@ -18,7 +20,6 @@ private:
     Parser parser;
     Room *currentRoom;
     void createRooms();
-    void printWelcome();
     bool processCommand(Command command);
     void printHelp();
     void goRoom(Command command);
@@ -29,8 +30,9 @@ private:
 
 
 public:
+    QString printWelcome();
     ZorkUL();
-    void play();
+    QString play();
     string go(string direction);
     void end();
     bool death = false;

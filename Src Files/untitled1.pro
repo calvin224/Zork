@@ -20,7 +20,6 @@ SOURCES += \
     enemy.cpp \
     item.cpp \
     itemlist.cpp \
-    main.cpp \
     mainwindow.cpp \
     monsterlist.cpp
 

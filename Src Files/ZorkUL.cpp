@@ -1,20 +1,15 @@
 #include <iostream>
 #include "mainwindow.h"
-
 #include <QApplication>
-
-using namespace std;
 #include "ZorkUL.h"
+using namespace std;
 Character *mainchar;
 string wincon;
-
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     return a.exec();
-    ZorkUL temp;
-    temp.play();
 }
 //starter functions;
 ZorkUL::ZorkUL() {
@@ -62,22 +57,22 @@ void ZorkUL::createRooms()  {
 /**
  *  Main play routine.  Loops until end of play.
  */
-void ZorkUL::play() {
+QString ZorkUL::play() {
     // Enter the main command loop.  Here we repeatedly read commands and
     // execute them until the ZorkUL game is over.
-    cout << "type start to begin your journey!"<< endl;
-    cout << "start"<< endl;
-    cout << "info for help"<< endl;
-   bool finished = false;
+    bool finished = false;
     while (!finished) {
         // Create pointer to command and give it a command.
-        Command* command = parser.getCommand();
+        Command command = Command("attack","1");
         // Pass dereferenced command and check for end of game.
-        finished = processCommand(*command);
+        finished = processCommand(command);
         // Free the memory allocated by "parser.getCommand()"
         //   with ("return new Command(...)")
-        delete command; }
-}
+     finished = true;
+    }
+    return("command");
+ }
+
 
 void ZorkUL::end(){
     cout <<"you died please restart" << endl;
@@ -85,13 +80,11 @@ void ZorkUL::end(){
 }
 
 
-void ZorkUL::printWelcome() {
-    cout << endl;
-    cout << "You start your journey" << endl;
-    cout << currentRoom->longDescription() << endl;
+QString ZorkUL::printWelcome() {
+    return("work");
 }
 
-/**
+/*
  * Given a command, process (that is: execute) the command.
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
