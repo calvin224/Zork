@@ -26,6 +26,9 @@ private slots:
     void on_east_clicked();
     void on_south_clicked();
     void on_west_clicked();
+    void on_talk_clicked();
+    void on_take_clicked();
+    void on_use_clicked();
 };
 
 #endif // MAINWINDOW_H

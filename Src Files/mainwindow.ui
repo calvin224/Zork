@@ -69,8 +69,8 @@
    <widget class="QPushButton" name="Start">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>480</y>
+      <x>650</x>
+      <y>370</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -92,7 +92,7 @@
    <widget class="QTextBrowser" name="textBrowser_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>540</x>
       <y>0</y>
       <width>256</width>
       <height>192</height>
@@ -102,14 +102,53 @@
    <widget class="QPushButton" name="input">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>480</y>
+      <x>650</x>
+      <y>400</y>
       <width>80</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>attack 1</string>
+     <string>attack </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="talk">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>430</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>talk</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="take">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>460</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>take</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="use">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>490</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>use</string>
     </property>
    </widget>
   </widget>

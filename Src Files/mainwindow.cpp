@@ -4,6 +4,7 @@
 #include "ZorkUL.h"
 #include <QPixmap>
 #include <QApplication>
+#include <QInputDialog>
 ZorkUL game;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,7 +23,9 @@ ui->textBrowser->setText(game.printWelcome());
 }
 
 void MainWindow::on_input_clicked(){
-  ui->textBrowser->setText(game.play( Command("attack","1")));
+  int index =  QInputDialog::getInt(this,"Who do you attack?","Type what you attack");
+  string str = to_string(index);
+  ui->textBrowser->setText(game.play(Command("attack",str)));
 
 }
 void MainWindow::on_north_clicked(){
@@ -39,5 +42,21 @@ void MainWindow::on_west_clicked(){
 ui->textBrowser->setText(game.play( Command("go","west")));
 }
 
+void MainWindow::on_talk_clicked(){
+  QString str =  QInputDialog::getMultiLineText(this,"What Do you say?","Type what you say");
+  string text = str.toLocal8Bit().constData();
+  ui->textBrowser->setText(game.play(Command("talk",text)));
+}
 
+void MainWindow::on_take_clicked(){
+    QString str =  QInputDialog::getMultiLineText(this,"What Do you take?","Type what you take");
+    string text = str.toLocal8Bit().constData();
+    ui->textBrowser->setText(game.play(Command("take",text)));
+}
+void MainWindow::on_use_clicked(){
+    QString str =  QInputDialog::getMultiLineText(this,"What Do you use?","Type what you use");
+    string text = str.toLocal8Bit().constData();
+    ui->textBrowser->setText(game.play(Command("use",text)));
+
+}
 
