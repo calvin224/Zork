@@ -20,6 +20,7 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_Start_clicked(){
 ui->textBrowser->setText(game.printWelcome());
+ui->textBrowser_3->setText(game.play(Command("inventory", " ")));
 }
 
 void MainWindow::on_input_clicked(){
