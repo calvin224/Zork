@@ -8,15 +8,59 @@
 #include <QLabel>
 ZorkUL game;
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->textBrowser->setText("Press start to play!");
+
 }
+
+
+
 void MainWindow::formatMonsters(){
-    QPixmap pix("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+    QPixmap mainchar("C:/Users/Calvi/Documents/untitled1/joe.png");
+    ui->mainchar->setPixmap(mainchar.scaled(100,100,Qt::KeepAspectRatio));
+    QPixmap pix;
+    QPixmap pix2;
+    QPixmap pix3;
+    QPixmap pix4;
+    for(int i =0; i < game.getammountofem();i++){
+        if(game.getmoninarray(i).getimage() == 0){
+            if(i == 0){
+               pix = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+            }
+            if(i == 1){
+              pix2 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+           }
+            if(i == 2){
+               pix3 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+            }
+            if(i == 3){
+               pix4 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+           }
+        }
+
+        if(game.getmoninarray(i).getimage() == 1){
+            if(i == 0){
+               pix = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+            }
+            if(i == 1){
+               pix2 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+           }
+            if(i == 2){
+               pix3 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+            }
+            if(i == 3){
+               pix4 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+           }
+
+        }
+    }
+
+
     if(game.getammountofem() == 0){
         ui->Enemy1->clear();
         ui->Enemy2->clear();
@@ -31,20 +75,20 @@ void MainWindow::formatMonsters(){
     }
     if(game.getammountofem() ==2) {
     ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
     ui->Enemy3->clear();
     ui->Enemy4->clear();
     }
     if(game.getammountofem() ==3) {
     ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy3->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));}
+    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));}
     ui->Enemy4->clear();
     if(game.getammountofem()== 4) {
     ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy3->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy4->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy4->setPixmap(pix4.scaled(100,100,Qt::KeepAspectRatio));
     }
 }
 MainWindow::~MainWindow()

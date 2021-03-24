@@ -50,6 +50,8 @@ SUBDIRS += \
     Zork.pro
 
 DISTFILES += \
+    Donkey.png \
     Zork.pro.user \
+    joe.png \
     shrek.jpg \
     untitled1.pro.user

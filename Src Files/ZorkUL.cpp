@@ -14,10 +14,12 @@ int main(int argc, char* argv[]) {
     MainWindow w;
     w.show();
     return a.exec();
+
 }
 //starter functions;
 ZorkUL::ZorkUL() {
     createRooms();
+
 }
 
 void ZorkUL::createRooms()  {
@@ -27,7 +29,7 @@ void ZorkUL::createRooms()  {
         a->addItem(new Item("potion", 1, 11,0,0,1));
         a->addItem(new Item("sword", 5, 15,2,0,2));
         a->addDoor(new Door(1, 1, "east"));
-        a->addenemys(1,2);
+        a->addenemys(1,4);
         a->addItem(new Item("key", 2, 2,0,1,3));
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
@@ -83,6 +85,9 @@ QString ZorkUL::end(){
     QString s = "s";
     return s;
     death = true;
+}
+Enemy ZorkUL::getmoninarray(int i){
+    return currentRoom->EnemyinRoom[i];
 }
 
 

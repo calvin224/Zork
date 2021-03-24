@@ -1,12 +1,13 @@
 #include "enemy.h"
 
-Enemy::Enemy(string name,int hp , int dmgout, int accuracy ){
+Enemy::Enemy(string name,int hp , int dmgout, int accuracy , int image){
     this->name = name;
     this->hp = hp;
     this->dmgout = dmgout;
     this->accuracy = accuracy;
+    this->image = image;
 }
-string Enemy::getShortDescription() {
+string Enemy::getShortDescription(){
     return name;
 }
 
@@ -22,4 +23,7 @@ int Enemy::getdmgout(){
 
 int Enemy::getaccuracy(){
     return accuracy;
+}
+int Enemy::getimage(){
+        return image;
 }

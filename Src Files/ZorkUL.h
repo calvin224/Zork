@@ -29,7 +29,7 @@ private:
     void createItems();
     void displayItems();
     Room *currentRoom;
-
+    void work(QPixmap p);
 
 
 
@@ -43,6 +43,8 @@ public:
     bool death = false;
     int win;
     int index;
+   Enemy getmoninarray(int i);
+
 };
 
 #endif /*ZORKUL_H_*/

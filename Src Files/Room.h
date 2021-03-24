@@ -25,12 +25,12 @@ private:
     string exitString();
     vector <Item> itemsInRoom;
     vector <Item> Items;
-    vector <Enemy> EnemyinRoom;
     vector <Enemy> level1mons;
     vector <Enemy> level2mons;
     vector <NPC> npcList;
     vector <Door> roomDoors;
 public:
+    vector <Enemy> EnemyinRoom;
     int numberOfItems();
     Room(string description);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
