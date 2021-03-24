@@ -19,6 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void formatMonsters();
 private slots:
     void on_Start_clicked();
     void on_input_clicked();
@@ -30,5 +31,6 @@ private slots:
     void on_take_clicked();
     void on_use_clicked();
 };
+
 
 #endif // MAINWINDOW_H

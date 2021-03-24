@@ -92,6 +92,9 @@ QString ZorkUL::printWelcome() {
     return qstr;
 
 }
+int ZorkUL::getammountofem(){
+   return currentRoom->getammoutofenemy();
+}
 
 /*
  * Given a command, process (that is: execute) the command.

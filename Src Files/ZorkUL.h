@@ -22,13 +22,13 @@ using namespace std;
 class ZorkUL {
 private:
     Parser parser;
-    Room *currentRoom;
     void createRooms();
     QString processCommand(Command command);
     void printHelp();
     string goRoom(Command command);
     void createItems();
     void displayItems();
+    Room *currentRoom;
 
 
 
@@ -38,6 +38,7 @@ public:
     ZorkUL();
    QString play(Command command);
     string go(string direction);
+    int getammountofem();
     QString end();
     bool death = false;
     int win;
