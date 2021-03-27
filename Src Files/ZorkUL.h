@@ -39,7 +39,6 @@ public:
    QString play(Command command);
     string go(string direction);
     int getammountofem();
-    QString end();
     bool death = false;
     int win;
     int index;

@@ -9,6 +9,7 @@
 using namespace std;
 Character *mainchar;
 string wincon;
+bool death = false;
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
@@ -19,7 +20,6 @@ int main(int argc, char* argv[]) {
 //starter functions;
 ZorkUL::ZorkUL() {
     createRooms();
-
 }
 
 void ZorkUL::createRooms()  {
@@ -81,11 +81,7 @@ QString ZorkUL::play(Command commandin) {
  }
 
 
-QString ZorkUL::end(){
-    QString s = "s";
-    return s;
-    death = true;
-}
+
 Enemy ZorkUL::getmoninarray(int i){
     return currentRoom->EnemyinRoom[i];
 }
@@ -115,7 +111,7 @@ int ZorkUL::getammountofem(){
        }
     }
     if (death){
-        end();
+      return "you died!";
 
     }
     if (command.isUnknown()) {
@@ -294,7 +290,8 @@ int ZorkUL::getammountofem(){
             test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
             test = test + "\nYour hp = " + to_string(mainchar->hp) ;
             if(mainchar->hp <= 0 ){
-               end();
+                return "You died!";
+               death = true;
             }
         }
         else if  ( currentRoom->getenemyhp(index) <= 0) {

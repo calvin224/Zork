@@ -58,7 +58,13 @@ void MainWindow::formatMonsters(){
            }
 
         }
+
     }
+
+
+
+
+
 
 
     if(game.getammountofem() == 0){
