@@ -11,31 +11,40 @@
 #include "Character.h"
 #include <iostream>
 #include <string>
+#include "mainwindow.h"
+#include <QApplication>
+#include <string>
+#include <functional>
+#include <iostream>
+#include <optional>
 using namespace std;
 
 class ZorkUL {
 private:
     Parser parser;
-    Room *currentRoom;
     void createRooms();
-    void printWelcome();
-    bool processCommand(Command command);
+    QString processCommand(Command command);
     void printHelp();
-    void goRoom(Command command);
+    string goRoom(Command command);
     void createItems();
     void displayItems();
-
+    Room *currentRoom;
+    void work(QPixmap p);
 
 
 
 public:
+    QString printWelcome();
     ZorkUL();
-    void play();
+   QString play(Command command);
     string go(string direction);
-    void end();
+    int getammountofem();
+    QString end();
     bool death = false;
     int win;
     int index;
+   Enemy getmoninarray(int i);
+
 };
 
 #endif /*ZORKUL_H_*/

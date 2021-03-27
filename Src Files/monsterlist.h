@@ -2,6 +2,7 @@
 #define MONSTERLIST_H
 #include "enemy.h"
 #include <vector>
+#include <QPixmap>
 using namespace std;
 using std::vector;
 

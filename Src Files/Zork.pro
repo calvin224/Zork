@@ -1,7 +1,6 @@
 TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
-CONFIG -= qt
 
 SOURCES += \
     Character.cpp \
@@ -15,6 +14,7 @@ SOURCES += \
     enemy.cpp \
     item.cpp \
     itemlist.cpp \
+    mainwindow.cpp \
     monsterlist.cpp
 
 HEADERS += \
@@ -29,4 +29,10 @@ HEADERS += \
     enemy.h \
     item.h \
     itemlist.h \
+    mainwindow.h \
     monsterlist.h
+
+QT += widgets
+
+FORMS += \
+    mainwindow.ui
