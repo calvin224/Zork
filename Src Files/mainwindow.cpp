@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 void MainWindow::formatMonsters(){
-    QPixmap mainchar("C:/Users/Calvi/Documents/untitled1/joe.png");
+    QPixmap mainchar(":/Images/joe.png");
     ui->mainchar->setPixmap(mainchar.scaled(100,100,Qt::KeepAspectRatio));
     QPixmap pix;
     QPixmap pix2;
@@ -30,31 +30,31 @@ void MainWindow::formatMonsters(){
     for(int i =0; i < game.getammountofem();i++){
         if(game.getmoninarray(i).getimage() == 0){
             if(i == 0){
-               pix = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+               pix = QPixmap(":/Images/shrek.jpg");
             }
             if(i == 1){
-              pix2 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+              pix2 = QPixmap(":/Images/shrek.jpg");
            }
             if(i == 2){
-               pix3 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+               pix3 = QPixmap(":/Images/shrek.jpg");
             }
             if(i == 3){
-               pix4 = QPixmap("C:/Users/Calvi/Documents/untitled1/shrek.jpg");
+               pix4 = QPixmap(":/Images/shrek.jpg");
            }
         }
 
         if(game.getmoninarray(i).getimage() == 1){
             if(i == 0){
-               pix = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+               pix = QPixmap(":/Images/Donkey.png");
             }
             if(i == 1){
-               pix2 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+               pix2 = QPixmap(":/Images/Donkey.png");
            }
             if(i == 2){
-               pix3 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+               pix3 = QPixmap(":/Images/Donkey.png");
             }
             if(i == 3){
-               pix4 = QPixmap("C:/Users/Calvi/Documents/untitled1/Donkey.png");
+               pix4 = QPixmap(":/Images/Donkey.png");
            }
 
         }
