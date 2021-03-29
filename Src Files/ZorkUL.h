@@ -20,6 +20,7 @@
 using namespace std;
 
 class ZorkUL {
+    friend class MainWindow;
 private:
     Parser parser;
     void createRooms();

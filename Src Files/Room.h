@@ -15,7 +15,9 @@ using namespace std;
 using std::vector;
 
 class Room {
-
+    //friend example
+friend class Enemy;
+friend class Character;
 private:
     int win;
     Enemy *enemy;

@@ -17,7 +17,8 @@ public:
 	string longDescription();
     int findItemInInv(string itemname);
     void setHealthPoint(int &HP);
-    int getHealthPoint();
+    //virtual example
+    virtual int getHealthPoint();
     int getDamageOut();
     int getKeyID(int x);
     void potionDrank();

@@ -282,6 +282,7 @@ int ZorkUL::getammountofem(){
             if(x < temp.getaccuracy()){
             test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
             int hp = mainchar->hp - temp.getdmgout();
+            // call by reference passing address of hp into the func (func(&hp))
             mainchar->setHealthPoint(hp);}
             else {
             test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
