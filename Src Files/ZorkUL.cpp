@@ -9,7 +9,6 @@
 using namespace std;
 Character *mainchar;
 string wincon;
-bool death = false;
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
@@ -67,6 +66,7 @@ QString ZorkUL::play(Command commandin) {
     QString test2;
     // Enter the main command loop.  Here we repeatedly read commands and
     // execute them until the ZorkUL game is over.
+    if(mainchar->hp >0){
     bool finished = false;
     while (!finished) {
         // Create pointer to command and give it a command.
@@ -76,7 +76,8 @@ QString ZorkUL::play(Command commandin) {
         // Free the memory allocated by "parser.getCommand()"
         //   with ("return new Command(...)")
      finished = true;
-    }
+    }}
+    else(test2 = "You died!");
     return(test2);
  }
 
@@ -107,12 +108,7 @@ int ZorkUL::getammountofem(){
     if(win > 0){
        if(win == 1){
            test = test +"You saved the kingdom while keeping your sanity and life!" ;
-
        }
-    }
-    if (death){
-      return "you died!";
-
     }
     if (command.isUnknown()) {
         test = test +"invalid input";
@@ -291,7 +287,6 @@ int ZorkUL::getammountofem(){
             test = test + "\nYour hp = " + to_string(mainchar->hp) ;
             if(mainchar->hp <= 0 ){
                 return "You died!";
-               death = true;
             }
         }
         else if  ( currentRoom->getenemyhp(index) <= 0) {
