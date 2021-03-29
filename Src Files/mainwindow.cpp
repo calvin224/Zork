@@ -64,10 +64,7 @@ void MainWindow::formatMonsters(){
 
 
 
-
-
-
-    if(game.getammountofem() == 0){
+   if(game.getammountofem() == 0){
         ui->Enemy1->clear();
         ui->Enemy2->clear();
         ui->Enemy3->clear();

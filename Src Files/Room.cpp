@@ -160,7 +160,8 @@ int Room::addItemFromRoom(string inString)
     return -1;
 }
 Enemy Room::getmoninroom(int index){
-    return EnemyinRoom[index];
+    Enemy mon = EnemyinRoom[index];
+    return mon;
 }
 void Room::addenemys(int inlevel,int inammount){
     if(inlevel == 1){ for ( int i = 0; i < inammount; i ++){
@@ -179,7 +180,8 @@ void Room::addenemy(Enemy inmonster){
        EnemyinRoom.push_back(monster);
    }
 int Room::getdmgout(int index){
-    return  EnemyinRoom[index -1].getdmgout();
+    int dmg = EnemyinRoom[index -1].getdmgout();
+    return dmg;
 }
 
 int Room::getenemyhp(int index){

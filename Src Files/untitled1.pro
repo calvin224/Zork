@@ -47,6 +47,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 SUBDIRS += \
+    Zork.pro \
     Zork.pro
 
 DISTFILES += \
@@ -55,3 +56,6 @@ DISTFILES += \
     joe.png \
     shrek.jpg \
     untitled1.pro.user
+
+RESOURCES += \
+    Resources.qrc

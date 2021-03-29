@@ -16,7 +16,7 @@ public:
 	string shortDescription();
 	string longDescription();
     int findItemInInv(string itemname);
-    void setHealthPoint(int HP);
+    void setHealthPoint(int &HP);
     int getHealthPoint();
     int getDamageOut();
     int getKeyID(int x);

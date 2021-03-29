@@ -5,7 +5,7 @@ Character::Character() {
     this->hp = 10;
     this->dmgout = 2;
 }
-void Character::setHealthPoint(int HP){
+void Character::setHealthPoint(int &HP){
    this->hp = HP;
 }
 int Character::getHealthPoint(){
