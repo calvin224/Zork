@@ -13,6 +13,7 @@ public:
     void addItem(Item item);
     void addNPCItem(Item *item);
     Character();
+    virtual ~Character();
 	string shortDescription();
 	string longDescription();
     int findItemInInv(string itemname);

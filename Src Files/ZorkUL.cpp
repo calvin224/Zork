@@ -323,6 +323,7 @@ string ZorkUL::CombatCalc(Command command){
          test = test + "\nYour hp = " + to_string(mainchar->hp) ;
          if(mainchar->hp <= 0 ){
              return "You died!";
+             mainchar->~Character();
          }
          }
       else if  ( currentRoom->getenemyhp(index) <= 0) {

@@ -5,6 +5,11 @@ Character::Character() {
     this->hp = 10;
     this->dmgout = 2;
 }
+
+Character::~Character() {
+    cout << "Character destructor executed" ;
+}
+
 void Character::setHealthPoint(int &HP){
    this->hp = HP;
 }
