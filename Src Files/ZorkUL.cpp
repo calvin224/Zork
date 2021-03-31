@@ -134,88 +134,17 @@ int ZorkUL::getammountofem(){
 
     else if (commandWord.compare("take") == 0)
     {
-        if (currentRoom->getammoutofenemy() != 0){
-
-            test = test +"\nCan't take, there are monsters in the way!\n" ;
-            test = test +currentRoom->longDescription() ;
-
-        } else if  (currentRoom->getammoutofenemy() == 0){
-
-           if (!command.hasSecondWord()) {
-           test = test +"incomplete input";
-           }
-           else if (command.hasSecondWord()) {
-
-           test = test +"you're trying to take " + command.getSecondWord() ;
-           int location = currentRoom->addItemFromRoom(command.getSecondWord());
-           if (location  < 0 ) {
-               test = test +"item is not in room" ;
-           }
-           else {
-               Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
-               mainchar->addItem(newItem);
-               test = test + "item is in room" ;
-               test = test + "index number " + to_string(location) ;
-               currentRoom->deleteItem(command.getSecondWord());
-               test = test +currentRoom->longDescription() ;
-             }
-            }
-        }
-       }
-
+      test = take(command);
+    }
     else if (commandWord.compare("put") == 0)
     {
        test = test +"you put a item down" ;
     }
 
     else if (commandWord.compare("use") == 0)
-        {
-            if (mainchar->findItemInInv(command.getSecondWord()) >= 0) {
-            string tempdirection;
-            int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
-              switch(itemid) {
-              case 1 :
-                test = test +"You drink the potion." ;
-                    mainchar->potionDrank();
-                test = test +"Your new health points are: " + to_string(mainchar->getHealthPoint()) ;
-                break;
-              case 2 :
-                test = test +"You equip the " + mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) + "." ;
-                    mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
-                test = test +"Your new attack points are: " + to_string(mainchar->getDamageOut()) ;
-                break;
-              case 3 :
-                test = test +"You use the key." ;
-                if (currentRoom->getNumberofDoors() > 0){
-                    if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
-                        currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
-                        tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
-                        test = test +"You unlocked the door to the " + tempdirection ;
-                        break;
-                    } else {
-                        test = test +"This key cannot be used here!" ;
-                        break;
-                    }
-                } else {
-                    test = test +"This key cannot be used here!" ;
-                    break;
-                }
-
-                break;
-               case 4 :
-                test = test +"test" ;
-                break;
-               case 5 :
-                test = test +"test" ;
-                break;
-               default :
-                test = test +"Invalid item!" ;
-                   }
-                } else if (mainchar->findItemInInv(command.getSecondWord()) < 0) {
-                test = test +"Invalid item!" ;
-            }
-
-            }
+    {
+      test = use(command);
+    }
 
     else if (commandWord.compare("inventory") == 0)
         {
@@ -224,82 +153,11 @@ int ZorkUL::getammountofem(){
 
     else if (commandWord.compare("talk") == 0)
     {
-        if (!command.hasSecondWord()) {
-        test = test +"incomplete input";
-        }
-
-        if (currentRoom->npcCheck(command.getSecondWord()) >= 0) {
-            test = test +"You talk to " + command.getSecondWord() ;
-            int npcID = currentRoom -> getNPCID(currentRoom -> npcCheck(command.getSecondWord()));
-              switch(npcID) {
-              case 1 :
-                  if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
-                test = test +"\"Test phrase\"" ;
-                    mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3));
-                test = test +"The man gives you a testkey" ;
-                currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
-                  } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
-                test = test +"\"Go away\"" ;
-                currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
-                  } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
-                      test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                      mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2));
-                      test = test +"The man gives you a sword, engraved with runes" ;
-                        } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
-                            test = test +"\"Go away\"" ;
-                        }
-                break;
-              case 2 :
-                test = test +"test" ;
-                break;
-              }
-        } else {
-            test = test +"That person is not in the room!" ;
-        }
+       test = Talk(command);
     }
-
-
     else if (commandWord.compare("attack") == 0){
-        if (currentRoom->getammoutofenemy() == 0){
-            test = test +"\nNo monsters!" ;
+       test = CombatCalc(command);
         }
-       else if (!command.hasSecondWord() ||  std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy()) {
-             test = test +"\nPlease enter a monster to attack!" ;
-         }
-       else if (currentRoom->getammoutofenemy() != 0) {
-            index = std::stoi(command.getSecondWord());
-            currentRoom->enemytakedmg(mainchar->getDamageOut(), index);
-          if ((currentRoom->getenemyhp(index)) > 0){
-            index = std::stoi(command.getSecondWord());
-            Enemy mon = currentRoom->getmoninroom(index-1);
-            int x = (rand() % 100);
-            test = test +mon.getShortDescription() + " not dead!";
-            test = test+ "\nMonster hp = " + to_string(currentRoom->getenemyhp(index));
-            test = test + "\nDamage given: " + to_string(mainchar->dmgout);
-            //Combat caculation
-            for(int i = 0;i < currentRoom->getammoutofenemy();i++){
-                Enemy temp = currentRoom->getmoninroom(i);
-            if(x < temp.getaccuracy()){
-            test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
-            int hp = mainchar->hp - temp.getdmgout();
-            // call by reference passing address of hp into the func (func(&hp))
-            mainchar->setHealthPoint(hp);}
-            else {
-            test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
-            test = test + "\nYour hp = " + to_string(mainchar->hp) ;
-            if(mainchar->hp <= 0 ){
-                return "You died!";
-            }
-        }
-        else if  ( currentRoom->getenemyhp(index) <= 0) {
-         index = std::stoi(command.getSecondWord());
-         currentRoom->deadenemy(index);
-         test = test +"\nMonster dead!" ;
-         test = test +"\nYour hp = "+ to_string(mainchar->hp) ;
-         if (currentRoom->getammoutofenemy() == 0) {
-             test = test +currentRoom->longDescription() ;
-         }
-          } }}
         else if(commandWord.compare("start")==0){
             printWelcome();
         }
@@ -312,6 +170,174 @@ int ZorkUL::getammountofem(){
      QString qstr = QString::fromStdString(test);
      return qstr;
 }
+
+ string ZorkUL::use(Command command){
+     string test;
+     if (mainchar->findItemInInv(command.getSecondWord()) >= 0) {
+     string tempdirection;
+     int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
+       switch(itemid) {
+       case 1 :
+         test = test +"You drink the potion." ;
+             mainchar->potionDrank();
+         test = test +"Your new health points are: " + to_string(mainchar->getHealthPoint()) ;
+         break;
+       case 2 :
+         test = test +"You equip the " + mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) + "." ;
+             mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
+         test = test +"Your new attack points are: " + to_string(mainchar->getDamageOut()) ;
+         break;
+       case 3 :
+         test = test +"You use the key." ;
+         if (currentRoom->getNumberofDoors() > 0){
+             if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
+                 currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                 tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
+                 test = test +"You unlocked the door to the " + tempdirection ;
+                 break;
+             } else {
+                 test = test +"This key cannot be used here!" ;
+                 break;
+             }
+         } else {
+             test = test +"This key cannot be used here!" ;
+             break;
+         }
+
+         break;
+        case 4 :
+         test = test +"test" ;
+         break;
+        case 5 :
+         test = test +"test" ;
+         break;
+        default :
+         test = test +"Invalid item!" ;
+            }
+         } else if (mainchar->findItemInInv(command.getSecondWord()) < 0) {
+         test = test +"Invalid item!" ;
+     }
+      return test;
+     }
+
+ string ZorkUL::take(Command command){
+     string test;
+     if (currentRoom->getammoutofenemy() != 0){
+
+         test = test +"\nCan't take, there are monsters in the way!\n" ;
+         test = test +currentRoom->longDescription() ;
+
+     } else if  (currentRoom->getammoutofenemy() == 0){
+
+        if (!command.hasSecondWord()) {
+        test = test +"incomplete input";
+        }
+        else if (command.hasSecondWord()) {
+
+        test = test +"you're trying to take " + command.getSecondWord() ;
+        int location = currentRoom->addItemFromRoom(command.getSecondWord());
+        if (location  < 0 ) {
+            test = test +"item is not in room" ;
+        }
+        else {
+            Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
+            mainchar->addItem(newItem);
+            test = test + "item is in room" ;
+            test = test + "index number " + to_string(location) ;
+            currentRoom->deleteItem(command.getSecondWord());
+            test = test +currentRoom->longDescription() ;
+          }
+         }
+     }
+     return test;
+ }
+
+
+
+string ZorkUL::Talk(Command command){
+    string test;
+    if (!command.hasSecondWord()) {
+    test = test +"incomplete input";
+    }
+
+    if (currentRoom->npcCheck(command.getSecondWord()) >= 0) {
+        test = test +"You talk to " + command.getSecondWord() ;
+        int npcID = currentRoom -> getNPCID(currentRoom -> npcCheck(command.getSecondWord()));
+          switch(npcID) {
+          case 1 :
+              if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
+            test = test +"\"Test phrase\"" ;
+                mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3));
+            test = test +"The man gives you a testkey" ;
+            currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+              } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
+            test = test +"\"Go away\"" ;
+            currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+              } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
+                  test = test +"\"Fine, take this. But leave me alone now!\"" ;
+                  mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2));
+                  test = test +"The man gives you a sword, engraved with runes" ;
+                    } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
+                        test = test +"\"Go away\"" ;
+                    }
+            break;
+          case 2 :
+            test = test +"test" ;
+            break;
+          }
+    } else {
+        test = test +"That person is not in the room!" ;
+    }
+    return test;
+}
+
+
+string ZorkUL::CombatCalc(Command command){
+    string test;
+     if (currentRoom->getammoutofenemy() == 0){
+         test = test +"\nNo monsters!" ;
+     }
+    else if (!command.hasSecondWord() ||  std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy() || std::stoi(command.getSecondWord()) == 0) {
+          test = test +"\nPlease enter a monster to attack!" ;
+      }
+    else if (currentRoom->getammoutofenemy() != 0) {
+         index = std::stoi(command.getSecondWord());
+         currentRoom->enemytakedmg(mainchar->getDamageOut(), index);
+       if ((currentRoom->getenemyhp(index)) > 0){
+         index = std::stoi(command.getSecondWord());
+         Enemy mon = currentRoom->getmoninroom(index-1);
+         int x = (rand() % 100);
+         test = test +mon.getShortDescription() + " not dead!";
+         test = test+ "\nMonster hp = " + to_string(currentRoom->getenemyhp(index));
+         test = test + "\nDamage given: " + to_string(mainchar->dmgout);
+         //Combat caculation
+         for(int i = 0;i < currentRoom->getammoutofenemy();i++){
+             Enemy temp = currentRoom->getmoninroom(i);
+         if(x < temp.getaccuracy()){
+         test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
+         int hp = mainchar->hp - temp.getdmgout();
+         // call by reference passing address of hp into the func (func(&
+         mainchar->setHealthPoint(hp);}
+         else {
+         test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
+         test = test + "\nYour hp = " + to_string(mainchar->hp) ;
+         if(mainchar->hp <= 0 ){
+             return "You died!";
+         }
+         }
+      else if  ( currentRoom->getenemyhp(index) <= 0) {
+      index = std::stoi(command.getSecondWord());
+      currentRoom->deadenemy(index);
+      test = test +"\nMonster dead!" ;
+      test = test +"\nYour hp = "+ to_string(mainchar->hp) ;
+      if (currentRoom->getammoutofenemy() == 0) {
+          test = test +currentRoom->longDescription() ;
+      }
+       } }
+     return test;
+}
+
+
 
 
 

@@ -31,19 +31,23 @@ private:
     void displayItems();
     Room *currentRoom;
     void work(QPixmap p);
+    string CombatCalc(Command command);
+    string Talk(Command command);
+    string use(Command command);
+    string take(Command command);
 
 
 
 public:
     QString printWelcome();
     ZorkUL();
-   QString play(Command command);
+    QString play(Command command);
     string go(string direction);
     int getammountofem();
     bool death = false;
     int win;
     int index;
-   Enemy getmoninarray(int i);
+    Enemy getmoninarray(int i);
 
 };
 
