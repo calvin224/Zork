@@ -10,6 +10,16 @@ Item::Item (string inDescription, int inWeightGrams, float inValue, int inweapon
 Item::Item(string inDescription) {
 	description = inDescription;
 }
+
+Item::Item(const Item &item1) {
+    description = item1.description;
+    weightGrams = item1.weightGrams;
+    value = item1.value;
+    weaponCheck = item1.weaponCheck;
+    iskeyitem = item1.iskeyitem;
+    itemid = item1.itemid;
+};
+
 void Item::setWeight(int inWeightGrams)
 {
     if (inWeightGrams > 9999 || inWeightGrams < 0)

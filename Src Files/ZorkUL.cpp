@@ -25,7 +25,13 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
-        a->addItem(new Item("potion", 1, 11,0,0,1));
+    Item* potion1 = (new Item("potion", 1, 11,0,0,1));
+    Item* potion2 = potion1;
+        a->addItem(potion1);
+        int random = rand() % 2;
+        if (random == 1) {
+            a->addItem(potion2);
+        }
         a->addItem(new Item("sword", 5, 15,2,0,2));
         a->addDoor(new Door(1, 1, "east"));
         a->addenemys(1,4);
