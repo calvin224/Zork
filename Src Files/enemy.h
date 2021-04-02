@@ -2,6 +2,7 @@
 #define ENEMY_H
 #include <string>
 #include <QPixmap>
+#include <iostream>
 using namespace std;
 
 class Enemy
@@ -9,12 +10,13 @@ class Enemy
 private:
 protected:
     string name;
-    int hp;
-    int dmgout;
-    int accuracy;
-    int image;
+    //bit structures
+    unsigned int hp : 5;
+    unsigned int dmgout : 6;
+    unsigned int accuracy;
+    unsigned int image : 5;
 public:
-    Enemy(string name,int hp,int dmgout,int accuracy,int image );
+    Enemy(string name,unsigned int hp,unsigned int dmgout,unsigned int accuracy,int image );
     string getShortDescription();
     int gethp();
     void sethp(int damage);

@@ -10,7 +10,7 @@ Item::Item (string inDescription, int inWeightGrams, float inValue, int inweapon
 Item::Item(string inDescription) {
 	description = inDescription;
 }
-
+                    //pass by reference
 Item::Item(const Item &item1) {
     description = item1.description;
     weightGrams = item1.weightGrams;
