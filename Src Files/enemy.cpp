@@ -4,7 +4,7 @@ Goblin::Goblin(){
     this->hp = 4;
     this->dmgout = 2;
     this->accuracy = 96;
-    this->image = 0;
+    this->image = ":/Images/shrek.jpg";
 }
 
 Archer::Archer(){
@@ -12,11 +12,12 @@ Archer::Archer(){
     this->hp = 4;
     this->dmgout = 2;
     this->accuracy = 96;
-    this->image = 1;
+    this->image = ":/Images/Donkey.png";
     int x = (rand() % 100);
-    if(x > 0){
+    if(x > 95){
         this->name = superArcher().newname;
         this->dmgout = superArcher().newdmgout;
+        this->image = superArcher().newimage;
     }
 }
 
@@ -37,6 +38,6 @@ int Enemy::getdmgout(){
 int Enemy::getaccuracy(){
     return this->accuracy;
 }
-int Enemy::getimage(){
+string Enemy::getimage(){
         return this->image;
 }

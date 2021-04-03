@@ -13,15 +13,15 @@ protected:
     unsigned int hp = 10;
     unsigned int dmgout : 6;
     unsigned int accuracy;
-    unsigned int image : 5;
+    string image;
 public:
    string name;
    virtual string getShortDescription();
    virtual int gethp();
    virtual void sethp(int damage);
    virtual int getdmgout();
-   virtual  int getaccuracy();
-   virtual int getimage();
+   virtual  int getaccuracy() ;
+   virtual string getimage();
 };
 //polymorphism + inheritance
 class Goblin: public Enemy{
@@ -34,6 +34,7 @@ class superArcher {
 public:
     string newname = "superArcher";
     int newdmgout = 4;
+    string newimage = ":/Images/buffdonkey.jpg";
 };
 //multi inheritance
 

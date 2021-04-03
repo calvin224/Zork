@@ -27,44 +27,24 @@ void MainWindow::formatMonsters(){
     QPixmap pix2;
     QPixmap pix3;
     QPixmap pix4;
-    for(int i =0; i < game.getammountofem();i++){
-        if(game.getmoninarray(i).getimage() == 0){
-            if(i == 0){
-               pix = QPixmap(":/Images/shrek.jpg");
-            }
-            if(i == 1){
-              pix2 = QPixmap(":/Images/shrek.jpg");
-           }
-            if(i == 2){
-               pix3 = QPixmap(":/Images/shrek.jpg");
-            }
-            if(i == 3){
-               pix4 = QPixmap(":/Images/shrek.jpg");
-           }
-        }
 
-        if(game.getmoninarray(i).getimage() == 1){
-            if(i == 0){
-               pix = QPixmap(":/Images/Donkey.png");
+    for(int i = 0; i < game.getammountofem();i++){
+           if(i == 0){
+               pix = QPixmap(QString::fromStdString(game.getmoninarray(i).getimage()));
             }
             if(i == 1){
-               pix2 = QPixmap(":/Images/Donkey.png");
+               pix2 = QPixmap(QString::fromStdString(game.getmoninarray(i).getimage()));
            }
             if(i == 2){
-               pix3 = QPixmap(":/Images/Donkey.png");
+               pix3 = QPixmap(QString::fromStdString(game.getmoninarray(i).getimage()));
             }
             if(i == 3){
-               pix4 = QPixmap(":/Images/Donkey.png");
+               pix4 = QPixmap(QString::fromStdString(game.getmoninarray(i).getimage()));
            }
 
         }
 
-    }
-
-
-
-
-   if(game.getammountofem() == 0){
+    if(game.getammountofem() == 0){
         ui->Enemy1->clear();
         ui->Enemy2->clear();
         ui->Enemy3->clear();
@@ -87,6 +67,7 @@ void MainWindow::formatMonsters(){
     ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
     ui->Enemy3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));}
     ui->Enemy4->clear();
+
     if(game.getammountofem()== 4) {
     ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
     ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));

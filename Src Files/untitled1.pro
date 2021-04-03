@@ -53,6 +53,7 @@ SUBDIRS += \
 DISTFILES += \
     Donkey.png \
     Zork.pro.user \
+    buffdonkey.jpg \
     joe.png \
     shrek.jpg \
     untitled1.pro.user

@@ -3,5 +3,6 @@
         <file>Donkey.png</file>
         <file>joe.png</file>
         <file>shrek.jpg</file>
+        <file>buffdonkey.jpg</file>
     </qresource>
 </RCC>
