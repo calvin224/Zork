@@ -8,7 +8,8 @@ using std::vector;
 
 
 class Character {
-private:	
+
+
 public:
     void addItem(Item item);
     void addNPCItem(Item *item);

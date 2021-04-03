@@ -26,7 +26,6 @@ void Character::addItem(Item item) {
 void Character::addNPCItem(Item *inItem) {
     itemsInCharacter.push_back(*inItem);
 }
-
 int Character::getItemID(int x){
     return itemsInCharacter[x].getItemID();
 }

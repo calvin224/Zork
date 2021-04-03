@@ -17,6 +17,7 @@
 #include <functional>
 #include <iostream>
 #include <optional>
+#include <exception>
 using namespace std;
 
 class ZorkUL {
@@ -37,7 +38,6 @@ private:
     string take(Command command);
 
 
-
 public:
     QString printWelcome();
     ZorkUL();
@@ -49,6 +49,13 @@ public:
     int index;
     Enemy getmoninarray(int i);
 
+};
+class MyException : public exception{
+    public:
+        const char * what() const throw()
+        {
+            return "fatal";
+        }
 };
 
 #endif /*ZORKUL_H_*/

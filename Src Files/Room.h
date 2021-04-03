@@ -23,7 +23,7 @@ private:
     Enemy *enemy;
     Door *door;
     string description;
-	map<string, Room*> exits;
+    map<string, Room*> exits;
     string exitString();
     vector <Item> itemsInRoom;
     vector <Item> Items;

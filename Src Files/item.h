@@ -18,7 +18,6 @@ private:
 
 public:
     Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem, int initemid);
-    Item (string description);
     Item(const Item &item1);
 	string getShortDescription();
     string getLongDescription();

@@ -1,30 +1,42 @@
 #include "enemy.h"
-
-Enemy::Enemy(string name,unsigned int hp , unsigned int dmgout, unsigned int accuracy , int image){
-    this->name = name;
-    this->hp = hp;
-    this->dmgout = dmgout;
-    this->accuracy = accuracy;
-    this->image = image;
-
+Goblin::Goblin(){
+    this->name = "Goblin";
+    this->hp = 4;
+    this->dmgout = 2;
+    this->accuracy = 96;
+    this->image = 0;
 }
+
+Archer::Archer(){
+    this->name = "Archer";
+    this->hp = 4;
+    this->dmgout = 2;
+    this->accuracy = 96;
+    this->image = 1;
+    int x = (rand() % 100);
+    if(x > 0){
+        this->name = superArcher().newname;
+        this->dmgout = superArcher().newdmgout;
+    }
+}
+
 string Enemy::getShortDescription(){
-    return name;
+    return this->name;
 }
 
 int Enemy::gethp(){
-    return hp;
+    return this->hp;
 }
 void Enemy::sethp(int damage){
-   hp = hp - damage;
+   this->hp = this->hp - damage;
 }
 int Enemy::getdmgout(){
-    return dmgout;
+    return this->dmgout;
 }
 
 int Enemy::getaccuracy(){
-    return accuracy;
+    return this->accuracy;
 }
 int Enemy::getimage(){
-        return image;
+        return this->image;
 }

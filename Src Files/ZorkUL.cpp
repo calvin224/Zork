@@ -300,11 +300,13 @@ string ZorkUL::Talk(Command command){
 
 string ZorkUL::CombatCalc(Command command){
     string test;
+    try {
+
      if (currentRoom->getammoutofenemy() == 0){
-         test = test +"\nNo monsters!" ;
+           throw 0;
      }
-    else if (!command.hasSecondWord() ||  std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy() || std::stoi(command.getSecondWord()) == 0) {
-          test = test +"\nPlease enter a monster to attack!" ;
+    else if (!command.hasSecondWord() ||  std::stoi(command.getSecondWord()) > currentRoom->getammoutofenemy() || std::stoi(command.getSecondWord()) < 1) {
+        throw 1;
       }
     else if (currentRoom->getammoutofenemy() != 0) {
          index = std::stoi(command.getSecondWord());
@@ -342,8 +344,23 @@ string ZorkUL::CombatCalc(Command command){
       }
        } }
      return test;
-}
+    }  catch (int errorid) {
+        switch(errorid){
+        case 0:{
+            return "There are no monsters in the room!";
+        }
+        case 1: {
+            return "Please enter a monster to attack!";
+        }
+        case 99:{
+            MyException z;
+            exception& e = z;
+            return e.what();//fatal error
+        }
+        }
 
+    throw 99;
+} }
 
 
 
