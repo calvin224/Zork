@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/Images">
-        <file>Donkey.png</file>
-        <file>joe.png</file>
-        <file>shrek.jpg</file>
-    </qresource>
-</RCC>
