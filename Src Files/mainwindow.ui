@@ -195,7 +195,7 @@
    <widget class="QLabel" name="Enemy4">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>620</x>
       <y>220</y>
       <width>151</width>
       <height>101</height>
@@ -216,6 +216,58 @@
     </property>
     <property name="text">
      <string>MAINCHAR</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Item1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ITEM1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Item2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>60</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ITEM2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Item3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>60</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ITEM3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Item4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>60</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ITEM4</string>
     </property>
    </widget>
   </widget>

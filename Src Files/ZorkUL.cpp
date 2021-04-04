@@ -25,21 +25,22 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
-    Item* potion1 = (new Item("potion", 1, 11,0,0,1));
+
+    Item* potion1 = (new Item("potion", 1, 11,0,0,1,":/Images/potion.png"));
     Item* potion2 = potion1;
         a->addItem(potion1);
         int random = rand() % 2;
         if (random == 1) {
             a->addItem(potion2);
         }
-        a->addItem(new Item("sword", 5, 15,2,0,2));
+        a->addItems(0);
+        a->addItems(1);
         a->addDoor(new Door(1, 1, "east"));
         a->addenemys(1,4);
-        a->addItem(new Item("key", 2, 2,0,1,3));
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
         b->addItems(4);
-        b->addItem(new Item("KEYITEM", 2, 2,0,1,0));
+        b->addItem(new Item("KEYITEM", 2, 2,0,1,0,":/Images/key.png"));
     c = new Room("c");
     d = new Room("d");
         d->addDoor(new Door(1, 4, "west"));
@@ -93,6 +94,9 @@ Enemy ZorkUL::getmoninarray(int i){
     return currentRoom->EnemyinRoom[i];
 }
 
+Item ZorkUL::getIteminList(int i){
+    return currentRoom->itemsInRoom[i];
+}
 
 QString ZorkUL::printWelcome() {
     string str = "You start your journey!\n"  + currentRoom->longDescription() ;
@@ -102,6 +106,10 @@ QString ZorkUL::printWelcome() {
 }
 int ZorkUL::getammountofem(){
    return currentRoom->getammoutofenemy();
+}
+
+int ZorkUL::getAmountofItems(){
+   return currentRoom->numberOfItems();
 }
 
 /*
@@ -273,7 +281,7 @@ string ZorkUL::Talk(Command command){
           case 1 :
               if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
             test = test +"\"Test phrase\"" ;
-                mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3));
+                mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3,":/Images/key.png"));
             test = test +"The man gives you a testkey" ;
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
@@ -281,7 +289,7 @@ string ZorkUL::Talk(Command command){
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                  mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2));
+                  mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2,":/Images/sword.png"));
                   test = test +"The man gives you a sword, engraved with runes" ;
                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
                         test = test +"\"Go away\"" ;

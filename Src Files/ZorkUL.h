@@ -44,9 +44,11 @@ public:
     QString play(Command command);
     string go(string direction);
     int getammountofem();
+    int getAmountofItems();
     bool death = false;
     int win;
     int index;
+    Item getIteminList(int i);
     Enemy getmoninarray(int i);
 
 };

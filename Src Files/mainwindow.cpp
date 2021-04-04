@@ -75,6 +75,61 @@ void MainWindow::formatMonsters(){
     ui->Enemy4->setPixmap(pix4.scaled(100,100,Qt::KeepAspectRatio));
     }
 }
+
+void MainWindow::formatItems(){
+    QPixmap pix;
+    QPixmap pix2;
+    QPixmap pix3;
+    QPixmap pix4;
+
+    for(int i = 0; i < game.getAmountofItems();i++){
+           if(i == 0){
+               pix = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+            }
+            if(i == 1){
+               pix2 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+           }
+            if(i == 2){
+               pix3 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+            }
+            if(i == 3){
+               pix4 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+           }
+
+        }
+
+    if(game.getAmountofItems() == 0){
+        ui->Item1->clear();
+        ui->Item2->clear();
+        ui->Item3->clear();
+        ui->Item4->clear();
+    }
+    if(game.getAmountofItems() ==1) {
+    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item2->clear();
+    ui->Item3->clear();
+    ui->Item4->clear();
+    }
+    if(game.getAmountofItems() ==2) {
+    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item3->clear();
+    ui->Item4->clear();
+    }
+    if(game.getAmountofItems() ==3) {
+    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));}
+    ui->Item4->clear();
+
+    if(game.getAmountofItems() == 4) {
+    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item4->setPixmap(pix4.scaled(100,100,Qt::KeepAspectRatio));
+    }
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -82,6 +137,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_Start_clicked(){
 ui->textBrowser->setText(game.printWelcome());
 formatMonsters();
+formatItems();
 }
 
 void MainWindow::on_input_clicked(){

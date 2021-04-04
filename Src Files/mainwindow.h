@@ -20,6 +20,7 @@ public:
 private:
     Ui::MainWindow *ui;
     void formatMonsters();
+    void formatItems();
     void findpicture(int i);
 private slots:
     void on_Start_clicked();
