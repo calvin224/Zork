@@ -1,22 +1,37 @@
 #include "item.h"
-Item::Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem, int initemid, string inimage) {
-    description = inDescription;
-    setWeight(inWeightGrams);
-    value = inValue;
-    setWeaponCheck(inweaponCheck);
-    iskeyitem = inkeyitem;
-    itemid = initemid;
-    image = inimage;
+Sword::Sword(){
+   this-> description = "inDescription";
+   this-> setWeight(1);
+    this->value =1;
+    this->setWeaponCheck(1);
+    this->iskeyitem = 0;
+    this->itemid = 0;
+    this->image = "temp";
 }
+
+
+
+
+
  //pass by reference
-Item::Item(const Item &item1) {
+/*Item::Item(const Item &item1) {
     description = item1.description;
     weightGrams = item1.weightGrams;
     value = item1.value;
     weaponCheck = item1.weaponCheck;
     iskeyitem = item1.iskeyitem;
     itemid = item1.itemid;
-};
+
+    string description;
+    string longDescription;
+    int weightGrams;
+    float value;
+    int weaponCheck;
+    int iskeyitem;
+    int itemid;
+    string image;
+
+}; */
 
 void Item::setWeight(int inWeightGrams)
 {

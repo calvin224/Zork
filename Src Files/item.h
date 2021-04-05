@@ -18,8 +18,6 @@ protected:
     string image;
 
 public:
-    Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem, int initemid, string inimage);
-    Item(const Item &item1);
 	string getShortDescription();
     string getLongDescription();
 	int getWeight();
@@ -33,6 +31,11 @@ public:
     int IskeyItem();
     string getimage();
     string Attack(Item item);
+};
+
+class Sword: public Item{
+    Sword();
+    friend Item;
 };
 
 #endif /*ITEM_H_*/
