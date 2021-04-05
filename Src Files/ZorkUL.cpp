@@ -25,7 +25,6 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
-
     Item* potion1 = (new Item("potion", 1, 11,0,0,1,":/Images/potion.png"));
     Item* potion2 = potion1;
         a->addItem(potion1);

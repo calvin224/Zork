@@ -60,16 +60,7 @@ int Item::IskeyItem(){
     return iskeyitem;
 }
 
-string Item::getimage(){
+string Item::getimage()
+{
         return image;
-}
-
-Sword::Sword(){
-    this->description = "Sword";
-    this->weightGrams = 20;
-    this->value = 20;
-    this->weaponCheck = 1 ;
-    this->iskeyitem = 1;
-    this->itemid = 1;
-    this->image = ":/Images/sword.png";
 }

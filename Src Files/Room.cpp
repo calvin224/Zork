@@ -58,14 +58,10 @@ void Room::addItem(Item *inItem) {
     //cout << "Just added" + inItem->getLongDescription();
     itemsInRoom.push_back(*inItem);
 }
-void Room::addItems(int N0OfItems){
-    int no = N0OfItems;
-    for (int i = 0; i < no; i++) {
-        int RandItem = (rand() % 5);
-        Item *temp(new Item(Items.at(RandItem)));
+void Room::addItems(int itemindex){
+        Item *temp(new Item(Items.at(itemindex)));
         addItem(temp);
     }
-}
 
 string Room::displayItem() {
     string tempString = "In the room you see ";
