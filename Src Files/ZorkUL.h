@@ -44,18 +44,14 @@ public:
     QString play(Command command);
     string go(string direction);
     int getammountofem();
+    int getAmountofItems();
     bool death = false;
     int win;
     int index;
+    Item getIteminList(int i);
     Enemy getmoninarray(int i);
 
 };
-class MyException : public exception{
-    public:
-        const char * what() const throw()
-        {
-            return "fatal";
-        }
-};
+
 
 #endif /*ZORKUL_H_*/

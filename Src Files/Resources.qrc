@@ -4,5 +4,8 @@
         <file>joe.png</file>
         <file>shrek.jpg</file>
         <file>buffdonkey.jpg</file>
+        <file>key.png</file>
+        <file>potion.png</file>
+        <file>sword.png</file>
     </qresource>
 </RCC>

@@ -1,21 +1,31 @@
 #include "item.h"
-Item::Item (string inDescription, int inWeightGrams, float inValue, int inweaponCheck, int inkeyitem, int initemid) {
-    description = inDescription;
-    setWeight(inWeightGrams);
-    value = inValue;
-    setWeaponCheck(inweaponCheck);
-    iskeyitem = inkeyitem;
-    itemid = initemid;
+Sword::Sword(){
+   this-> description = "Sword";
+   this-> setWeight(1);
+    this->value =1;
+    this->setWeaponCheck(2);
+    this->iskeyitem = 0;
+    this->itemid = 0;
+    this->image = ":/Images/sword.png";
 }
- //pass by reference
-Item::Item(const Item &item1) {
-    description = item1.description;
-    weightGrams = item1.weightGrams;
-    value = item1.value;
-    weaponCheck = item1.weaponCheck;
-    iskeyitem = item1.iskeyitem;
-    itemid = item1.itemid;
-};
+Key::Key(){
+   this-> description = "Key";
+   this-> setWeight(1);
+    this->value =1;
+    this->setWeaponCheck(0);
+    this->iskeyitem = 0;
+    this->itemid = 0;
+    this->image = ":/Images/key.png";
+}
+Potion::Potion(){
+   this-> description = "Potion";
+   this-> setWeight(1);
+    this->value =1;
+    this->setWeaponCheck(0);
+    this->iskeyitem = 0;
+    this->itemid = 0;
+    this->image = ":/Images/potion.png";
+}
 
 void Item::setWeight(int inWeightGrams)
 {
@@ -57,4 +67,9 @@ string Item::getLongDescription()
 // 0 = not key item plan is 1-etc indicate a certain key item and when  used on something checks if the required int for key item = int it wants (if iskeyitem = 2 open door etc);
 int Item::IskeyItem(){
     return iskeyitem;
+}
+
+string Item::getimage()
+{
+        return image;
 }

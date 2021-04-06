@@ -25,7 +25,6 @@ private:
     string description;
     map<string, Room*> exits;
     string exitString();
-    vector <Item> itemsInRoom;
     vector <Item> Items;
     vector <Enemy> level1mons;
     vector <Enemy> level2mons;
@@ -33,6 +32,7 @@ private:
     vector <Door> roomDoors;
 public:
     vector <Enemy> EnemyinRoom;
+    vector <Item> itemsInRoom;
     int numberOfItems();
     Room(string description);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
