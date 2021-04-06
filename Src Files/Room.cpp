@@ -10,7 +10,7 @@ Room::Room(string description ) {
     MonsterList *list = new MonsterList();
     level1mons = list->getlevel1mon();
     level2mons = list->getlevel2mon();
-    itemlist *itemli = new itemlist();
+    itemli = new itemlist();
     Items = itemli->getitems();
 }
 

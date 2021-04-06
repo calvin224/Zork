@@ -31,6 +31,7 @@ private:
     vector <NPC> npcList;
     vector <Door> roomDoors;
 public:
+    itemlist *itemli;
     vector <Enemy> EnemyinRoom;
     vector <Item> itemsInRoom;
     int numberOfItems();

@@ -25,13 +25,8 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
-    Item* potion1 = (new Item("potion", 1, 11,0,0,1,":/Images/potion.png"));
-    Item* potion2 = potion1;
-        a->addItem(potion1);
-        int random = rand() % 2;
-        if (random == 1) {
-            a->addItem(potion2);
-        }
+
+        a->addItem(0);
         a->addItems(0);
         a->addItems(1);
         a->addDoor(new Door(1, 1, "east"));
@@ -39,7 +34,6 @@ void ZorkUL::createRooms()  {
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
         b->addItems(4);
-        b->addItem(new Item("KEYITEM", 2, 2,0,1,0,":/Images/key.png"));
     c = new Room("c");
     d = new Room("d");
         d->addDoor(new Door(1, 4, "west"));
@@ -280,7 +274,8 @@ string ZorkUL::Talk(Command command){
           case 1 :
               if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
             test = test +"\"Test phrase\"" ;
-                mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3,":/Images/key.png"));
+            // vector<Item> keys = itemlist().getitems();
+             // mainchar->addNPCItem(keys[3]);
             test = test +"The man gives you a testkey" ;
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
@@ -288,7 +283,7 @@ string ZorkUL::Talk(Command command){
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                  mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2,":/Images/sword.png"));
+                 // mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2,":/Images/sword.png"));
                   test = test +"The man gives you a sword, engraved with runes" ;
                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
                         test = test +"\"Go away\"" ;

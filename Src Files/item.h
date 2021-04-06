@@ -34,7 +34,18 @@ public:
 };
 
 class Sword: public Item{
+public:
     Sword();
+    friend Item;
+};
+class Potion: public Item{
+public:
+    Potion();
+    friend Item;
+};
+class Key: public Item{
+public:
+    Key();
     friend Item;
 };
 
