@@ -52,6 +52,13 @@ public:
     Enemy getmoninarray(int i);
 
 };
+class MyException : public exception{
+    public:
+        const char * what() const throw()
+        {
+            return "fatal";
+        }
+};
 
 
 #endif /*ZORKUL_H_*/

@@ -177,6 +177,7 @@ void MainWindow::on_take_clicked(){
     string text = str.toLocal8Bit().constData();
     ui->textBrowser->setText(game.play(Command("take",text)));
     formatMonsters();
+    formatItems();
 }
 void MainWindow::on_use_clicked(){
     QString str =  QInputDialog::getMultiLineText(this,"What Do you use?","Type what you use");

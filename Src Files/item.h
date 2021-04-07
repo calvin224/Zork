@@ -10,9 +10,7 @@ class Item {
 protected:
 	string description;
 	string longDescription;
-	int weightGrams;
-	float value;
-    int weaponCheck;
+    int weapondmg;
     int iskeyitem;
     int itemid;
     string image;
@@ -23,14 +21,10 @@ public:
 	int getWeight();
     int getItemID();
     int getKeyID();
-	void setWeight(int weightGrams);
-	float getValue();
-	void setValue(float value);
 	int getWeaponCheck();
     void setWeaponCheck(int inweaponCheck);
     int IskeyItem();
     string getimage();
-    string Attack(Item item);
 };
 class Sword: public Item{
 public:
@@ -45,6 +39,11 @@ public:
 class Key: public Item{
 public:
     Key();
+    friend Item;
+};
+class EchanSword : public Item{
+public:
+    EchanSword();
     friend Item;
 };
 

@@ -12,7 +12,7 @@ class Character {
 
 public:
     void addItem(Item item);
-    void addNPCItem(Item *item);
+    void addNPCItem(Item item);
     Character();
     virtual ~Character();
 	string shortDescription();

@@ -186,7 +186,7 @@ int ZorkUL::getAmountofItems(){
 
  string ZorkUL::use(Command command){
      string test;
-     if (mainchar->findItemInInv(command.getSecondWord()) >= 0) {
+     if (mainchar->findItemInInv(command.getSecondWord()) != -1) {
      string tempdirection;
      int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
        switch(itemid) {
@@ -227,7 +227,7 @@ int ZorkUL::getAmountofItems(){
         default :
          test = test +"Invalid item!" ;
             }
-         } else if (mainchar->findItemInInv(command.getSecondWord()) < 0) {
+         } else  {
          test = test +"Invalid item!" ;
      }
       return test;
@@ -269,6 +269,8 @@ int ZorkUL::getAmountofItems(){
 
 string ZorkUL::Talk(Command command){
     string test;
+    itemlist itemli = *new itemlist();
+    vector<Item> Items = itemli.getitems();
     if (!command.hasSecondWord()) {
     test = test +"incomplete input";
     }
@@ -280,7 +282,7 @@ string ZorkUL::Talk(Command command){
           case 1 :
               if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
             test = test +"\"Test phrase\"" ;
-              //  mainchar->addNPCItem(new Item("testkey", 2, 2,0,4,3,":/Images/key.png"));
+                mainchar->addItem(Items.at(2));
             test = test +"The man gives you a testkey" ;
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
@@ -288,7 +290,7 @@ string ZorkUL::Talk(Command command){
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                 // mainchar->addNPCItem(new Item("EnchantedSword", 2, 2,4,0,2,":/Images/sword.png"));
+                mainchar->addNPCItem(Items.at(4));
                   test = test +"The man gives you a sword, engraved with runes" ;
                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
                         test = test +"\"Go away\"" ;
@@ -361,15 +363,13 @@ string ZorkUL::CombatCalc(Command command){
         }
         case 99:{
         }
+            MyException z;
+            exception& e = z;
+            return e.what();//fatal error
         }
 
     throw 99;
 } }
-
-
-
-
-
 /** COMMANDS **/
 void ZorkUL::printHelp() {
 }

@@ -23,8 +23,8 @@ void Character::addItem(Item item) {
     itemsInCharacter.push_back(item);
 }
 
-void Character::addNPCItem(Item *inItem) {
-    itemsInCharacter.push_back(*inItem);
+void Character::addNPCItem(Item inItem) {
+    itemsInCharacter.push_back(inItem);
 }
 int Character::getItemID(int x){
     return itemsInCharacter[x].getItemID();
@@ -48,17 +48,17 @@ void Character::setcharacterdmgout(int dmg){
 void Character::equipWeapon(int weapondmg) {
     int dmg = weapondmg;
     switch(dmg) {
-    case 2:
+    case 1:
     {
       dmgout = 4;
       break;
     }
-    case 3:
+    case 2:
     {
       dmgout = 5;
       break;
     }
-    case 4:
+    case 3:
     {
       dmgout = 6;
       break;
@@ -89,7 +89,7 @@ void Character::potionDrank () {
     if (hp > 10){
         hp = 10;
     }
-    itemsInCharacter.erase(itemsInCharacter.begin()+findItemInInv("potion"));
+    itemsInCharacter.erase(itemsInCharacter.begin()+findItemInInv("Potion"));
 }
 string Character::longDescription()
 {

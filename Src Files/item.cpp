@@ -1,55 +1,36 @@
 #include "item.h"
 Sword::Sword(){
    this-> description = "Sword";
-   this-> setWeight(1);
-    this->value =1;
-    this->setWeaponCheck(2);
+    this->weapondmg = 1;
     this->iskeyitem = 0;
-    this->itemid = 0;
+    this->itemid = 2;
     this->image = ":/Images/sword.png";
 }
 Key::Key(){
-   this-> description = "Key";
-   this-> setWeight(1);
-    this->value =1;
-    this->setWeaponCheck(0);
-    this->iskeyitem = 0;
-    this->itemid = 0;
+    this-> description = "Key";
+    this->iskeyitem = 1;
+    this->itemid = 3;
     this->image = ":/Images/key.png";
 }
 Potion::Potion(){
-   this-> description = "Potion";
-   this-> setWeight(1);
-    this->value =1;
-    this->setWeaponCheck(0);
+    this-> description = "Potion";
     this->iskeyitem = 0;
-    this->itemid = 0;
+    this->itemid = 1;
     this->image = ":/Images/potion.png";
 }
 
-void Item::setWeight(int inWeightGrams)
-{
-    if (inWeightGrams > 9999 || inWeightGrams < 0)
-        cout << "weight invalid, must be 0<weight<9999" ;
-     else
-        weightGrams = inWeightGrams;
- }
-void Item::setValue(float inValue)
-{
-    if (inValue > 9999 || inValue < 0)
-       cout << "value invalid, must be 0<value<9999" ;
-    else
-	   value = inValue;
+EchanSword::EchanSword(){
+     this-> description = "Echanted Sword";
+     this->weapondmg = 3;
+     this->iskeyitem = 0;
+     this->itemid = 0;
+     this->image = "";
 }
-void Item::setWeaponCheck(int inweaponCheck){
-    weaponCheck = inweaponCheck;
-}
+
 int Item::getWeaponCheck(){
-    return weaponCheck;
+    return weapondmg;
 }
-int Item::getWeight(){
-    return weightGrams;
-}
+
 int Item::getItemID(){
     return itemid;
 }
@@ -68,7 +49,6 @@ string Item::getLongDescription()
 int Item::IskeyItem(){
     return iskeyitem;
 }
-
 string Item::getimage()
 {
         return image;
