@@ -5,17 +5,24 @@
 #include <string>
 #include <functional>
 #include <optional>
+namespace start {
 
-using namespace std;
+int Start(int argc, char* argv[]){
+     QApplication a(argc, argv);
+     MainWindow w;
+     w.show();
+     return a.exec();
+}
+
+}
+
 Character *mainchar;
 string wincon;
 int main(int argc, char* argv[]) {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
-
+    using namespace start;
+   return Start(argc,argv);
 }
+
 //starter functions;
 ZorkUL::ZorkUL() {
     createRooms();
@@ -290,7 +297,7 @@ string ZorkUL::Talk(Command command){
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                mainchar->addNPCItem(Items.at(4));
+                mainchar->addNPCItem(Items.at(3));
                   test = test +"The man gives you a sword, engraved with runes" ;
                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
                         test = test +"\"Go away\"" ;
