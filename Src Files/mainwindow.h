@@ -32,6 +32,7 @@ private slots:
     void on_talk_clicked();
     void on_take_clicked();
     void on_use_clicked();
+    void on_inventory_clicked();
 };
 
 

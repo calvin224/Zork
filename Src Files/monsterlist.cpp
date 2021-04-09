@@ -2,10 +2,11 @@
 using namespace std;
 MonsterList::MonsterList()
 {
-    Goblin goblin;
-    Archer archer;
-    level1mon.push_back(goblin);
-    level1mon.push_back(archer);
+    Goblin* gob = new Goblin();
+    Enemy* actuallygoblin = gob;
+    Goblin* goblin = dynamic_cast<Goblin*>(actuallygoblin);
+    level1mon.push_back(*goblin);
+
 
 }
 

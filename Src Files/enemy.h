@@ -44,5 +44,4 @@ public:
     friend superArcher;
 };
 
-
 #endif // ENEMY_H

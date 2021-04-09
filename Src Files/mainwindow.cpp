@@ -15,6 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->textBrowser->setText("Press start to play!");
+    QPixmap bkgnd(":/Images/dungeon.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
 
 }
 
@@ -183,6 +188,10 @@ void MainWindow::on_use_clicked(){
     QString str =  QInputDialog::getMultiLineText(this,"What Do you use?","Type what you use");
     string text = str.toLocal8Bit().constData();
     ui->textBrowser->setText(game.play(Command("use",text)));
+    formatMonsters();
+}
+void MainWindow::on_inventory_clicked(){
+    ui->textBrowser->setText(game.play( Command("inventory","")));
     formatMonsters();
 }
 
