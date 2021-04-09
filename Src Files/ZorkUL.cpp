@@ -20,7 +20,7 @@ Character *mainchar;
 string wincon;
 int main(int argc, char* argv[]) {
     using namespace start;
-   return Start(argc,argv);
+   return start::Start(argc,argv);
 }
 
 //starter functions;
