@@ -1,4 +1,13 @@
 #include "enemy.h"
+
+union enemyvals {
+    int a;
+    int b;
+    int c;
+};
+
+union enemyvals x;
+
 struct dmg{
      int x=0;
      dmg() : x(0){};
@@ -34,10 +43,13 @@ Archer::Archer(){
     this->accuracy = 96;
     this->image = ":/Images/Donkey.png";
     int x = (rand() % 100);
+    int y = (rand() % 24 + 75);
+    int z = (rand() % 24 + 75);
     if(x > 95){
         this->name = superArcher().newname;
         this->dmgout = superArcher().newdmgout;
         this->image = superArcher().newimage;
+        this->accuracy = Min<int>(y, z);
     }
 }
 
@@ -46,17 +58,20 @@ string Enemy::getShortDescription(){
 }
 
 int Enemy::gethp(){
-    return this->hp;
+    x.a = this->hp;
+    return x.a;
 }
 void Enemy::sethp(int damage){
    this->hp = this->hp - damage;
 }
 int Enemy::getdmgout(){
-    return this->dmgout;
+    x.b = this->dmgout;
+    return x.b;
 }
 
 int Enemy::getaccuracy(){
-    return this->accuracy;
+    x.c = this->dmgout;
+    return x.c;
 }
 string Enemy::getimage(){
         return this->image;

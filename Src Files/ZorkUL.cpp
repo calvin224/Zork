@@ -40,8 +40,12 @@ void ZorkUL::createRooms()  {
      //       a->addItem(potion2);
        // }
         a->addItems(1);
-        a->addItems(0);
+        int random = (rand() % 2 + 1);
+        if (random == 1){
         a->addItems(2);
+        }
+        a->addItems(0);
+        a->addItems(3);
         a->addDoor(new Door(1, 1, "east"));
         a->addenemys(1,1);
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
@@ -297,7 +301,7 @@ string ZorkUL::Talk(Command command){
             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                mainchar->addNPCItem(Items.at(3));
+                mainchar->addNPCItem(Items.at(4));
                   test = test +"The man gives you a sword, engraved with runes" ;
                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
                         test = test +"\"Go away\"" ;

@@ -34,6 +34,12 @@ public:
 class Potion: public Item{
 public:
     Potion();
+    Potion(const Potion &potion1){
+        this-> description = potion1.description;
+        this->iskeyitem = potion1.iskeyitem;
+        this->itemid = potion1.itemid;
+        this->image = potion1.image;
+    }
     friend Item;
 };
 class Key: public Item{

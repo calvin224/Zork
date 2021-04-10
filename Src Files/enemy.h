@@ -15,6 +15,10 @@ protected:
     unsigned int accuracy;
     string image;
 public:
+   template<typename T>
+    T Min(T x, T y){
+        return (x < y)? x: y;
+    }
    string name;
    virtual string getShortDescription();
    virtual int gethp();
