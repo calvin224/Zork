@@ -39,25 +39,28 @@ void ZorkUL::createRooms()  {
       //  if (random == 1) {
      //       a->addItem(potion2);
        // }
-        a->addItems(1);
-        int random = (rand() % 2 + 1);
-        if (random == 1){
-        a->addItems(2);
-        }
-        a->addItems(0);
-        a->addItems(3);
-        a->addDoor(new Door(1, 1, "east"));
-        a->addenemys(1,1);
         a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
     b = new Room("Creepy Woods");
+        b->addenemys(1,1);
+        b->addItems(3);
        // b->addItem(new Item("KEYITEM", 2, 2,0,1,0,":/Images/key.png"));
     c = new Room("c");
+        c->addItems(1);
+        int random = (rand() % 2 + 1);
+        if (random == 1){
+        c->addItems(2);
+    }
     d = new Room("d");
-        d->addDoor(new Door(1, 4, "west"));
     e = new Room("e");
+        e->addItems(4);
     f = new Room("f");
+        f->addDoor(new Door(1, 1, "north"));
+        f->addDoor(new Door(1, 2, "north"));
+        f->addDoor(new Door(1, 3, "north"));
     g = new Room("g");
+        g->addItems(0);
     h = new Room("h");
+        h->addItems(5);
     i = new Room("i");
     m = new Room("end zone");
 
@@ -108,6 +111,10 @@ Item ZorkUL::getIteminList(int i){
     return currentRoom->itemsInRoom[i];
 }
 
+Item ZorkUL::getIteminInventory(int i){
+    return mainchar->itemsInCharacter[i];
+}
+
 QString ZorkUL::printWelcome() {
     string str = "You start your journey!\n"  + currentRoom->longDescription() ;
     QString qstr = QString::fromStdString(str);
@@ -120,6 +127,10 @@ int ZorkUL::getammountofem(){
 
 int ZorkUL::getAmountofItems(){
    return currentRoom->numberOfItems();
+}
+
+int ZorkUL::getAmountofInvItems(){
+   return mainchar->getItemAmount();
 }
 
 /*
@@ -278,44 +289,44 @@ int ZorkUL::getAmountofItems(){
 
 
 
-string ZorkUL::Talk(Command command){
-    string test;
-    itemlist itemli = *new itemlist();
-    vector<Item> Items = itemli.getitems();
-    if (!command.hasSecondWord()) {
-    test = test +"incomplete input";
-    }
+ string ZorkUL::Talk(Command command){
+     string test;
+     itemlist itemli = *new itemlist();
+     vector<Item> Items = itemli.getitems();
+     if (!command.hasSecondWord()) {
+     test = test +"incomplete input";
+     }
 
-    if (currentRoom->npcCheck(command.getSecondWord()) >= 0) {
-        test = test +"You talk to " + command.getSecondWord() ;
-        int npcID = currentRoom -> getNPCID(currentRoom -> npcCheck(command.getSecondWord()));
-          switch(npcID) {
-          case 1 :
-              if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
-            test = test +"\"Test phrase\"" ;
-                mainchar->addItem(Items.at(2));
-            test = test +"The man gives you a testkey" ;
-            currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
-              } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
-            test = test +"\"Go away\"" ;
-            currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
-              } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
-                  test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                mainchar->addNPCItem(Items.at(4));
-                  test = test +"The man gives you a sword, engraved with runes" ;
-                    } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
-                        test = test +"\"Go away\"" ;
-                    }
-            break;
-          case 2 :
-            test = test +"test" ;
-            break;
-          }
-    } else {
-        test = test +"That person is not in the room!" ;
-    }
-    return test;
-}
+     if (currentRoom->npcCheck(command.getSecondWord()) >= 0) {
+         test = test +"You talk to " + command.getSecondWord() ;
+         int npcID = currentRoom -> getNPCID(currentRoom -> npcCheck(command.getSecondWord()));
+           switch(npcID) {
+           case 1 :
+               if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
+             test = test +"\"Test phrase\"" ;
+                 mainchar->addItem(Items.at(2));
+             test = test +"The man gives you a testkey" ;
+             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
+             test = test +"\"Go away\"" ;
+             currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
+               } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
+                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
+                 mainchar->addNPCItem(Items.at(4));
+                   test = test +"The man gives you a sword, engraved with runes" ;
+                     } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
+                         test = test +"\"Go away\"" ;
+                     }
+             break;
+           case 2 :
+             test = test +"test" ;
+             break;
+           }
+     } else {
+         test = test +"That person is not in the room!" ;
+     }
+     return test;
+ }
 
 
 string ZorkUL::CombatCalc(Command command){

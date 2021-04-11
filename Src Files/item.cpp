@@ -6,12 +6,27 @@ Sword::Sword(){
     this->itemid = 2;
     this->image = ":/Images/sword.png";
 }
-Key::Key(){
-    this-> description = "Key";
+BronzeKey::BronzeKey(){
+    this-> description = "Bronze Key";
     this->iskeyitem = 1;
     this->itemid = 3;
-    this->image = ":/Images/key.png";
+    this->image = ":/Images/bronzekey.png";
 }
+
+SilverKey::SilverKey(){
+    this-> description = "Silver Key";
+    this->iskeyitem = 2;
+    this->itemid = 3;
+    this->image = ":/Images/silverkey.png";
+}
+
+GoldKey::GoldKey(){
+    this-> description = "Gold Key";
+    this->iskeyitem = 3;
+    this->itemid = 3;
+    this->image = ":/Images/goldkey.png";
+}
+
 Potion::Potion(){
     this-> description = "Potion";
     this->iskeyitem = 0;
@@ -19,8 +34,8 @@ Potion::Potion(){
     this->image = ":/Images/potion.png";
 }
 
-EchanSword::EchanSword(){
-     this-> description = "Echanted Sword";
+EnchanSword::EnchanSword(){
+     this-> description = "Enchanted Sword";
      this->weapondmg = 3;
      this->iskeyitem = 0;
      this->itemid = 0;

@@ -1,5 +1,6 @@
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
+#define ERROR "Fatal"
 
 #include "Command.h"
 #include "Parser.h"
@@ -45,10 +46,12 @@ public:
     string go(string direction);
     int getammountofem();
     int getAmountofItems();
+    int getAmountofInvItems();
     bool death = false;
     int win;
     int index;
     Item getIteminList(int i);
+    Item getIteminInventory(int i);
     Enemy getmoninarray(int i);
 
 };
@@ -56,7 +59,7 @@ class MyException : public exception{
     public:
         const char * what() const throw()
         {
-            return "fatal";
+            return ERROR;
         }
 };
 

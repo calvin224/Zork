@@ -22,17 +22,20 @@ Goblin::Goblin(){
     this->hp = 4;
     this->dmgout = 2;
     this->accuracy = 96;
-    this->image = ":/Images/shrek.jpg";
+    this->image = ":/Images/goblin.png";
     int x = 96;
     if(x > 95){
-    this->name="SuperGoblin";
-    //operator overloading
-        dmg temp = dmg(3);
-        dmg temp2 = dmg(dmgout);
-        dmg newdmg = temp + temp2;
-        this->dmgout = newdmg.x;
-        this->accuracy = 75;
-  }
+        int y = (rand() % 24 + 75);
+            int z = (rand() % 24 + 75);
+            this->name="SuperGoblin";
+            //operator overloading
+                dmg temp = dmg(3);
+                dmg temp2 = dmg(dmgout);
+                dmg newdmg = temp + temp2;
+                this->dmgout = newdmg.x;
+                mypair <int> myobject (y,z);
+                this->accuracy =myobject.getmax();
+          }
 }
 
 
@@ -41,7 +44,7 @@ Archer::Archer(){
     this->hp = 4;
     this->dmgout = 2;
     this->accuracy = 96;
-    this->image = ":/Images/Donkey.png";
+    this->image = ":/Images/skeleton.png";
     int x = (rand() % 100);
     int y = (rand() % 24 + 75);
     int z = (rand() % 24 + 75);

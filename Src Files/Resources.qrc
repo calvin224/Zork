@@ -9,5 +9,29 @@
         <file>sword.png</file>
         <file>images.jpg</file>
         <file>dungeon.png</file>
+        <file>zorkui.png</file>
+        <file>goblin.png</file>
+        <file>skeleton.png</file>
+        <file>enchantedsword.png</file>
+        <file>map.png</file>
+        <file>mapRoomA.png</file>
+        <file>mapRoomB.png</file>
+        <file>mapRoomC.png</file>
+        <file>mapRoomD.png</file>
+        <file>mapRoomE.png</file>
+        <file>mapRoomF.png</file>
+        <file>mapRoomG.png</file>
+        <file>mapRoomH.png</file>
+        <file>mapRoomI.png</file>
+        <file>mapRoomM.png</file>
+        <file>zorkuiRoomA.png</file>
+        <file>zorkuiRoomB.png</file>
+        <file>zorkuiRoomD.png</file>
+        <file>zorkuiRoomF.png</file>
+        <file>zorkuiRoomH.png</file>
+        <file>bronzekey.png</file>
+        <file>goldkey.png</file>
+        <file>silverkey.png</file>
+        <file>oldman.png</file>
     </qresource>
 </RCC>

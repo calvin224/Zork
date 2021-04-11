@@ -19,6 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void formatMap();
+    void formatNPCs();
     void formatMonsters();
     void formatItems();
     void findpicture(int i);

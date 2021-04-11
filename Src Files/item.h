@@ -42,14 +42,27 @@ public:
     }
     friend Item;
 };
-class Key: public Item{
+class BronzeKey: public Item{
 public:
-    Key();
+    BronzeKey();
     friend Item;
 };
-class EchanSword : public Item{
+
+class SilverKey: public Item{
 public:
-    EchanSword();
+    SilverKey();
+    friend Item;
+};
+
+class GoldKey: public Item{
+public:
+    GoldKey();
+    friend Item;
+};
+
+class EnchanSword : public Item{
+public:
+    EnchanSword();
     friend Item;
 };
 

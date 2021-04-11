@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->textBrowser->setText("Press start to play!");
-    QPixmap bkgnd(":/Images/dungeon.png");
+    QPixmap bkgnd(":/Images/zorkuiRoomA.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
@@ -23,11 +23,79 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+void MainWindow::formatMap(){
+    if (game.currentRoom->shortDescription() == "castle") {
+        QPixmap map(":/Images/mapRoomA.png");
+        ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+        QPixmap bkgnd(":/Images/zorkuiRoomA.png");
+        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
 
+    } else if (game.currentRoom->shortDescription() == "Creepy Woods") {
+        QPixmap map(":/Images/mapRoomB.png");
+        ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+        QPixmap bkgnd(":/Images/zorkuiRoomB.png");
+        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
+    }
+    else if (game.currentRoom->shortDescription() == "c") {
+           QPixmap map(":/Images/mapRoomC.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+       }
+    else if (game.currentRoom->shortDescription() == "d") {
+           QPixmap map(":/Images/mapRoomD.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+           QPixmap bkgnd(":/Images/zorkuiRoomD.png");
+           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+           QPalette palette;
+           palette.setBrush(QPalette::Background, bkgnd);
+           this->setPalette(palette);
+       }
+    else if (game.currentRoom->shortDescription() == "e") {
+           QPixmap map(":/Images/mapRoomE.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+       }
+    else if (game.currentRoom->shortDescription() == "f") {
+           QPixmap map(":/Images/mapRoomF.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+           QPixmap bkgnd(":/Images/zorkuiRoomF.png");
+           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+           QPalette palette;
+           palette.setBrush(QPalette::Background, bkgnd);
+           this->setPalette(palette);
+       }
+    else if (game.currentRoom->shortDescription() == "g") {
+           QPixmap map(":/Images/mapRoomG.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+       }
+    else if (game.currentRoom->shortDescription() == "h") {
+           QPixmap map(":/Images/mapRoomH.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+           QPixmap bkgnd(":/Images/zorkuiRoomH.png");
+           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+           QPalette palette;
+           palette.setBrush(QPalette::Background, bkgnd);
+           this->setPalette(palette);
+       }
+    else if (game.currentRoom->shortDescription() == "i") {
+           QPixmap map(":/Images/mapRoomI.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+       }
+    else if (game.currentRoom->shortDescription() == "end zone") {
+           QPixmap map(":/Images/mapRoomM.png");
+           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
+       }
+
+
+}
 
 void MainWindow::formatMonsters(){
     QPixmap mainchar(":/Images/joe.png");
-    ui->mainchar->setPixmap(mainchar.scaled(100,100,Qt::KeepAspectRatio));
+    ui->mainchar->setPixmap(mainchar.scaled(200,200,Qt::KeepAspectRatio));
     QPixmap pix;
     QPixmap pix2;
     QPixmap pix3;
@@ -86,6 +154,11 @@ void MainWindow::formatItems(){
     QPixmap pix2;
     QPixmap pix3;
     QPixmap pix4;
+    QPixmap pix5;
+    QPixmap pix6;
+    QPixmap pix7;
+    QPixmap pix8;
+
 
     for(int i = 0; i < game.getAmountofItems();i++){
            if(i == 0){
@@ -110,28 +183,84 @@ void MainWindow::formatItems(){
         ui->Item4->clear();
     }
     if(game.getAmountofItems() ==1) {
-    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item2->clear();
     ui->Item3->clear();
     ui->Item4->clear();
     }
     if(game.getAmountofItems() ==2) {
-    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item3->clear();
     ui->Item4->clear();
     }
     if(game.getAmountofItems() ==3) {
-    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));}
+    ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item3->setPixmap(pix3.scaled(80,80,Qt::KeepAspectRatio));}
     ui->Item4->clear();
 
     if(game.getAmountofItems() == 4) {
-    ui->Item1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Item4->setPixmap(pix4.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item3->setPixmap(pix3.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item4->setPixmap(pix4.scaled(80,80,Qt::KeepAspectRatio));
+    }
+
+    for(int i = 0; i < game.getAmountofInvItems();i++){
+           if(i == 0){
+               pix5 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+            }
+            if(i == 1){
+               pix6 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+           }
+            if(i == 2){
+               pix7 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+            }
+            if(i == 3){
+               pix8 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+           }
+
+        }
+
+    if(game.getAmountofInvItems() == 0){
+        ui->PlayerItem1->clear();
+        ui->PlayerItem2->clear();
+        ui->PlayerItem3->clear();
+        ui->PlayerItem4->clear();
+    }
+    if(game.getAmountofInvItems() ==1) {
+    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->clear();
+    ui->PlayerItem3->clear();
+    ui->PlayerItem4->clear();
+    }
+    if(game.getAmountofInvItems() ==2) {
+    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->clear();
+    ui->PlayerItem4->clear();
+    }
+    if(game.getAmountofInvItems() ==3) {
+    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));}
+    ui->PlayerItem4->clear();
+
+    if(game.getAmountofInvItems() == 4) {
+    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem4->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    }
+}
+
+void MainWindow::formatNPCs(){
+    if (game.currentRoom->shortDescription() == "castle" || game.currentRoom->shortDescription() == "end zone") {
+    QPixmap NPC(":/Images/oldman.png");
+    ui->NPC->setPixmap(NPC.scaled(200,200,Qt::KeepAspectRatio));
+    } else {
+        ui->NPC->clear();
     }
 }
 
@@ -143,6 +272,8 @@ void MainWindow::on_Start_clicked(){
 ui->textBrowser->setText(game.printWelcome());
 formatMonsters();
 formatItems();
+formatMap();
+formatNPCs();
 }
 
 void MainWindow::on_input_clicked(){
@@ -150,24 +281,39 @@ void MainWindow::on_input_clicked(){
   string str = to_string(index);
   ui->textBrowser->setText(game.play(Command("attack",str)));
   formatMonsters();
+  formatItems();
+  formatMap();
+  formatNPCs();
  }
 
 
 void MainWindow::on_north_clicked(){
     ui->textBrowser->setText(game.play( Command("go","north")));
     formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 void MainWindow::on_east_clicked(){
-ui->textBrowser->setText(game.play( Command("go","east")));
-formatMonsters();
+    ui->textBrowser->setText(game.play( Command("go","east")));
+    formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 void MainWindow::on_south_clicked(){
-ui->textBrowser->setText(game.play( Command("go","south")));
-formatMonsters();
+    ui->textBrowser->setText(game.play( Command("go","south")));
+    formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 void MainWindow::on_west_clicked(){
-ui->textBrowser->setText(game.play( Command("go","west")));
-formatMonsters();
+    ui->textBrowser->setText(game.play( Command("go","west")));
+    formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 
 void MainWindow::on_talk_clicked(){
@@ -175,6 +321,8 @@ void MainWindow::on_talk_clicked(){
   string text = str.toLocal8Bit().constData();
   ui->textBrowser->setText(game.play(Command("talk",text)));
   formatMonsters();
+  formatItems();
+  formatMap();
 }
 
 void MainWindow::on_take_clicked(){
@@ -183,15 +331,23 @@ void MainWindow::on_take_clicked(){
     ui->textBrowser->setText(game.play(Command("take",text)));
     formatMonsters();
     formatItems();
+    formatMap();
+    formatNPCs();
 }
 void MainWindow::on_use_clicked(){
     QString str =  QInputDialog::getMultiLineText(this,"What Do you use?","Type what you use");
     string text = str.toLocal8Bit().constData();
     ui->textBrowser->setText(game.play(Command("use",text)));
     formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 void MainWindow::on_inventory_clicked(){
     ui->textBrowser->setText(game.play( Command("inventory","")));
     formatMonsters();
+    formatItems();
+    formatMap();
+    formatNPCs();
 }
 

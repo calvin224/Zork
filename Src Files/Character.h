@@ -33,6 +33,7 @@ public:
     vector < Item > itemsInCharacter;
     int hp;
     string inventoryList();
+    int getItemAmount();
     void setcharacterdmgout(int dmg);
     int dmgout;
 };

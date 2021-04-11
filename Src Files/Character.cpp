@@ -84,6 +84,11 @@ int Character::findItemInInv(string itemname)
         }
     return -1;
 }
+
+int Character::getItemAmount() {
+    return itemsInCharacter.size();
+}
+
 void Character::potionDrank () {
     this->hp = hp + 5;
     if (hp > 10){
