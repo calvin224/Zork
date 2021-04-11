@@ -16,7 +16,6 @@ dmg operator +  (const dmg& other){
     return dmg(this->x * other.x);
 }
 };
-
 Goblin::Goblin(){
     this->name= "Goblin";
     this->hp = 4;
@@ -24,21 +23,19 @@ Goblin::Goblin(){
     this->accuracy = 96;
     this->image = ":/Images/goblin.png";
     int x = 96;
+    int y = (rand() % 24 + 75);
+    int z = (rand() % 24 + 75);
     if(x > 95){
-        int y = (rand() % 24 + 75);
-            int z = (rand() % 24 + 75);
             this->name="SuperGoblin";
             //operator overloading
                 dmg temp = dmg(3);
                 dmg temp2 = dmg(dmgout);
                 dmg newdmg = temp + temp2;
                 this->dmgout = newdmg.x;
-                mypair <int> myobject (y,z);
-                this->accuracy =myobject.getmax();
+                mypair <int> myobject (z,y);
+                this->accuracy=myobject.getmax();
           }
 }
-
-
 Archer::Archer(){
     this->name = "Archer";
     this->hp = 4;
@@ -55,11 +52,9 @@ Archer::Archer(){
         this->accuracy = Min<int>(y, z);
     }
 }
-
 string Enemy::getShortDescription(){
     return this->name;
 }
-
 int Enemy::gethp(){
     x.a = this->hp;
     return x.a;
@@ -71,7 +66,6 @@ int Enemy::getdmgout(){
     x.b = this->dmgout;
     return x.b;
 }
-
 int Enemy::getaccuracy(){
     x.c = this->dmgout;
     return x.c;

@@ -32,14 +32,7 @@ void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
     a = new Room("castle");
-   // Item* potion1 = (new Item("potion", 1, 11,0,0,1,":/Images/potion.png"));
-    //Item* potion2 = potion1;
-     //   a->addItem(potion1);
-      //  int random = rand() % 2;
-      //  if (random == 1) {
-     //       a->addItem(potion2);
-       // }
-        a->addNPC(new NPC("TestNPC", 5, 1, 1, 1, 0));
+        a->addNPC(new NPC("TestNPC",1, 0));
     b = new Room("Creepy Woods");
         b->addenemys(1,1);
         b->addItems(3);
@@ -78,7 +71,6 @@ void ZorkUL::createRooms()  {
 
         currentRoom = a;
 }
-
 /**
  *  Main play routine.  Loops until end of play.
  */
@@ -205,7 +197,6 @@ int ZorkUL::getAmountofInvItems(){
      QString qstr = QString::fromStdString(test);
      return qstr;
 }
-
  string ZorkUL::use(Command command){
      string test;
      if (mainchar->findItemInInv(command.getSecondWord()) != -1) {
@@ -254,7 +245,6 @@ int ZorkUL::getAmountofInvItems(){
      }
       return test;
      }
-
  string ZorkUL::take(Command command){
      string test;
      if (currentRoom->getammoutofenemy() != 0){
@@ -286,9 +276,6 @@ int ZorkUL::getAmountofInvItems(){
      }
      return test;
  }
-
-
-
  string ZorkUL::Talk(Command command){
      string test;
      itemlist itemli = *new itemlist();
@@ -327,8 +314,6 @@ int ZorkUL::getAmountofInvItems(){
      }
      return test;
  }
-
-
 string ZorkUL::CombatCalc(Command command){
     string test;
     try {
@@ -342,7 +327,7 @@ string ZorkUL::CombatCalc(Command command){
     else if (currentRoom->getammoutofenemy() != 0) {
          index = std::stoi(command.getSecondWord());
          currentRoom->enemytakedmg(mainchar->getDamageOut(), index);
-       if ((currentRoom->getenemyhp(index)) > 0){
+         if ((currentRoom->getenemyhp(index)) > 0){
          index = std::stoi(command.getSecondWord());
          Enemy mon = currentRoom->getmoninroom(index-1);
          int x = (rand() % 100);
@@ -351,11 +336,10 @@ string ZorkUL::CombatCalc(Command command){
          test = test + "\nDamage given: " + to_string(mainchar->dmgout);
          //Combat caculation
          for(int i = 0;i < currentRoom->getammoutofenemy();i++){
-             Enemy temp = currentRoom->getmoninroom(i);
-         if(x < temp.getaccuracy()){
+          Enemy temp = currentRoom->getmoninroom(i);
+         if(x > temp.getaccuracy()){
          test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
          int hp = mainchar->hp - temp.getdmgout();
-         // call by reference passing address of hp into the func (func(&
          mainchar->setHealthPoint(hp);}
          else {
          test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
@@ -389,7 +373,6 @@ string ZorkUL::CombatCalc(Command command){
             exception& e = z;
             return e.what();//fatal error
         }
-
     throw 99;
 } }
 /** COMMANDS **/

@@ -12,28 +12,24 @@ BronzeKey::BronzeKey(){
     this->itemid = 3;
     this->image = ":/Images/bronzekey.png";
 }
-
 SilverKey::SilverKey(){
     this-> description = "Silver Key";
     this->iskeyitem = 2;
     this->itemid = 3;
     this->image = ":/Images/silverkey.png";
 }
-
 GoldKey::GoldKey(){
     this-> description = "Gold Key";
     this->iskeyitem = 3;
     this->itemid = 3;
     this->image = ":/Images/goldkey.png";
 }
-
 Potion::Potion(){
     this-> description = "Potion";
     this->iskeyitem = 0;
     this->itemid = 1;
     this->image = ":/Images/potion.png";
 }
-
 EnchanSword::EnchanSword(){
      this-> description = "Enchanted Sword";
      this->weapondmg = 3;
@@ -41,11 +37,9 @@ EnchanSword::EnchanSword(){
      this->itemid = 0;
      this->image = "";
 }
-
 int Item::getWeaponCheck(){
     return weapondmg;
 }
-
 int Item::getItemID(){
     return itemid;
 }

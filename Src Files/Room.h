@@ -13,7 +13,6 @@
 
 using namespace std;
 using std::vector;
-
 class Room {
     //friend example
 friend class Enemy;

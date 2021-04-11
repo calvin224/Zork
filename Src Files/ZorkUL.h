@@ -20,7 +20,6 @@
 #include <optional>
 #include <exception>
 using namespace std;
-
 class ZorkUL {
     friend class MainWindow;
 private:
@@ -37,8 +36,6 @@ private:
     string Talk(Command command);
     string use(Command command);
     string take(Command command);
-
-
 public:
     QString printWelcome();
     ZorkUL();
@@ -53,8 +50,8 @@ public:
     Item getIteminList(int i);
     Item getIteminInventory(int i);
     Enemy getmoninarray(int i);
-
 };
+//
 class MyException : public exception{
     public:
         const char * what() const throw()
@@ -62,6 +59,4 @@ class MyException : public exception{
             return ERROR;
         }
 };
-
-
 #endif /*ZORKUL_H_*/

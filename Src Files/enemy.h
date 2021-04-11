@@ -13,6 +13,7 @@ class mypair {
       {a=first; b=second;}
     T getmax ();
 };
+
 template <class T>
 T mypair <T>::getmax ()
 {
@@ -49,7 +50,6 @@ public:
     Goblin();
     friend Enemy;
 };
-
 class superArcher {
 public:
     string newname = "superArcher";
@@ -57,7 +57,6 @@ public:
     string newimage = ":/Images/buffdonkey.jpg";
 };
 //multi inheritance
-
 class Archer: public Enemy, public superArcher{
 public:
     Archer();

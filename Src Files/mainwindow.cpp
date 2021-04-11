@@ -22,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->setPalette(palette);
 
 }
-
 void MainWindow::formatMap(){
     if (game.currentRoom->shortDescription() == "castle") {
         QPixmap map(":/Images/mapRoomA.png");

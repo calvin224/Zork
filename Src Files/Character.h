@@ -8,8 +8,6 @@ using std::vector;
 
 
 class Character {
-
-
 public:
     void addItem(Item item);
     void addNPCItem(Item item);
@@ -19,8 +17,7 @@ public:
 	string longDescription();
     int findItemInInv(string itemname);
     void setHealthPoint(int &HP);
-    //virtual example
-    virtual int getHealthPoint();
+    int getHealthPoint();
     int getDamageOut();
     int getKeyID(int x);
     void potionDrank();

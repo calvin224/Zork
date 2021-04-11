@@ -8,23 +8,15 @@ using std::vector;
 
 class NPC
 {
-private:
 protected:
     string name;
-    int hp;
-    int dmgout;
     vector <Item> npcInventory;
-    bool essential;
     int id;
     int spokento;
 public:
-    NPC(string name,int hp,int dmgout,bool essential, int id, int spokento);
+    NPC(string name,int id, int spokento);
     string getShortDescription();
-    int gethp();
     int getID();
-    void sethp(int damage);
-    int getdmgout();
-    bool essentialCheck();
     int spokenCheck();
     void setSpoken();
 };
