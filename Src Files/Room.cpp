@@ -12,10 +12,10 @@ Room::Room(string description, string mapimage, string roomimage) {
     MonsterList *list = new MonsterList();
     level1mons = list->getlevel1mon();
     level2mons = list->getlevel2mon();
+    boss = list->getboss();
     itemlist *itemli = new itemlist();
     Items = itemli->getitems();
 }
-
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 	if (north != NULL)
 		exits["north"] = north;
@@ -26,11 +26,9 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 	if (west != NULL)
 		exits["west"] = west;
 }
-
 int Room::getwin(){
     return win;
 }
-
 string Room::shortDescription() {
 	return description;
 }
@@ -46,7 +44,6 @@ string Room::getRoomImage() {
 string Room::getMapImage() {
     return mapimage;
 }
-
 string Room::exitString() {
     string returnString = "\nexits =";
     for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
@@ -54,7 +51,6 @@ string Room::exitString() {
         returnString += "  " + i->first;	// access the "first" element of the pair (direction as a string)
     return returnString;
 }
-
 Room* Room::nextRoom(string direction) {
     map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
 	if (next == exits.end())
@@ -62,7 +58,6 @@ Room* Room::nextRoom(string direction) {
 	return next->second; // If there is a room, remove the "second" (Room*)
                 // part of the "pair" (<string, Room*>) and return it.
 }
-
 void Room::addItem(Item *inItem) {
     //cout <<endl;
     //cout << "Just added" + inItem->getLongDescription();
@@ -72,7 +67,6 @@ void Room::addItems(int itemindex){
         Item *temp(new Item(Items.at(itemindex)));
         addItem(temp);
     }
-
 string Room::displayItem() {
     string tempString = "In the room you see ";
     int sizeItems = (itemsInRoom.size());
@@ -92,7 +86,6 @@ string Room::displayItem() {
     }
     return tempString;
     }
-
 string Room::displayenemy() {
     string tempString = "Monsters in room = ";
     int sizemonsters = (EnemyinRoom.size());
@@ -145,7 +138,6 @@ void Room::deleteItem(string inString)
             x++;
             }
 }
-
 int Room::addItemFromRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
@@ -180,7 +172,13 @@ void Room::addenemys(int inlevel,int inammount){
            Enemy monster =level2mons.at(x);
            addenemy(monster);
        } }
+    if(inlevel == 3){for ( int i = 0; i < inammount; i ++){
+            int x = (rand() % boss.size());
+            Enemy monster =boss.at(x);
+            addenemy(monster);
+    }
    }
+}
 void Room::addenemy(Enemy inmonster){
       Enemy monster = inmonster;
        EnemyinRoom.push_back(monster);

@@ -29,6 +29,7 @@ private:
     vector <Item> Items;
     vector <Enemy> level1mons;
     vector <Enemy> level2mons;
+    vector <Enemy> boss;
     vector <NPC> npcList;
 public:
     vector <Enemy> EnemyinRoom;

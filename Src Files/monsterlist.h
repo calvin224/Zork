@@ -13,10 +13,12 @@ protected:
     //array
     vector <Enemy> level1mon;
     vector <Enemy> level2mon;
+    vector <Enemy> boss;
 public:
     MonsterList();
     vector <Enemy> getlevel1mon();
     vector <Enemy> getlevel2mon();
+    vector <Enemy> getboss();
 };
 
 #endif // MONSTERLIST_H

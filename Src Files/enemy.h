@@ -63,5 +63,25 @@ public:
     Archer();
     friend superArcher;
 };
+class Golem: public Enemy{
+public:
+    Golem();
+    friend Enemy;
+};
+class FlameBoss: public Enemy{
+public:
+    FlameBoss();
+    friend Enemy;
+};
+class Phantom: public Enemy{
+public:
+    Phantom();
+    friend Enemy;
+};
+class ZombieKnight: public Enemy{
+public:
+    ZombieKnight();
+    friend Enemy;
+};
 
 #endif // ENEMY_H

@@ -31,7 +31,7 @@ ZorkUL::ZorkUL() {
 
 void ZorkUL::createRooms()  {
     mainchar = new Character();
-    Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
+    Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m, *x;
     a = new Room("Main Hallway", ":/Images/mapRoomA.png", ":/Images/zorkuiRoomA.png");
         a->addNPC(new NPC("Old Man", 1, 0));
     b = new Room("Bronze Key Room", ":/Images/mapRoomB.png", ":/Images/zorkuiRoomB.png");
@@ -57,14 +57,15 @@ void ZorkUL::createRooms()  {
         f->addDoor(new Door(1, 3, "north", "Door"));
     g = new Room("Sword Room", ":/Images/mapRoomG.png", ":/Images/zorkuiRoomG.png");
         g->addItems(0);
-        g->addenemys(1,1);
+        g->addenemys(2,1);
     h = new Room("Gold Key Room", ":/Images/mapRoomH.png", ":/Images/zorkuiRoomH.png");
         h->addItems(5);
-        h->addenemys(1,1);
+        h->addenemys(2,1);
     i = new Room("Hidden Shrine", ":/Images/mapRoomI.png", ":/Images/zorkuiRoomI.png");
         i->addItems(6);
     m = new Room("Boss Room", ":/Images/mapRoomM.png", ":/Images/zorkuiRoomM.png");
-
+    m->addenemys(3,1);
+    x = new Room("End Room", ":/Images/mapRoomM.png", ":/Images/zorkuiRoomM.png");
 
 //             (N, E, S, W)
     a->setExits(f, b, d, c);
@@ -76,6 +77,7 @@ void ZorkUL::createRooms()  {
     g->setExits(NULL, NULL, NULL, f);
     h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
+    m->setExits(x, NULL, NULL, NULL);
 
         currentRoom = a;
 }
@@ -103,7 +105,6 @@ QString ZorkUL::play(Command commandin) {
  }
 
 
-
 Enemy ZorkUL::getmoninarray(int i){
     return currentRoom->EnemyinRoom[i];
 }
@@ -119,7 +120,6 @@ QString ZorkUL::printWelcome() {
     string str = "You start your journey!\n"  + currentRoom->longDescription() ;
     QString qstr = QString::fromStdString(str);
     return qstr;
-
 }
 int ZorkUL::getammountofem(){
    return currentRoom->getammoutofenemy();
@@ -234,8 +234,16 @@ int ZorkUL::getAmountofInvItems(){
              test = test + "\n" + currentRoom->longDescription() ;
              break;
          }
-
          break;
+       case 4 :
+                test = test +"\nYou rub the " + mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) + "." ;
+                if (currentRoom->shortDescription() == "Boss Room") {
+                    currentRoom->enemytakedmg(10000, 0);
+                    test = test + "\n" + "The lamp immediately lifts from your hands, shooting forth a bright beam of light, engulfing everything in the room. The creature lets out an ear splitting screech as it is sucked into the spout, after which the lamp drops to the ground, rumbling around before falling still." ;
+                } else {
+                    test = test + "\n" + "Nothing happens, however you think you feel a small movement inside." ;
+                }
+                break;
 
         default :
          test = test +"\nInvalid item!" ;
@@ -339,7 +347,7 @@ string ZorkUL::CombatCalc(Command command){
          //Combat caculation
          for(int i = 0;i < currentRoom->getammoutofenemy();i++){
              Enemy temp = currentRoom->getmoninroom(i);
-         if(x < temp.getaccuracy()){
+         if(x > temp.getaccuracy()){
          test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
          int hp = mainchar->hp - temp.getdmgout();
          // call by reference passing address of hp into the func (func(&
@@ -412,7 +420,7 @@ string ZorkUL::goRoom(Command command) {
     }
     else {
         currentRoom = nextRoom;
-        if(currentRoom->shortDescription().compare("Boss Room")==0){
+        if(currentRoom->shortDescription().compare("End Room")==0){
             win = 1;
             str = str +"End" ;
         }

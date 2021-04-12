@@ -20,9 +20,9 @@ Goblin::Goblin(){
     this->name= "Goblin";
     this->hp = 4;
     this->dmgout = 2;
-    this->accuracy = 96;
+    this->accuracy = 90;
     this->image = ":/Images/goblin.png";
-    int x = 96;
+    int x = (rand() % 100);
     int y = (rand() % 24 + 75);
     int z = (rand() % 24 + 75);
     if(x > 95){
@@ -52,6 +52,34 @@ Archer::Archer(){
         this->image = superArcher().newimage;
         this->accuracy = Min<int>(y, z);
     }
+}
+Golem::Golem(){
+    this->name= "Golem";
+    this->hp = 8;
+    this->dmgout = 2;
+    this->accuracy = 90;
+    this->image = ":/Images/golemBoss";
+}
+FlameBoss::FlameBoss(){
+    this->name= "Flame Boss";
+    this->hp = 6;
+    this->dmgout = 3;
+    this->accuracy = 95;
+    this->image = ":/Images/flameboss";
+}
+Phantom::Phantom(){
+    this->name= "Phantom";
+    this->hp = 6;
+    this->dmgout = 2;
+    this->accuracy = 95;
+    this->image = "";
+}
+ZombieKnight::ZombieKnight(){
+    this->name= "Flame Boss";
+    this->hp = 4;
+    this->dmgout = 3;
+    this->accuracy = 95;
+    this->image = "";
 }
 string Enemy::getShortDescription(){
     return this->name;
