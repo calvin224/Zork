@@ -41,5 +41,7 @@
         <file>Images/zorkuiRoomH.png</file>
         <file>Images/zorkuiRoomI.png</file>
         <file>Images/zorkuiRoomM.png</file>
+        <file>Images/phantom.png</file>
+        <file>Images/zombieknight.png</file>
     </qresource>
 </RCC>

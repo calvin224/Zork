@@ -55,15 +55,15 @@ Archer::Archer(){
 }
 Golem::Golem(){
     this->name= "Golem";
-    this->hp = 8;
-    this->dmgout = 2;
+    this->hp = 12;
+    this->dmgout = 4;
     this->accuracy = 90;
     this->image = ":/Images/golemBoss";
 }
 FlameBoss::FlameBoss(){
     this->name= "Flame Boss";
-    this->hp = 6;
-    this->dmgout = 3;
+    this->hp = 8;
+    this->dmgout = 5;
     this->accuracy = 95;
     this->image = ":/Images/flameboss";
 }
@@ -72,14 +72,14 @@ Phantom::Phantom(){
     this->hp = 6;
     this->dmgout = 2;
     this->accuracy = 95;
-    this->image = "";
+    this->image = ":/Images/phantom";
 }
 ZombieKnight::ZombieKnight(){
-    this->name= "Flame Boss";
+    this->name= "Zombie Knight";
     this->hp = 4;
     this->dmgout = 3;
     this->accuracy = 95;
-    this->image = "";
+    this->image = ":/Images/zombieknight";
 }
 string Enemy::getShortDescription(){
     return this->name;

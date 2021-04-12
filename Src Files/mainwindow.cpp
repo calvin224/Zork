@@ -65,28 +65,28 @@ void MainWindow::formatMonsters(){
         ui->Enemy4->clear();
     }
     if(game.getammountofem() ==1) {
-    ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy1->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
     ui->Enemy2->clear();
     ui->Enemy3->clear();
     ui->Enemy4->clear();
     }
     if(game.getammountofem() ==2) {
-    ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy1->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy2->setPixmap(pix2.scaled(200,200,Qt::KeepAspectRatio));
     ui->Enemy3->clear();
     ui->Enemy4->clear();
     }
     if(game.getammountofem() ==3) {
-    ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));}
+    ui->Enemy1->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy2->setPixmap(pix2.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy3->setPixmap(pix3.scaled(200,200,Qt::KeepAspectRatio));}
     ui->Enemy4->clear();
 
     if(game.getammountofem()== 4) {
-    ui->Enemy1->setPixmap(pix.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy2->setPixmap(pix2.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy3->setPixmap(pix3.scaled(100,100,Qt::KeepAspectRatio));
-    ui->Enemy4->setPixmap(pix4.scaled(100,100,Qt::KeepAspectRatio));
+    ui->Enemy1->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy2->setPixmap(pix2.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy3->setPixmap(pix3.scaled(200,200,Qt::KeepAspectRatio));
+    ui->Enemy4->setPixmap(pix4.scaled(200,200,Qt::KeepAspectRatio));
     }
 }
 
@@ -99,6 +99,10 @@ void MainWindow::formatItems(){
     QPixmap pix6;
     QPixmap pix7;
     QPixmap pix8;
+    QPixmap pix9;
+    QPixmap pix10;
+    QPixmap pix11;
+    QPixmap pix12;
 
 
     for(int i = 0; i < game.getAmountofItems();i++){
@@ -114,6 +118,12 @@ void MainWindow::formatItems(){
             if(i == 3){
                pix4 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
            }
+            if(i == 4){
+               pix5 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+           }
+            if(i == 5){
+               pix6 = QPixmap(QString::fromStdString(game.getIteminList(i).getimage()));
+           }
 
         }
 
@@ -122,44 +132,60 @@ void MainWindow::formatItems(){
         ui->Item2->clear();
         ui->Item3->clear();
         ui->Item4->clear();
+        ui->Item5->clear();
+        ui->Item6->clear();
     }
     if(game.getAmountofItems() ==1) {
     ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item2->clear();
     ui->Item3->clear();
     ui->Item4->clear();
+    ui->Item5->clear();
+    ui->Item6->clear();
     }
     if(game.getAmountofItems() ==2) {
     ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item3->clear();
     ui->Item4->clear();
+    ui->Item5->clear();
+    ui->Item6->clear();
     }
     if(game.getAmountofItems() ==3) {
     ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item3->setPixmap(pix3.scaled(80,80,Qt::KeepAspectRatio));}
     ui->Item4->clear();
+    ui->Item5->clear();
+    ui->Item6->clear();
 
     if(game.getAmountofItems() == 4) {
     ui->Item1->setPixmap(pix.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item2->setPixmap(pix2.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item3->setPixmap(pix3.scaled(80,80,Qt::KeepAspectRatio));
     ui->Item4->setPixmap(pix4.scaled(80,80,Qt::KeepAspectRatio));
+    ui->Item5->clear();
+    ui->Item6->clear();
     }
 
     for(int i = 0; i < game.getAmountofInvItems();i++){
            if(i == 0){
-               pix5 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
-            }
-            if(i == 1){
-               pix6 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
-           }
-            if(i == 2){
                pix7 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
             }
-            if(i == 3){
+            if(i == 1){
                pix8 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+           }
+            if(i == 2){
+               pix9 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+            }
+            if(i == 3){
+               pix10 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+           }
+            if(i == 4){
+               pix11 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
+           }
+            if(i == 5){
+               pix12 = QPixmap(QString::fromStdString(game.getIteminInventory(i).getimage()));
            }
 
         }
@@ -169,30 +195,56 @@ void MainWindow::formatItems(){
         ui->PlayerItem2->clear();
         ui->PlayerItem3->clear();
         ui->PlayerItem4->clear();
+        ui->PlayerItem5->clear();
+        ui->PlayerItem6->clear();
     }
     if(game.getAmountofInvItems() ==1) {
-    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
     ui->PlayerItem2->clear();
     ui->PlayerItem3->clear();
     ui->PlayerItem4->clear();
+    ui->PlayerItem5->clear();
+    ui->PlayerItem6->clear();
     }
     if(game.getAmountofInvItems() ==2) {
-    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
     ui->PlayerItem3->clear();
     ui->PlayerItem4->clear();
+    ui->PlayerItem5->clear();
+    ui->PlayerItem6->clear();
     }
     if(game.getAmountofInvItems() ==3) {
-    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem3->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));}
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix9.scaled(80,80,Qt::KeepAspectRatio));
     ui->PlayerItem4->clear();
-
+    ui->PlayerItem5->clear();
+    ui->PlayerItem6->clear();
+    }
     if(game.getAmountofInvItems() == 4) {
-    ui->PlayerItem1->setPixmap(pix5.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem2->setPixmap(pix6.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem3->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
-    ui->PlayerItem4->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix9.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem4->setPixmap(pix10.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem5->clear();
+    ui->PlayerItem6->clear();
+    }
+    if(game.getAmountofInvItems() == 4) {
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix9.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem4->setPixmap(pix10.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem5->setPixmap(pix11.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem6->clear();
+    }
+    if(game.getAmountofInvItems() == 4) {
+    ui->PlayerItem1->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem2->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem3->setPixmap(pix9.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem4->setPixmap(pix10.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem5->setPixmap(pix11.scaled(80,80,Qt::KeepAspectRatio));
+    ui->PlayerItem6->setPixmap(pix12.scaled(80,80,Qt::KeepAspectRatio));
     }
 
     if (game.currentRoom->shortDescription() == "Hidden Shrine" && game.currentRoom->addItemFromRoom("Enchanted Sword") >= 0) {
@@ -265,7 +317,7 @@ void MainWindow::on_west_clicked(){
 }
 
 void MainWindow::on_talk_clicked(){
-  QString str =  QInputDialog::getMultiLineText(this,"What Do you say?","Type what you say");
+  QString str =  QInputDialog::getMultiLineText(this,"Who do you talk to?","Type who you talk to");
   string text = str.toLocal8Bit().constData();
   ui->textBrowser->setText(game.play(Command("talk",text)));
   formatMonsters();
@@ -274,7 +326,7 @@ void MainWindow::on_talk_clicked(){
 }
 
 void MainWindow::on_take_clicked(){
-    QString str =  QInputDialog::getMultiLineText(this,"What Do you take?","Type what you take");
+    QString str =  QInputDialog::getMultiLineText(this,"What do you take?","Type what you take");
     string text = str.toLocal8Bit().constData();
     ui->textBrowser->setText(game.play(Command("take",text)));
     formatMonsters();
@@ -283,7 +335,7 @@ void MainWindow::on_take_clicked(){
     formatNPCs();
 }
 void MainWindow::on_use_clicked(){
-    QString str =  QInputDialog::getMultiLineText(this,"What Do you use?","Type what you use");
+    QString str =  QInputDialog::getMultiLineText(this,"What do you use?","Type what you use");
     string text = str.toLocal8Bit().constData();
     ui->textBrowser->setText(game.play(Command("use",text)));
     formatMonsters();
