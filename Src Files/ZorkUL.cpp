@@ -31,31 +31,38 @@ ZorkUL::ZorkUL() {
 void ZorkUL::createRooms()  {
     mainchar = new Character();
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i ,*m;
-    a = new Room("castle");
-        a->addNPC(new NPC("TestNPC",1, 0));
-    b = new Room("Creepy Woods");
+    a = new Room("Main Hallway", ":/Images/mapRoomA.png", ":/Images/zorkuiRoomA.png");
+        a->addNPC(new NPC("Old Man", 1, 0));
+    b = new Room("Bronze Key Room", ":/Images/mapRoomB.png", ":/Images/zorkuiRoomB.png");
         b->addenemys(1,1);
         b->addItems(3);
-       // b->addItem(new Item("KEYITEM", 2, 2,0,1,0,":/Images/key.png"));
-    c = new Room("c");
+    c = new Room("Potion Room", ":/Images/mapRoomC.png", ":/Images/zorkuiRoomC.png");
+        c->addenemys(1,1);
         c->addItems(1);
         int random = (rand() % 2 + 1);
         if (random == 1){
         c->addItems(2);
     }
-    d = new Room("d");
-    e = new Room("e");
+    d = new Room("South Hallway", ":/Images/mapRoomD.png", ":/Images/zorkuiRoomD.png");
+        d->addDoor(new Door(1, 4, "west", "Blockage"));
+        d->addenemys(1,1);
+        d->addItems(7);
+    e = new Room("Silver Key Room", ":/Images/mapRoomE.png", ":/Images/zorkuiRoomE.png");
         e->addItems(4);
-    f = new Room("f");
-        f->addDoor(new Door(1, 1, "north"));
-        f->addDoor(new Door(1, 2, "north"));
-        f->addDoor(new Door(1, 3, "north"));
-    g = new Room("g");
+        e->addenemys(1,1);
+    f = new Room("North Hallway", ":/Images/mapRoomF.png", ":/Images/zorkuiRoomF.png");
+        f->addDoor(new Door(1, 1, "north", "Door"));
+        f->addDoor(new Door(1, 2, "north", "Door"));
+        f->addDoor(new Door(1, 3, "north", "Door"));
+    g = new Room("Sword Room", ":/Images/mapRoomG.png", ":/Images/zorkuiRoomG.png");
         g->addItems(0);
-    h = new Room("h");
+        g->addenemys(1,1);
+    h = new Room("Gold Key Room", ":/Images/mapRoomH.png", ":/Images/zorkuiRoomH.png");
         h->addItems(5);
-    i = new Room("i");
-    m = new Room("end zone");
+        h->addenemys(1,1);
+    i = new Room("Hidden Shrine", ":/Images/mapRoomI.png", ":/Images/zorkuiRoomI.png");
+        i->addItems(6);
+    m = new Room("Boss Room", ":/Images/mapRoomM.png", ":/Images/zorkuiRoomM.png");
 
 
 //             (N, E, S, W)
@@ -71,6 +78,7 @@ void ZorkUL::createRooms()  {
 
         currentRoom = a;
 }
+
 /**
  *  Main play routine.  Loops until end of play.
  */
@@ -106,7 +114,6 @@ Item ZorkUL::getIteminList(int i){
 Item ZorkUL::getIteminInventory(int i){
     return mainchar->itemsInCharacter[i];
 }
-
 QString ZorkUL::printWelcome() {
     string str = "You start your journey!\n"  + currentRoom->longDescription() ;
     QString qstr = QString::fromStdString(str);
@@ -138,34 +145,17 @@ int ZorkUL::getAmountofInvItems(){
        }
     }
     if (command.isUnknown()) {
-        test = test +"invalid input";
+        test = test +"\nInvalid input";
 
     }
     string commandWord = command.getCommandWord();
-    if (commandWord.compare("info") == 0)
-        printHelp();
 
-    else if (commandWord.compare("map") == 0)
-        {
-        test = test +"[h] --- [f] --- [g]" ;
-        test = test +"         |         " ;
-        test = test +"         |         " ;
-        test = test +"[c] --- [a] --- [b]" ;
-        test = test +"         |         " ;
-        test = test +"         |         " ;
-        test = test +"[i] --- [d] --- [e]" ;
-        }
-
-    else if (commandWord.compare("go") == 0)
+    if (commandWord.compare("go") == 0)
        test = test + goRoom(command);
 
     else if (commandWord.compare("take") == 0)
     {
       test = take(command);
-    }
-    else if (commandWord.compare("put") == 0)
-    {
-       test = test +"you put a item down" ;
     }
 
     else if (commandWord.compare("use") == 0)
@@ -191,12 +181,13 @@ int ZorkUL::getAmountofInvItems(){
 
     else if (commandWord.compare("quit") == 0) {
         if (command.hasSecondWord())
-            test = test +"overdefined input";
+            test = test +"\nOverdefined input";
     }
 
      QString qstr = QString::fromStdString(test);
      return qstr;
 }
+
  string ZorkUL::use(Command command){
      string test;
      if (mainchar->findItemInInv(command.getSecondWord()) != -1) {
@@ -204,47 +195,56 @@ int ZorkUL::getAmountofInvItems(){
      int itemid = mainchar -> getItemID(mainchar -> findItemInInv(command.getSecondWord()));
        switch(itemid) {
        case 1 :
-         test = test +"You drink the potion." ;
+         test = test +"\nYou drink the potion." ;
              mainchar->potionDrank();
-         test = test +"Your new health points are: " + to_string(mainchar->getHealthPoint()) ;
+         test = test +"\nYour new health points are: " + to_string(mainchar->getHealthPoint()) ;
+         test = test + "\n" + currentRoom->longDescription() ;
          break;
        case 2 :
-         test = test +"You equip the " + mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) + "." ;
+         test = test +"\nYou equip the " + mainchar -> getItemName(mainchar -> findItemInInv(command.getSecondWord())) + "." ;
              mainchar->equipWeapon(mainchar -> getItemDmg(mainchar -> findItemInInv(command.getSecondWord())));
-         test = test +"Your new attack points are: " + to_string(mainchar->getDamageOut()) ;
+         test = test +"\nYour new attack points are: " + to_string(mainchar->getDamageOut()) ;
+         test = test + "\n" + currentRoom->longDescription() ;
          break;
        case 3 :
-         test = test +"You use the key." ;
+         test = test +"\nYou use the key." ;
          if (currentRoom->getNumberofDoors() > 0){
              if ((currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord())))) >= 0) {
                  currentRoom->doorUnlock(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
                  tempdirection = currentRoom->getDoorDirection(currentRoom->useKey(mainchar -> getKeyID(mainchar -> findItemInInv(command.getSecondWord()))));
-                 test = test +"You unlocked the door to the " + tempdirection ;
+                 if (currentRoom->doorTypeCheck(tempdirection) == "Door"){
+                 test = test +"\nYou unlocked the door to the " + tempdirection ;
+                 test = test + "\n" + currentRoom->longDescription() ;
                  break;
-             } else {
-                 test = test +"This key cannot be used here!" ;
+                 } else if (currentRoom->doorTypeCheck(tempdirection) == "Blockage"){
+                 test = test +"\nYou unblocked the passage to the " + tempdirection ;
+                 test = test + "\n" + currentRoom->longDescription() ;
+                 mainchar->usedItem(command.getSecondWord());
+                 break;
+                 }
+             }
+             else {
+                 test = test +"\nThis key cannot be used here!" ;
+                 test = test + "\n" + currentRoom->longDescription() ;
                  break;
              }
          } else {
-             test = test +"This key cannot be used here!" ;
+             test = test +"\nThis key cannot be used here!" ;
+             test = test + "\n" + currentRoom->longDescription() ;
              break;
          }
 
          break;
-        case 4 :
-         test = test +"test" ;
-         break;
-        case 5 :
-         test = test +"test" ;
-         break;
+
         default :
-         test = test +"Invalid item!" ;
+         test = test +"\nInvalid item!" ;
             }
          } else  {
-         test = test +"Invalid item!" ;
+         test = test +"\nInvalid item!" ;
      }
       return test;
      }
+
  string ZorkUL::take(Command command){
      string test;
      if (currentRoom->getammoutofenemy() != 0){
@@ -255,20 +255,21 @@ int ZorkUL::getAmountofInvItems(){
      } else if  (currentRoom->getammoutofenemy() == 0){
 
         if (!command.hasSecondWord()) {
-        test = test +"incomplete input";
+        test = test +"\nIncomplete input";
         }
         else if (command.hasSecondWord()) {
 
-        test = test +"you're trying to take " + command.getSecondWord() ;
+        test = test +"\nYou're trying to take " + command.getSecondWord() ;
         int location = currentRoom->addItemFromRoom(command.getSecondWord());
         if (location  < 0 ) {
-            test = test +"item is not in room" ;
+            test = test +"\nItem is not in room" ;
+            test = test + "\n" + currentRoom->longDescription() ;
         }
         else {
             Item newItem = currentRoom -> getItem(currentRoom -> addItemFromRoom(command.getSecondWord()));
             mainchar->addItem(newItem);
-            test = test + "item is in room" ;
-            test = test + "index number " + to_string(location) ;
+            test = test + "\nItem is in room" ;
+            test = test + "\nIndex number " + to_string(location) ;
             currentRoom->deleteItem(command.getSecondWord());
             test = test +currentRoom->longDescription() ;
           }
@@ -276,12 +277,15 @@ int ZorkUL::getAmountofInvItems(){
      }
      return test;
  }
+
+
+
  string ZorkUL::Talk(Command command){
      string test;
      itemlist itemli = *new itemlist();
      vector<Item> Items = itemli.getitems();
      if (!command.hasSecondWord()) {
-     test = test +"incomplete input";
+     test = test +"\nIncomplete input";
      }
 
      if (currentRoom->npcCheck(command.getSecondWord()) >= 0) {
@@ -290,30 +294,27 @@ int ZorkUL::getAmountofInvItems(){
            switch(npcID) {
            case 1 :
                if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 0) {
-             test = test +"\"Test phrase\"" ;
-                 mainchar->addItem(Items.at(2));
-             test = test +"The man gives you a testkey" ;
+             test = test +"\n\"Greetings adventurer, I don't know who you are or how you've arrived here, but we need your help! An evil monster lurks within this cave, and all who have tried to defeat him have failed. I wish I could give you something to aid you in this quest, but alas I am a poor hermit with not much to offer.\"" ;
              currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
                } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) < 10) {
-             test = test +"\"Go away\"" ;
+             test = test +"\n\"Why are you still talking to me? The monster still lives!\"" ;
              currentRoom->setNPCSpoken(currentRoom->npcCheck(command.getSecondWord()));
                } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) == 10) {
-                   test = test +"\"Fine, take this. But leave me alone now!\"" ;
-                 mainchar->addNPCItem(Items.at(4));
-                   test = test +"The man gives you a sword, engraved with runes" ;
+                   test = test +"\n\"Fine, maybe I do have something, but leave me be now, thief!\"" ;
+                 mainchar->addNPCItem(Items.at(8));
+                   test = test +"\nThe man hands you a small oil lamp, with seemingly nothing particularly special about it." ;
                      } else if (currentRoom->getNPCSpoken(currentRoom->npcCheck(command.getSecondWord())) > 10) {
-                         test = test +"\"Go away\"" ;
+                         test = test +"\n\"Why are you still talking to me? The monster still lives!\"" ;
                      }
-             break;
-           case 2 :
-             test = test +"test" ;
              break;
            }
      } else {
-         test = test +"That person is not in the room!" ;
+         test = test +"\nThat person is not in the room!" ;
      }
      return test;
  }
+
+
 string ZorkUL::CombatCalc(Command command){
     string test;
     try {
@@ -327,7 +328,7 @@ string ZorkUL::CombatCalc(Command command){
     else if (currentRoom->getammoutofenemy() != 0) {
          index = std::stoi(command.getSecondWord());
          currentRoom->enemytakedmg(mainchar->getDamageOut(), index);
-         if ((currentRoom->getenemyhp(index)) > 0){
+       if ((currentRoom->getenemyhp(index)) > 0){
          index = std::stoi(command.getSecondWord());
          Enemy mon = currentRoom->getmoninroom(index-1);
          int x = (rand() % 100);
@@ -336,13 +337,14 @@ string ZorkUL::CombatCalc(Command command){
          test = test + "\nDamage given: " + to_string(mainchar->dmgout);
          //Combat caculation
          for(int i = 0;i < currentRoom->getammoutofenemy();i++){
-          Enemy temp = currentRoom->getmoninroom(i);
-         if(x > temp.getaccuracy()){
+             Enemy temp = currentRoom->getmoninroom(i);
+         if(x < temp.getaccuracy()){
          test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + to_string(temp.getdmgout()) ;
          int hp = mainchar->hp - temp.getdmgout();
+         // call by reference passing address of hp into the func (func(&
          mainchar->setHealthPoint(hp);}
          else {
-         test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "Missed!" ; } }
+         test = test + "\nDamage taken from:" + temp.getShortDescription() + ":" + "\nMissed!" ; } }
          test = test + "\nYour hp = " + to_string(mainchar->hp) ;
          if(mainchar->hp <= 0 ){
              return "You died!";
@@ -362,10 +364,10 @@ string ZorkUL::CombatCalc(Command command){
     }  catch (int errorid) {
         switch(errorid){
         case 0:{
-            return "There are no monsters in the room!";
+            return "\nThere are no monsters in the room!";
         }
         case 1: {
-            return "Please enter a monster to attack!";
+            return "\nPlease enter a monster to attack!";
         }
         case 99:{
         }
@@ -373,21 +375,23 @@ string ZorkUL::CombatCalc(Command command){
             exception& e = z;
             return e.what();//fatal error
         }
+
     throw 99;
 } }
 /** COMMANDS **/
-void ZorkUL::printHelp() {
-}
-
 string ZorkUL::goRoom(Command command) {
     string str;
     if (!command.hasSecondWord()) {
-        str = str +"incomplete input";
+        str = str +"\nIncomplete input";
 
     }
 
-    if (currentRoom->doorCheck(command.getSecondWord()) >= 0) {
+    if (currentRoom->doorCheck(command.getSecondWord()) >= 0 && (currentRoom->doorTypeCheck(command.getSecondWord()) == "Door")) {
         str = str + "This door is locked!\n" ;
+        str = str + "\n" + currentRoom->longDescription() ;
+    } else if (currentRoom->doorCheck(command.getSecondWord()) >= 0 && (currentRoom->doorTypeCheck(command.getSecondWord()) == "Blockage")) {
+        str = str + "This way is blocked!\n" ;
+        str = str + "\n" + currentRoom->longDescription() ;
     } else if (currentRoom->doorCheck(command.getSecondWord()) < 0) {
 
     if (currentRoom->getammoutofenemy() != 0){
@@ -400,13 +404,15 @@ string ZorkUL::goRoom(Command command) {
     // Try to leave current room.
     Room* nextRoom = currentRoom->nextRoom(direction);
 
-    if (nextRoom == NULL)
-        str = str +"underdefined input";
+    if (nextRoom == NULL) {
+        str = str +"\nNo Room in that Direction!";
+        str = str + "\n" + currentRoom->longDescription() ;
+    }
     else {
         currentRoom = nextRoom;
-        if(currentRoom->shortDescription().compare("end zone")==0){
+        if(currentRoom->shortDescription().compare("Boss Room")==0){
             win = 1;
-            str = str +"You saved the kingdom while keeping your sanity and life!" ;
+            str = str +"End" ;
         }
         else
         str = str +currentRoom->longDescription() ;

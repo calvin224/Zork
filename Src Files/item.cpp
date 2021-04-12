@@ -24,6 +24,14 @@ GoldKey::GoldKey(){
     this->itemid = 3;
     this->image = ":/Images/goldkey.png";
 }
+
+TNT::TNT(){
+    this-> description = "TNT";
+    this->iskeyitem = 4;
+    this->itemid = 3;
+    this->image = ":/Images/tnt.png";
+}
+
 Potion::Potion(){
     this-> description = "Potion";
     this->iskeyitem = 0;
@@ -34,8 +42,14 @@ EnchanSword::EnchanSword(){
      this-> description = "Enchanted Sword";
      this->weapondmg = 3;
      this->iskeyitem = 0;
-     this->itemid = 0;
-     this->image = "";
+     this->itemid = 2;
+     this->image = ":/Images/enchantedsword.png";
+}
+Lamp::Lamp(){
+     this-> description = "Lamp";
+     this->iskeyitem = 0;
+     this->itemid = 4;
+     this->image = ":/Images/lamp.png";
 }
 int Item::getWeaponCheck(){
     return weapondmg;
@@ -48,11 +62,11 @@ int Item::getKeyID(){
 }
 string Item::getShortDescription()
 {
-	return description;
+    return description;
 }
 string Item::getLongDescription()
 {
-	return " item(s), " + description + ".\n";
+    return " item(s), " + description + ".\n";
 }
 // 0 = not key item plan is 1-etc indicate a certain key item and when  used on something checks if the required int for key item = int it wants (if iskeyitem = 2 open door etc);
 int Item::IskeyItem(){

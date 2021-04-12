@@ -11,7 +11,6 @@ CommandWords::CommandWords() {
 		validCommands.push_back("go");
 		validCommands.push_back("quit");
 		validCommands.push_back("info");
-		validCommands.push_back("map");
 		validCommands.push_back("take");
 		validCommands.push_back("put");
         validCommands.push_back("use");

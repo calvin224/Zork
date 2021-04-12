@@ -60,6 +60,18 @@ public:
     friend Item;
 };
 
+class TNT: public Item{
+public:
+    TNT();
+    friend Item;
+};
+
+class Lamp: public Item{
+public:
+    Lamp();
+    friend Item;
+};
+
 class EnchanSword : public Item{
 public:
     EnchanSword();

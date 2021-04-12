@@ -26,7 +26,6 @@ private:
     Parser parser;
     void createRooms();
     QString processCommand(Command command);
-    void printHelp();
     string goRoom(Command command);
     void createItems();
     void displayItems();
@@ -50,8 +49,8 @@ public:
     Item getIteminList(int i);
     Item getIteminInventory(int i);
     Enemy getmoninarray(int i);
+
 };
-//
 class MyException : public exception{
     public:
         const char * what() const throw()

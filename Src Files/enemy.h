@@ -54,7 +54,7 @@ class superArcher {
 public:
     string newname = "superArcher";
     int newdmgout = 4;
-    string newimage = ":/Images/buffdonkey.jpg";
+    string newimage = ":/Images/superSkeleton.jpg";
 };
 //multi inheritance
 class Archer: public Enemy, public superArcher{

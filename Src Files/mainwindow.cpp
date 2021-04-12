@@ -22,74 +22,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->setPalette(palette);
 
 }
+
 void MainWindow::formatMap(){
-    if (game.currentRoom->shortDescription() == "castle") {
-        QPixmap map(":/Images/mapRoomA.png");
-        ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-        QPixmap bkgnd(":/Images/zorkuiRoomA.png");
-        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-        QPalette palette;
-        palette.setBrush(QPalette::Background, bkgnd);
-        this->setPalette(palette);
+    QPixmap pix (QString::fromStdString(game.currentRoom->getMapImage()));
+    ui->Map->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
 
-    } else if (game.currentRoom->shortDescription() == "Creepy Woods") {
-        QPixmap map(":/Images/mapRoomB.png");
-        ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-        QPixmap bkgnd(":/Images/zorkuiRoomB.png");
-        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-        QPalette palette;
-        palette.setBrush(QPalette::Background, bkgnd);
-        this->setPalette(palette);
-    }
-    else if (game.currentRoom->shortDescription() == "c") {
-           QPixmap map(":/Images/mapRoomC.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-       }
-    else if (game.currentRoom->shortDescription() == "d") {
-           QPixmap map(":/Images/mapRoomD.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-           QPixmap bkgnd(":/Images/zorkuiRoomD.png");
-           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-           QPalette palette;
-           palette.setBrush(QPalette::Background, bkgnd);
-           this->setPalette(palette);
-       }
-    else if (game.currentRoom->shortDescription() == "e") {
-           QPixmap map(":/Images/mapRoomE.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-       }
-    else if (game.currentRoom->shortDescription() == "f") {
-           QPixmap map(":/Images/mapRoomF.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-           QPixmap bkgnd(":/Images/zorkuiRoomF.png");
-           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-           QPalette palette;
-           palette.setBrush(QPalette::Background, bkgnd);
-           this->setPalette(palette);
-       }
-    else if (game.currentRoom->shortDescription() == "g") {
-           QPixmap map(":/Images/mapRoomG.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-       }
-    else if (game.currentRoom->shortDescription() == "h") {
-           QPixmap map(":/Images/mapRoomH.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-           QPixmap bkgnd(":/Images/zorkuiRoomH.png");
-           bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-           QPalette palette;
-           palette.setBrush(QPalette::Background, bkgnd);
-           this->setPalette(palette);
-       }
-    else if (game.currentRoom->shortDescription() == "i") {
-           QPixmap map(":/Images/mapRoomI.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-       }
-    else if (game.currentRoom->shortDescription() == "end zone") {
-           QPixmap map(":/Images/mapRoomM.png");
-           ui->Map->setPixmap(map.scaled(200,200,Qt::KeepAspectRatio));
-       }
-
-
+    QPixmap background = QPixmap(QString::fromStdString(game.currentRoom->getRoomImage()));
+    background = background.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, background);
+    this->setPalette(palette);
 }
 
 void MainWindow::formatMonsters(){
@@ -252,10 +194,17 @@ void MainWindow::formatItems(){
     ui->PlayerItem3->setPixmap(pix7.scaled(80,80,Qt::KeepAspectRatio));
     ui->PlayerItem4->setPixmap(pix8.scaled(80,80,Qt::KeepAspectRatio));
     }
+
+    if (game.currentRoom->shortDescription() == "Hidden Shrine" && game.currentRoom->addItemFromRoom("Enchanted Sword") >= 0) {
+    QPixmap shrine(":/Images/swordStone.png");
+    ui->ShrineItem->setPixmap(shrine.scaled(100,100,Qt::KeepAspectRatio));
+    } else {
+        ui->ShrineItem->clear();
+    }
 }
 
 void MainWindow::formatNPCs(){
-    if (game.currentRoom->shortDescription() == "castle" || game.currentRoom->shortDescription() == "end zone") {
+    if (game.currentRoom->shortDescription() == "Main Hallway") {
     QPixmap NPC(":/Images/oldman.png");
     ui->NPC->setPixmap(NPC.scaled(200,200,Qt::KeepAspectRatio));
     } else {

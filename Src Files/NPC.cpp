@@ -1,6 +1,6 @@
 #include "NPC.h"
 
-NPC::NPC(string name,int id, int spokento){
+NPC::NPC(string name, int id, int spokento){
     this->name = name;
     this->id = id;
     this->spokento = spokento;

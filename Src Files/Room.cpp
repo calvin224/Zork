@@ -4,9 +4,11 @@
 #include <ctime>
 using namespace std;
 
-Room::Room(string description ) {
+Room::Room(string description, string mapimage, string roomimage) {
     srand((unsigned) time(0));
 	this->description = description;; 
+    this->roomimage = roomimage;;
+    this->mapimage = mapimage;;
     MonsterList *list = new MonsterList();
     level1mons = list->getlevel1mon();
     level2mons = list->getlevel2mon();
@@ -35,6 +37,14 @@ string Room::shortDescription() {
 
 string Room::longDescription() {
     return "room = " + description + ".\n" + displayItem() + ".\n" + displayenemy() + ".\n" + displayNPC() + ".\n" + exitString();
+}
+
+string Room::getRoomImage() {
+    return roomimage;
+}
+
+string Room::getMapImage() {
+    return mapimage;
 }
 
 string Room::exitString() {
@@ -234,6 +244,25 @@ int Room::doorCheck(string inDirection){
     return -1;
 }
 
+string Room::doorTypeCheck(string inDirection){
+    int numDoors = (roomDoors.size());
+    if (roomDoors.size() < 1) {
+        return "";
+        }
+    else if (roomDoors.size() > 0) {
+       int x = (0);
+        for (int n = numDoors; n > 0; n--) {
+            // compare inString with short description
+            int tempFlag = inDirection.compare(roomDoors[x].getDirection());
+            if (tempFlag == 0) {
+                    return roomDoors[x].getType();
+            }
+            x++;
+            }
+        }
+    return "";
+}
+
 void Room::addNPC(NPC *inNPC) {
     npcList.push_back(*inNPC);
 }
@@ -264,7 +293,7 @@ int Room::npcCheck(string npcName){
         for (int n = numNPC; n > 0; n--) {
             // compare inString with short description
             int tempFlag = npcName.compare(npcList[x].getShortDescription());
-            if (tempFlag == 0 && roomDoors[x].lockedCheck() == 1) {
+            if (tempFlag == 0) {
                     return x;
             }
             x++;

@@ -13,8 +13,8 @@ public:
     void addNPCItem(Item item);
     Character();
     virtual ~Character();
-	string shortDescription();
-	string longDescription();
+    string shortDescription();
+    string longDescription();
     int findItemInInv(string itemname);
     void setHealthPoint(int &HP);
     int getHealthPoint();
@@ -25,6 +25,7 @@ public:
     string getItemName (int x);
     int getItemDmg (int x);
     void equipWeapon(int initemid);
+    void usedItem(string itemname);
     void death();
     string description;
     vector < Item > itemsInCharacter;

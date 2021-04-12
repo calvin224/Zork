@@ -22,22 +22,26 @@ private:
     Enemy *enemy;
     Door *door;
     string description;
+    string roomimage;
+    string mapimage;
     map<string, Room*> exits;
     string exitString();
     vector <Item> Items;
     vector <Enemy> level1mons;
     vector <Enemy> level2mons;
     vector <NPC> npcList;
-    vector <Door> roomDoors;
 public:
     vector <Enemy> EnemyinRoom;
     vector <Item> itemsInRoom;
+    vector <Door> roomDoors;
     int numberOfItems();
-    Room(string description);
-	void setExits(Room *north, Room *east, Room *south, Room *west);
+    Room(string description, string mapimage, string roomimage);
+    void setExits(Room *north, Room *east, Room *south, Room *west);
     string shortDescription();
     string longDescription();
-	Room* nextRoom(string direction);
+    string getRoomImage();
+    string getMapImage();
+    Room* nextRoom(string direction);
     void addItem(Item *inItem);
     void addItems(int N0OfItems);
     string displayItem();
@@ -57,6 +61,7 @@ public:
     string getDoorDirection(int door);
     int getNumberofDoors();
     int doorCheck(string inDirection);
+    string doorTypeCheck(string inDirection);
     void addNPC(NPC *inNPC);
     string displayNPC();
     int npcCheck(string npcName);

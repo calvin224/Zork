@@ -65,7 +65,9 @@ void Character::equipWeapon(int weapondmg) {
     }
     }
 }
-
+void Character::usedItem(string itemname){
+    itemsInCharacter.erase(itemsInCharacter.begin()+findItemInInv(itemname));
+}
 int Character::findItemInInv(string itemname)
 {
     int sizeItems = (itemsInCharacter.size());

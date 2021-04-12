@@ -34,6 +34,7 @@ Goblin::Goblin(){
                 this->dmgout = newdmg.x;
                 mypair <int> myobject (z,y);
                 this->accuracy=myobject.getmax();
+                this->image = ":/Images/superGoblin.png";
           }
 }
 Archer::Archer(){
