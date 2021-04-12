@@ -1,5 +1,5 @@
 #include "enemy.h"
-
+//union
 union enemyvals {
     int a;
     int b;

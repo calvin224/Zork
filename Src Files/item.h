@@ -34,6 +34,7 @@ public:
 class Potion: public Item{
 public:
     Potion();
+    //copy + call by reference
     Potion(const Potion &potion1){
         this-> description = potion1.description;
         this->iskeyitem = potion1.iskeyitem;
@@ -45,6 +46,7 @@ public:
 class BronzeKey: public Item{
 public:
     BronzeKey();
+    // friend example
     friend Item;
 };
 

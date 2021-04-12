@@ -1,9 +1,7 @@
 #include "NPC.h"
+//int list
+NPC::NPC(string name, int id, int spokento) : name(name),id(id),spokento(spokento){
 
-NPC::NPC(string name, int id, int spokento){
-    this->name = name;
-    this->id = id;
-    this->spokento = spokento;
 }
 
 string NPC::getShortDescription(){

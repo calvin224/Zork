@@ -10,6 +10,7 @@ using std::vector;
 class MonsterList
 {
 protected:
+    //array
     vector <Enemy> level1mon;
     vector <Enemy> level2mon;
 public:

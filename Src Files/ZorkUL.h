@@ -1,7 +1,9 @@
+//Advanced pre-processor - Zorkul.h   directives
+//header files (inclusion guards)
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
 #define ERROR "Fatal"
-
+//Basic pre-processor directives
 #include "Command.h"
 #include "Parser.h"
 #include "Room.h"
@@ -22,6 +24,7 @@
 using namespace std;
 class ZorkUL {
     friend class MainWindow;
+    //private
 private:
     Parser parser;
     void createRooms();
@@ -35,6 +38,7 @@ private:
     string Talk(Command command);
     string use(Command command);
     string take(Command command);
+    //public
 public:
     QString printWelcome();
     ZorkUL();
@@ -51,6 +55,7 @@ public:
     Enemy getmoninarray(int i);
 
 };
+//Programmer defined exceptions
 class MyException : public exception{
     public:
         const char * what() const throw()

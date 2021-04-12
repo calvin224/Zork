@@ -4,7 +4,7 @@
 #include <QPixmap>
 #include <iostream>
 using namespace std;
-
+//template class
 template <class T>
 class mypair {
     T a, b;
@@ -32,6 +32,7 @@ protected:
     unsigned int accuracy;
     string image;
 public:
+    //template function
    template<typename T>
     T Min(T x, T y){
         return (x < y)? x: y;

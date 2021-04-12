@@ -5,7 +5,7 @@ Character::Character() {
     this->hp = 10;
     this->dmgout = 2;
 }
-
+//Memory management Destructors
 Character::~Character() {
     cout << "Character destructor executed" ;
 }

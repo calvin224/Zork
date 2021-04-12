@@ -8,6 +8,7 @@ using std::vector;
 
 class NPC
 {
+    //protected
 protected:
     string name;
     vector <Item> npcInventory;

@@ -5,6 +5,7 @@
 #include <string>
 #include <functional>
 #include <optional>
+//namespace example
 namespace start {
 
 int Start(int argc, char* argv[]){
@@ -361,6 +362,7 @@ string ZorkUL::CombatCalc(Command command){
       }
        } }
      return test;
+     //Programmer defined exceptions
     }  catch (int errorid) {
         switch(errorid){
         case 0:{
